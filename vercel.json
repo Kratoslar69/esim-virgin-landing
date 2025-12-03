@@ -1,0 +1,29 @@
+{
+  "redirects": [
+    {
+      "source": "/paquete-150",
+      "destination": "https://virginmobile.mx/v1/sim-linea-nueva?bundle_code=536&channel=D23&utm_source=Distribuidores&utm_medium=MARIA%20GUADALUOE%20GONZALEZ%20BUSTAMANTE%20&utm_campaign=D23esim-offline",
+      "permanent": false
+    },
+    {
+      "source": "/paquete-200",
+      "destination": "https://virginmobile.mx/v1/sim-linea-nueva?bundle_code=538&channel=D23&utm_source=Distribuidores&utm_medium=MARIA%20GUADALUOE%20GONZALEZ%20BUSTAMANTE%20&utm_campaign=D23esim-offline",
+      "permanent": false
+    },
+    {
+      "source": "/paquete-250",
+      "destination": "https://virginmobile.mx/v1/sim-linea-nueva?bundle_code=540&channel=D23&utm_source=Distribuidores&utm_medium=MARIA%20GUADALUOE%20GONZALEZ%20BUSTAMANTE%20&utm_campaign=D23esim-offline",
+      "permanent": false
+    },
+    {
+      "source": "/paquete-300",
+      "destination": "https://virginmobile.mx/v1/sim-linea-nueva?bundle_code=542&channel=D23&utm_source=Distribuidores&utm_medium=MARIA%20GUADALUOE%20GONZALEZ%20BUSTAMANTE%20&utm_campaign=D23esim-offline",
+      "permanent": false
+    },
+    {
+      "source": "/paquete-400",
+      "destination": "https://virginmobile.mx/v1/sim-linea-nueva?bundle_code=544&channel=D23&utm_source=Distribuidores&utm_medium=MARIA%20GUADALUOE%20GONZALEZ%20BUSTAMANTE%20&utm_campaign=D23esim-offline",
+      "permanent": false
+    }
+  ]
+}
