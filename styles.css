@@ -50,6 +50,7 @@ body {
 }
 
 /* --- 3. HERO VIDEO SECTION (DISRUPTIVO) --- */
+/* --- 3. HERO SECTION: FONDO VIVO (Líquido) --- */
 .hero-video {
     position: relative;
     height: 450px;
@@ -60,8 +61,49 @@ body {
     color: white;
     overflow: hidden;
     clip-path: ellipse(150% 100% at 50% 0%);
-    margin-bottom: -50px; /* Superposición */
+    margin-bottom: -50px;
+    
+    /* 🔥 AQUÍ ESTÁ LA MAGIA: Gradiente Animado */
+    background: linear-gradient(-45deg, #000000, #1B2945, #E10A17, #5c0000);
+    background-size: 400% 400%;
+    animation: gradientFlow 10s ease infinite;
+    box-shadow: inset 0 0 50px rgba(0,0,0,0.5); /* Sombra interna para profundidad */
 }
+
+/* Animación del movimiento */
+@keyframes gradientFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Ocultamos el video roto y la capa vieja */
+.video-bg, .video-overlay {
+    display: none !important;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-content h1 {
+    font-size: 2.8rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    margin-bottom: 15px;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    font-weight: 500;
+    opacity: 0.9;
+}
+
+/* Eliminamos hero antiguo */
+.hero { display: none; }
 
 .video-bg {
     position: absolute;
