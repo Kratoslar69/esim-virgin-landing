@@ -78,8 +78,9 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    /* AQUI ESTA EL CAMBIO: Bajamos de 0.85 a 0.4 para que se vea el video */
-    background: linear-gradient(135deg, rgba(225, 10, 23, 0.4) 0%, rgba(27, 41, 69, 0.5) 100%);
+    /* 🔥 CAMBIO CRÍTICO AQUÍ 🔥 */
+    /* Bajamos la opacidad a 0.3 (muy transparente) para que el video brille */
+    background: linear-gradient(135deg, rgba(225, 10, 23, 0.3) 0%, rgba(27, 41, 69, 0.3) 100%);
     z-index: -1;
 }
 
