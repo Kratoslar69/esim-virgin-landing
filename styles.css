@@ -992,3 +992,38 @@ body {
         padding: 40px 0 20px;
     }
 }
+/* =========================================
+   CORRECCIÓN DE EMERGENCIA - TAMAÑO DE ICONOS
+   ========================================= */
+
+/* 1. Controlar los iconos de las Apps dentro de los paquetes */
+.app-icons img {
+    width: 30px !important;   /* Tamaño fijo pequeño */
+    height: 30px !important;
+    object-fit: contain;      /* Que no se deformen */
+    margin: 2px;              /* Espacio entre ellos */
+    display: inline-block;
+}
+
+/* 2. Controlar el icono de WhatsApp del Header (el de "Ayuda") */
+.icon-small {
+    width: 20px !important;
+    height: 20px !important;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+/* 3. Controlar el Logo de Virgin Mobile */
+.logo {
+    max-width: 120px !important;
+    height: auto;
+    display: block;
+}
+
+/* 4. Acomodar el contenedor de iconos para que no salten de línea */
+.app-icons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 5px;
+}
