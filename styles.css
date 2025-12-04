@@ -313,12 +313,9 @@ footer { background-color: var(--virgin-dark); color: white; text-align: center;
 
 /* --- 9. TEMPORIZADOR DE OFERTA --- */
 .offer-timer-section {
-    background: linear-gradient(135deg, #1B2945, #000000);
-    padding: 30px;
-    margin: 0 0 40px 0;
-    text-align: center;
-    color: white;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    margin: -80px 0 40px 0; /* Negativo para superponerse */
+    position: relative;
+    z-index: 5;
 }
 
 .timer-container h3 {
