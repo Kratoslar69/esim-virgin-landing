@@ -19,7 +19,7 @@ body {
     background-color: var(--gray-bg);
     color: #333;
     line-height: 1.6;
-    padding-top: 90px; /* Espacio para el header fijo */
+    padding-top: 110px; /* Espacio para el header fijo */
 }
 
 /* =========================================
@@ -32,7 +32,7 @@ body {
     top: 0;
     width: 100%;
     z-index: 1000;
-    height: 90px;
+    height: 110px;
     display: flex;
     align-items: center;
 }
@@ -50,7 +50,7 @@ body {
 }
 
 .logo {
-    height: 65px; /* Tamaño controlado del logo */
+    height: 80px; /* Tamaño controlado del logo */
     width: auto;
 }
 
