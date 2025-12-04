@@ -190,3 +190,117 @@ body {
 .bg-gray { background-color: var(--gray-bg); }
 h2 { text-align: center; color: var(--virgin-dark); margin-bottom: 30px; }
 footer { background-color: var(--virgin-dark); color: white; text-align: center; padding: 40px 0; margin-top: 50px; }
+
+
+/* =========================================
+   ⚡ ZONA DE DISRUPCIÓN Y EFECTOS WOW ⚡
+   (Pega esto al final de styles.css)
+   ========================================= */
+
+/* 1. ENTRADA EN CASCADA (Las tarjetas aparecen una por una) */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.package-card {
+    animation: fadeInUp 0.6s ease-out forwards;
+    opacity: 0; /* Invisibles al inicio */
+}
+
+/* Retrasos para que entren en escalera */
+.package-card:nth-child(1) { animation-delay: 0.1s; }
+.package-card:nth-child(2) { animation-delay: 0.2s; }
+.package-card:nth-child(3) { animation-delay: 0.3s; } /* La destacada */
+.package-card:nth-child(4) { animation-delay: 0.4s; }
+.package-card:nth-child(5) { animation-delay: 0.5s; }
+
+
+/* 2. EFECTO "SHINE" (Brillo metálico al pasar el mouse) */
+.package-card {
+    position: relative;
+    overflow: hidden; /* Mantiene el brillo dentro de la tarjeta */
+    z-index: 1;
+}
+
+.package-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%; /* Empieza fuera a la izquierda */
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.3) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    transform: skewX(-25deg); /* Inclinamos la luz */
+    transition: none;
+    z-index: 2;
+    pointer-events: none; /* Que no estorbe el clic */
+}
+
+.package-card:hover::before {
+    animation: shine 0.75s; /* La animación ocurre al tocar */
+}
+
+@keyframes shine {
+    100% {
+        left: 200%; /* La luz cruza hasta el otro lado */
+    }
+}
+
+
+/* 3. BOTÓN CON "LATIDO" (Llamada a la acción subconsciente) */
+@keyframes pulse-red {
+    0% {
+        box-shadow: 0 0 0 0 rgba(225, 10, 23, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(225, 10, 23, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(225, 10, 23, 0);
+    }
+}
+
+/* Solo aplicamos el latido al botón del paquete destacado ($250) para enfocar la venta */
+.featured .btn-buy {
+    animation: pulse-red 2s infinite;
+}
+
+.btn-buy:hover {
+    transform: scale(1.05) !important; /* Crece al tocar */
+    animation: none; /* Pausa el latido al tocar para dar feedback */
+}
+
+
+/* 4. ICONOS LEVITANTES (Micro-interacción) */
+.package-card:hover .app-icons img {
+    animation: float 2s ease-in-out infinite;
+}
+
+/* Hacemos que floten con distintos tiempos para que se vea orgánico */
+.package-card:hover .app-icons img:nth-child(odd) { animation-duration: 2.2s; }
+.package-card:hover .app-icons img:nth-child(even) { animation-duration: 1.8s; }
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-3px); } /* Flotan 3px arriba */
+    100% { transform: translateY(0px); }
+}
+
+
+/* 5. SOMBRA NEÓN EN EL DESTACADO */
+.featured:hover {
+    box-shadow: 0 15px 40px rgba(225, 10, 23, 0.25) !important;
+    border-color: #ff3341;
+}
