@@ -1,11 +1,7 @@
 /* =========================================
    RESET Y VARIABLES
    ========================================= */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
     --virgin-red: #E10A17;
@@ -18,12 +14,11 @@ body {
     font-family: 'Montserrat', sans-serif;
     background-color: var(--gray-bg);
     color: #333;
-    line-height: 1.6;
-    padding-top: 110px; /* Espacio para el header fijo */
+    padding-top: 110px; /* ESPACIO EXTRA PARA EL HEADER GRANDE */
 }
 
 /* =========================================
-   HEADER
+   HEADER & LOGO (MODO PROTAGONISTA)
    ========================================= */
 .header {
     background-color: var(--white);
@@ -32,26 +27,19 @@ body {
     top: 0;
     width: 100%;
     z-index: 1000;
-    height: 110px;
+    height: 110px; /* HEADER MÁS ALTO */
     display: flex;
     align-items: center;
 }
 
-.container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
-}
+.container { width: 90%; max-width: 1200px; margin: 0 auto; }
+.header-content { display: flex; justify-content: space-between; align-items: center; }
 
-.header-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
+/* AQUÍ ESTÁ EL CAMBIO DEL LOGO */
 .logo {
-    height: 80px; /* Tamaño controlado del logo */
+    height: 80px !important; /* DOBLE DE TAMAÑO */
     width: auto;
+    display: block;
 }
 
 .btn-whatsapp {
@@ -64,11 +52,33 @@ body {
     display: flex;
     align-items: center;
     gap: 5px;
-    font-size: 0.9rem;
 }
 
 /* =========================================
-   HERO SECTION
+   CONTROL DE ICONOS (IMPORTANTE)
+   ========================================= */
+/* Esto arregla el WhatsApp gigante del header */
+.icon-small {
+    width: 20px !important;
+    height: 20px !important;
+}
+
+/* Esto arregla los iconos de las apps y evita que se vean rotos */
+.app-icons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 5px;
+}
+
+.app-icons img {
+    width: 28px !important;
+    height: 28px !important;
+    object-fit: contain;
+}
+
+/* =========================================
+   RESTO DEL DISEÑO
    ========================================= */
 .hero {
     background-color: var(--virgin-red);
@@ -79,14 +89,6 @@ body {
     margin-bottom: 30px;
 }
 
-.hero h1 {
-    font-size: 1.8rem;
-    margin-bottom: 10px;
-}
-
-/* =========================================
-   TARJETAS DE PAQUETES
-   ========================================= */
 .packages-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -99,197 +101,39 @@ body {
     border-radius: 15px;
     padding: 20px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-    border: 1px solid #eee;
-    transition: transform 0.2s;
-    position: relative;
     display: flex;
     flex-direction: column;
 }
 
-.package-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-}
-
-/* Estilo especial para el destacado */
-.featured {
-    border: 2px solid var(--virgin-red);
-    transform: scale(1.02);
-}
-
+.featured { border: 2px solid var(--virgin-red); transform: scale(1.02); }
 .badge {
     background-color: var(--virgin-red);
     color: white;
-    position: absolute;
-    top: -12px;
-    left: 50%;
-    transform: translateX(-50%);
     padding: 5px 15px;
     border-radius: 15px;
     font-size: 0.8rem;
-    font-weight: bold;
-}
-
-.package-header {
-    text-align: center;
-    margin-bottom: 20px;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 15px;
-}
-
-.package-header h3 {
-    color: var(--virgin-dark);
-    font-size: 1.2rem;
-}
-
-.price {
-    font-size: 2.5rem;
-    font-weight: 800;
-    color: var(--virgin-red);
-}
-
-.validity {
-    font-size: 0.9rem;
-    color: #666;
-}
-
-.package-body {
-    flex-grow: 1; /* Empuja el botón hacia abajo */
-}
-
-.data-highlight {
-    text-align: center;
-    background: #f0f0f0;
-    padding: 8px;
-    border-radius: 8px;
-    font-weight: 700;
-    margin-bottom: 15px;
-}
-
-/* =========================================
-   ICONOS (¡LA PARTE CRÍTICA!)
-   ========================================= */
-.app-group {
-    margin-bottom: 15px;
-}
-
-.app-group span {
-    font-size: 0.85rem;
-    color: #666;
-    display: block;
-    margin-bottom: 5px;
-    font-weight: 600;
-}
-
-.app-icons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
-}
-
-/* ESTO EVITA LOS ICONOS GIGANTES */
-.app-icons img {
-    width: 28px;
-    height: 28px;
-    object-fit: contain;
-}
-
-.icon-small {
-    width: 20px;
-    height: 20px;
-}
-
-/* =========================================
-   BOTONES
-   ========================================= */
-.btn-buy {
-    display: block;
-    width: 100%;
-    padding: 12px;
-    text-align: center;
-    background-color: var(--virgin-dark);
-    color: white;
-    text-decoration: none;
-    border-radius: 10px;
-    font-weight: bold;
-    margin-top: 20px;
-    transition: background 0.2s;
-}
-
-.btn-buy:hover {
-    background-color: #0f1a2e;
-}
-
-.btn-featured {
-    background-color: var(--virgin-red);
-}
-
-.btn-featured:hover {
-    background-color: #c4000c;
-}
-
-/* =========================================
-   SECCIONES INFO Y FAQ
-   ========================================= */
-.info-section {
-    padding: 50px 0;
-    background: white;
-}
-
-.bg-gray {
-    background-color: var(--gray-bg);
-}
-
-.section-title, h2 {
-    text-align: center;
-    color: var(--virgin-dark);
-    margin-bottom: 30px;
-}
-
-.info-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
-    text-align: center;
-}
-
-.accordion-item {
-    border-bottom: 1px solid #ddd;
+    align-self: center;
     margin-bottom: 10px;
 }
 
-.accordion-header {
-    width: 100%;
-    text-align: left;
-    padding: 15px;
-    background: none;
-    border: none;
-    font-weight: 600;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-}
+.package-header { text-align: center; margin-bottom: 20px; border-bottom: 1px solid #eee; }
+.price { font-size: 2.5rem; font-weight: 800; color: var(--virgin-red); }
+.package-body { flex-grow: 1; }
+.data-highlight { text-align: center; background: #f0f0f0; padding: 8px; border-radius: 8px; font-weight: 700; margin-bottom: 15px; }
 
-.accordion-content {
-    padding: 15px;
-    display: none; /* JS lo activará */
-    color: #555;
-}
+.app-group span { font-size: 0.85rem; color: #666; font-weight: 600; display: block; margin-bottom: 5px; }
 
-/* =========================================
-   FOOTER
-   ========================================= */
-footer {
-    background-color: var(--virgin-dark);
-    color: white;
-    text-align: center;
-    padding: 30px 0;
-    margin-top: 50px;
+.btn-buy {
+    display: block; width: 100%; padding: 12px; text-align: center;
+    background-color: var(--virgin-dark); color: white; text-decoration: none;
+    border-radius: 10px; margin-top: 20px;
 }
+.btn-featured { background-color: var(--virgin-red); }
 
-.footer-links a {
-    color: #ccc;
-    margin: 0 10px;
-    font-size: 0.8rem;
-    text-decoration: none;
-}
+.info-section { padding: 50px 0; background: white; }
+.bg-gray { background-color: var(--gray-bg); }
+h2 { text-align: center; color: var(--virgin-dark); margin-bottom: 30px; }
+.info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; text-align: center; }
+
+footer { background-color: var(--virgin-dark); color: white; text-align: center; padding: 30px 0; margin-top: 50px; }
+.footer-links a { color: #ccc; margin: 0 10px; text-decoration: none; }
