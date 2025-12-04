@@ -1,146 +1,229 @@
 /* =========================================
-   ⚡ DISRUPCIÓN VISUAL: VIDEO & HOLOGRAMAS ⚡
-   (Pega esto AL FINAL de tu styles.css)
+   ESTILO COMPLETO: CLON EXACTO + DISRUPCIÓN
    ========================================= */
 
-/* --- 1. ESTILOS DEL HERO VIDEO --- */
+/* --- 1. RESET Y VARIABLES GLOBALES --- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+    --virgin-red: #E10A17;
+    --virgin-dark: #1B2945;
+    --gray-bg: #F5F5F5;
+    --white: #FFFFFF;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--gray-bg);
+    color: #333;
+    padding-top: 110px; /* Espacio para el header */
+    overflow-x: hidden;
+}
+
+/* --- 2. HEADER & LOGO --- */
+.header {
+    background-color: var(--white);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    height: 110px;
+    display: flex;
+    align-items: center;
+}
+
+.container { width: 90%; max-width: 1200px; margin: 0 auto; }
+.header-content { display: flex; justify-content: space-between; align-items: center; }
+.logo { height: 80px !important; width: auto; display: block; }
+
+.btn-whatsapp {
+    background-color: #25D366;
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* --- 3. HERO VIDEO SECTION (DISRUPTIVO) --- */
 .hero-video {
     position: relative;
-    height: 450px; /* Altura del banner de video */
+    height: 450px;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     color: white;
     overflow: hidden;
-    /* Curva inferior invertida para un look moderno */
     clip-path: ellipse(150% 100% at 50% 0%);
-    margin-bottom: -50px; /* Superposición con las tarjetas */
+    margin-bottom: -50px; /* Superposición */
 }
 
 .video-bg {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
+    top: 50%; left: 50%;
+    min-width: 100%; min-height: 100%;
+    width: auto; height: auto;
     z-index: -2;
     transform: translateX(-50%) translateY(-50%);
 }
 
 .video-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    /* Gradiente rojo oscuro sobre el video para que el texto se lea */
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
     background: linear-gradient(135deg, rgba(225, 10, 23, 0.85) 0%, rgba(27, 41, 69, 0.9) 100%);
     z-index: -1;
 }
 
 .hero-content h1 {
-    font-size: 2.8rem;
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    text-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    margin-bottom: 15px;
+    font-size: 2.8rem; font-weight: 900; text-transform: uppercase;
+    letter-spacing: 1px; text-shadow: 0 5px 15px rgba(0,0,0,0.3); margin-bottom: 15px;
 }
-
-.hero-content p {
-    font-size: 1.2rem;
-    font-weight: 500;
-    opacity: 0.9;
-}
-
-/* Eliminamos el estilo del hero antiguo si existe */
-.hero { display: none; }
+.hero-content p { font-size: 1.2rem; font-weight: 500; opacity: 0.9; }
+.hero { display: none; } /* Oculta hero antiguo si existe */
 
 
-/* --- 2. ESTILOS DE LOS PASOS HOLOGRÁFICOS (SECCIÓN OSCURA) --- */
-.holo-steps-section {
-    /* Fondo oscuro tecnológico */
-    background: radial-gradient(circle at center, #2a1a1a 0%, #000000 100%);
-    padding: 80px 0;
-    text-align: center;
-    color: white;
-    position: relative;
-    overflow: hidden;
-}
-
-/* Efecto de rejilla de fondo sutil */
-.holo-steps-section::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background-image: 
-        linear-gradient(rgba(225, 10, 23, 0.1) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(225, 10, 23, 0.1) 1px, transparent 1px);
-    background-size: 30px 30px;
-    opacity: 0.3;
-    z-index: 0;
-}
-
-.holo-grid {
+/* --- 4. TARJETAS DE PAQUETES (CLON EXACTO) --- */
+.packages-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
-    position: relative;
-    z-index: 2;
+    margin-bottom: 60px;
+    padding: 10px;
 }
 
+.package-card {
+    background: white;
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+    display: flex; flex-direction: column; border: none;
+    position: relative; z-index: 1;
+    opacity: 0; animation: fadeInUp 0.6s ease-out forwards; /* Animación de entrada */
+}
+.package-card:hover { transform: translateY(-10px); }
+
+/* Animación de entrada en cascada */
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+.package-card:nth-child(1) { animation-delay: 0.1s; }
+.package-card:nth-child(2) { animation-delay: 0.2s; }
+.package-card:nth-child(3) { animation-delay: 0.3s; }
+.package-card:nth-child(4) { animation-delay: 0.4s; }
+.package-card:nth-child(5) { animation-delay: 0.5s; }
+
+/* Encabezado Rojo Dividido */
+.package-header {
+    background-color: var(--virgin-red);
+    padding: 20px; color: white;
+    display: flex; justify-content: space-between; align-items: flex-start;
+    position: relative;
+}
+.header-left { display: flex; flex-direction: column; }
+.big-gb { font-size: 3rem; font-weight: 900; line-height: 1; }
+.sub-rrss { font-size: 0.9rem; font-weight: 700; margin-bottom: 5px; }
+.vigencia { font-size: 0.9rem; opacity: 0.9; font-weight: 400; }
+.header-right { text-align: right; }
+.price { font-size: 2.2rem; font-weight: 800; }
+
+/* Cuerpo y Beneficios */
+.package-body { padding: 20px; flex-grow: 1; text-align: left; }
+.benefit-block { margin-bottom: 15px; }
+.red-title { color: var(--virgin-red); font-size: 1.3rem; font-weight: 800; margin-bottom: 2px; }
+.red-subtitle { color: var(--virgin-red); font-size: 1rem; font-weight: 500; }
+.divider { border: 0; border-top: 1px solid #ffcccc; margin: 15px 0; }
+
+/* Iconos */
+.app-icons { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.app-icons img {
+    width: 32px !important; height: 32px !important;
+    object-fit: contain; filter: drop-shadow(0 2px 3px rgba(0,0,0,0.2));
+    transition: transform 0.3s;
+}
+.icon-small { width: 20px !important; height: 20px !important; }
+
+/* Destacado */
+.featured { border: 3px solid var(--virgin-red); transform: scale(1.02); z-index: 10; }
+.featured:hover { box-shadow: 0 15px 40px rgba(225, 10, 23, 0.25) !important; }
+.badge {
+    background: white; color: var(--virgin-red); padding: 5px 15px;
+    border-radius: 15px; font-weight: bold; position: absolute;
+    top: -12px; left: 50%; transform: translateX(-50%);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); font-size: 0.8rem;
+}
+
+/* Botón Rojo */
+.btn-buy {
+    display: block; width: 90%; margin: 0 auto 25px auto;
+    padding: 15px; text-align: center; background-color: var(--virgin-red);
+    color: white; text-decoration: none; border-radius: 50px;
+    font-weight: 800; font-size: 1.1rem; transition: all 0.3s;
+}
+.btn-buy:hover { background-color: #c4000c; transform: scale(1.05); }
+
+/* --- 5. EFECTOS DISRUPTIVOS EXTRA --- */
+/* Latido en botón destacado */
+@keyframes pulse-red {
+    0% { box-shadow: 0 0 0 0 rgba(225, 10, 23, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(225, 10, 23, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(225, 10, 23, 0); }
+}
+.featured .btn-buy { animation: pulse-red 2s infinite; }
+.btn-buy:hover { animation: none; }
+
+/* Brillo "Shine" al pasar mouse */
+.package-card::before {
+    content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
+    background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
+    transform: skewX(-25deg); transition: none; z-index: 2; pointer-events: none;
+}
+.package-card:hover::before { animation: shine 0.75s; }
+@keyframes shine { 100% { left: 200%; } }
+
+/* Iconos levitantes */
+.package-card:hover .app-icons img { animation: float 2s ease-in-out infinite; }
+.package-card:hover .app-icons img:nth-child(odd) { animation-duration: 2.2s; }
+.package-card:hover .app-icons img:nth-child(even) { animation-duration: 1.8s; }
+@keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-3px); } 100% { transform: translateY(0px); } }
+
+
+/* --- 6. SECCIÓN HOLOGRAMAS (OSCURA) --- */
+.holo-steps-section {
+    background: radial-gradient(circle at center, #2a1a1a 0%, #000000 100%);
+    padding: 80px 0; text-align: center; color: white; position: relative; overflow: hidden;
+}
+.holo-steps-section::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background-image: linear-gradient(rgba(225, 10, 23, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(225, 10, 23, 0.1) 1px, transparent 1px);
+    background-size: 30px 30px; opacity: 0.3; z-index: 0;
+}
+.holo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; position: relative; z-index: 2; }
 .holo-card {
-    /* Efecto cristal oscuro y brillante */
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(225, 10, 23, 0.3);
-    border-radius: 20px;
-    padding: 30px 20px;
-    transition: all 0.4s ease;
-    position: relative;
-    box-shadow: 0 0 20px rgba(225, 10, 23, 0.1);
+    background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px);
+    border: 1px solid rgba(225, 10, 23, 0.3); border-radius: 20px;
+    padding: 30px 20px; transition: all 0.4s ease; box-shadow: 0 0 20px rgba(225, 10, 23, 0.1);
 }
-
 .holo-card:hover {
-    transform: translateY(-10px) scale(1.02);
-    border-color: var(--virgin-red);
-    /* Resplandor rojo al pasar el mouse */
-    box-shadow: 
-        0 0 30px rgba(225, 10, 23, 0.4),
-        inset 0 0 20px rgba(225, 10, 23, 0.2);
+    transform: translateY(-10px) scale(1.02); border-color: var(--virgin-red);
+    box-shadow: 0 0 30px rgba(225, 10, 23, 0.4), inset 0 0 20px rgba(225, 10, 23, 0.2);
 }
-
 .holo-number {
-    font-size: 3rem;
-    font-weight: 900;
-    color: var(--virgin-red);
-    /* Efecto de texto brillante */
-    text-shadow: 0 0 15px rgba(225, 10, 23, 0.8);
-    margin-bottom: 10px;
+    font-size: 3rem; font-weight: 900; color: var(--virgin-red);
+    text-shadow: 0 0 15px rgba(225, 10, 23, 0.8); margin-bottom: 10px;
 }
-
-.holo-card h3 {
-    font-size: 1.3rem;
-    margin-bottom: 10px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.holo-card p {
-    opacity: 0.8;
-    font-size: 0.95rem;
-}
-
-/* Ajuste para el título de la sección */
+.holo-card h3 { font-size: 1.3rem; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }
+.holo-card p { opacity: 0.8; font-size: 0.95rem; }
 .holo-steps-section h2 {
-    font-size: 2.2rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 50px;
-    position: relative;
-    z-index: 2;
+    font-size: 2.2rem; text-transform: uppercase; letter-spacing: 2px;
+    margin-bottom: 50px; position: relative; z-index: 2;
     text-shadow: 0 0 20px rgba(225, 10, 23, 0.5);
 }
+
+/* --- 7. FOOTER Y EXTRAS --- */
+.info-section { padding: 50px 0; background: white; }
+.bg-gray { background-color: var(--gray-bg); }
+h2 { text-align: center; color: var(--virgin-dark); margin-bottom: 30px; }
+footer { background-color: var(--virgin-dark); color: white; text-align: center; padding: 40px 0; }
