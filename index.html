@@ -31,14 +31,44 @@
         </div>
     </section>
 
+    <!-- ⚡ NUEVO: TEMPORIZADOR DE OFERTA -->
+    <section class="offer-timer-section">
+        <div class="container">
+            <div class="timer-container">
+                <h3>⚡ Precio Especial Termina En:</h3>
+                <div class="countdown">
+                    <div class="time-box">
+                        <span class="time" id="hours">00</span>
+                        <span class="label">Horas</span>
+                    </div>
+                    <div class="time-box">
+                        <span class="time" id="minutes">00</span>
+                        <span class="label">Minutos</span>
+                    </div>
+                    <div class="time-box">
+                        <span class="time" id="seconds">00</span>
+                        <span class="label">Segundos</span>
+                    </div>
+                </div>
+                <p class="timer-message">⚠️ Después vuelve al precio regular</p>
+            </div>
+        </div>
+    </section>
+
     <section id="paquetes" class="packages-section" style="position: relative; z-index: 10; margin-top: -50px;">
         <div class="container">
             <h2 style="margin-bottom: 40px; color: white; text-shadow: 0 0 15px rgba(255, 255, 255, 1), 0 0 30px rgba(255, 255, 255, 0.7);">Elige tu Paquete</h2>
             
             <div class="packages-grid">
                 
+                <!-- PAQUETE $150 -->
                 <div class="package-card">
                     <div class="package-header">
+                        <!-- ⚡ NUEVO: Badge de urgencia -->
+                        <div class="urgency-badge">
+                            <span class="urgency-icon">🔥</span>
+                            <span class="urgency-text">Solo quedan <strong class="stock-counter">12</strong> disponibles</span>
+                        </div>
                         <div class="header-left">
                             <span class="big-gb">15GB</span>
                             <span class="sub-rrss">Total</span>
@@ -83,8 +113,13 @@
                     <a href="/paquete-150" class="btn-buy">Comprar nuevo chip o eSIM</a>
                 </div>
 
+                <!-- PAQUETE $200 -->
                 <div class="package-card">
                     <div class="package-header">
+                        <div class="urgency-badge">
+                            <span class="urgency-icon">🔥</span>
+                            <span class="urgency-text">Solo quedan <strong class="stock-counter">12</strong> disponibles</span>
+                        </div>
                         <div class="header-left">
                             <span class="big-gb">21.5GB</span>
                             <span class="sub-rrss">Total</span>
@@ -129,9 +164,14 @@
                     <a href="/paquete-200" class="btn-buy">Comprar nuevo chip o eSIM</a>
                 </div>
 
+                <!-- PAQUETE $250 - DESTACADO -->
                 <div class="package-card featured">
                     <div class="package-header">
                         <div class="badge">MÁS VENDIDO</div>
+                        <div class="urgency-badge" style="left: auto; right: 20px;">
+                            <span class="urgency-icon">🔥</span>
+                            <span class="urgency-text">Solo quedan <strong class="stock-counter">12</strong> disponibles</span>
+                        </div>
                         <div class="header-left">
                             <span class="big-gb">17GB</span>
                             <span class="sub-rrss">+RRSS ilimitadas</span>
@@ -169,8 +209,13 @@
                     <a href="/paquete-250" class="btn-buy">Comprar nuevo chip o eSIM</a>
                 </div>
 
+                <!-- PAQUETE $300 -->
                 <div class="package-card">
                     <div class="package-header">
+                        <div class="urgency-badge">
+                            <span class="urgency-icon">🔥</span>
+                            <span class="urgency-text">Solo quedan <strong class="stock-counter">12</strong> disponibles</span>
+                        </div>
                         <div class="header-left">
                             <span class="big-gb">22GB</span>
                             <span class="sub-rrss">+RRSS ilimitadas</span>
@@ -208,8 +253,13 @@
                     <a href="/paquete-300" class="btn-buy">Comprar nuevo chip o eSIM</a>
                 </div>
 
+                <!-- PAQUETE $400 -->
                 <div class="package-card">
                     <div class="package-header">
+                        <div class="urgency-badge">
+                            <span class="urgency-icon">🔥</span>
+                            <span class="urgency-text">Solo quedan <strong class="stock-counter">12</strong> disponibles</span>
+                        </div>
                         <div class="header-left">
                             <span class="big-gb">34GB</span>
                             <span class="sub-rrss">+RRSS ilimitadas</span>
@@ -251,6 +301,52 @@
         </div>
     </section>
 
+    <!-- ⚡ NUEVO: SECCIÓN DE TESTIMONIALES -->
+    <section class="social-proof-section">
+        <div class="container">
+            <h2>⭐ Lo que dicen nuestros clientes</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"Activé mi eSIM en 2 minutos. Increíble. Ya no más ir a tiendas."</p>
+                    <div class="testimonial-author">
+                        <strong>Ana G.</strong> - CDMX
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"El paquete $250 es perfecto. Netflix y TikTok sin límite."</p>
+                    <div class="testimonial-author">
+                        <strong>Carlos M.</strong> - Monterrey
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"Porté mi número en 24 horas. Sin broncas. Lo recomiendo."</p>
+                    <div class="testimonial-author">
+                        <strong>Laura P.</strong> - Guadalajara
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Contador de estadísticas -->
+            <div class="trust-stats">
+                <div class="stat-item">
+                    <span class="stat-number" data-target="2547">0</span>
+                    <span class="stat-label">Clientes Activos</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-target="4.8">0</span>
+                    <span class="stat-label">⭐ Calificación</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-target="98">0</span>
+                    <span class="stat-label">% Satisfacción</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="holo-steps-section">
         <div class="container">
             <h2 style="color: white;">El futuro se instala en 3 toques</h2>
@@ -287,6 +383,31 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <!-- ⚡ NUEVO: POP-UP DE SALIDA -->
+    <div class="exit-popup" id="exitPopup">
+        <div class="exit-popup-content">
+            <button class="close-popup" onclick="closeExitPopup()">✕</button>
+            <h3>🎁 ¡Espera! Tenemos algo para ti</h3>
+            <p>Déjanos tu correo y recibe un <strong>cupón de $50 de descuento</strong> en tu primera compra</p>
+            <form class="exit-form" onsubmit="submitExitForm(event)">
+                <input type="email" placeholder="tu@email.com" required>
+                <button type="submit">Quiero mi cupón</button>
+            </form>
+            <p class="exit-disclaimer">No spam. Solo ofertas exclusivas.</p>
+        </div>
+    </div>
+
+    <!-- ⚡ NUEVO: Notificación de compra reciente -->
+    <div class="live-notification" id="liveNotification">
+        <div class="notification-content">
+            <span class="notification-icon">✅</span>
+            <div class="notification-text">
+                <strong class="notification-name">María de Guadalajara</strong>
+                <span class="notification-action">acaba de comprar el paquete $250</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="script-optimized.js"></script>
 </body>
 </html>
