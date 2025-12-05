@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const messages = document.getElementById('chat-messages');
 
     // Verificación de seguridad
-    if (!toggleBtn || !widget || !sendBtn || !input) {
+    if (!toggleBtn || !widget || !closeBtn || !sendBtn || !input) {
         console.error("Error crítico: No se encontraron los elementos del chat.");
         return; // Detiene el script para evitar el error rojo
     }
