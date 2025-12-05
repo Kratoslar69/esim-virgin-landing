@@ -11,21 +11,12 @@
 <body>
 
     <header class="header">
-        <div class="container header-content">
-            <img src="images/logo-virgin-mobile.png" alt="Virgin Mobile" class="logo">
-            <a href="https://wa.me/5512345678" class="btn-whatsapp" target="_blank">
-                <img src="images/whatsapp.svg" class="icon-small" style="width:20px;"> Ayuda
-            </a>
+        <div class="container header-content" style="justify-content: center;"> <img src="images/logo-virgin-mobile.png" alt="Virgin Mobile" class="logo">
         </div>
     </header>
 
     <section class="hero-video">
-        <video autoplay muted loop playsinline class="video-bg">
-            <source src="https://assets.mixkit.co/videos/preview/mixkit-abstract-red-and-blue-light-lines-986-large.mp4" type="video/mp4">
-        </video>
-        <div class="video-overlay"></div>
-        
-        <div class="container hero-content">
+        <div class="video-overlay"></div> <div class="container hero-content">
             <h1>La velocidad no espera.<br>Tu eSIM tampoco.</h1>
             <p>Conéctate a la red Virgin Mobile en 3 minutos. Sin plásticos, pura velocidad.</p>
         </div>
@@ -274,10 +265,33 @@
         </div>
     </section>
 
-    <section class="info-section bg-gray">
+    <section class="coverage-section">
         <div class="container">
-            <h2>Preguntas Frecuentes</h2>
-             <p style="text-align:center;">¿Tienes dudas sobre la compatibilidad de tu equipo? <a href="https://wa.me/5512345678" style="color: var(--virgin-red); font-weight: bold;">Contáctanos por WhatsApp</a></p>
+            <h2>Verifica tu Cobertura</h2>
+            <p style="text-align: center; margin-bottom: 30px; color: #666; font-size: 1.1rem;">
+                Navegamos con la red extendida de <strong>Movistar y AT&T</strong> con tecnología <strong>5G</strong>.
+                <br>Selecciona el mapa que deseas consultar:
+            </p>
+            
+            <div class="coverage-grid">
+                <a href="https://cobertura.movistar.com.mx:8080/cfusion/COBERTURA/Mapas/Mapa_5G.html" target="_blank" class="coverage-card">
+                    <div class="cov-icon">🚀</div>
+                    <h3>Cobertura 5G</h3>
+                    <p>Máxima velocidad en principales ciudades.</p>
+                </a>
+
+                <a href="https://cobertura.movistar.com.mx:8080/cfusion/COBERTURA/Mapas/Mapa_4G.html" target="_blank" class="coverage-card">
+                    <div class="cov-icon">📶</div>
+                    <h3>Cobertura 4G LTE</h3>
+                    <p>Conexión estable en todo el país.</p>
+                </a>
+
+                <a href="https://cobertura.movistar.com.mx:8080/cfusion/COBERTURA/Mapas/Mapa_3G.html" target="_blank" class="coverage-card">
+                    <div class="cov-icon">📡</div>
+                    <h3>Cobertura 3G</h3>
+                    <p>Respaldo en zonas rurales o lejanas.</p>
+                </a>
+            </div>
         </div>
     </section>
 
@@ -287,6 +301,6 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="script.js"></script> 
 </body>
 </html>
