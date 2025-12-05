@@ -31,25 +31,12 @@ body {
     height: 110px;
     display: flex;
     align-items: center;
+    justify-content: center; /* Centrado total del logo */
 }
 
 .container { width: 90%; max-width: 1200px; margin: 0 auto; }
-.header-content { display: flex; justify-content: space-between; align-items: center; }
 .logo { height: 80px !important; width: auto; display: block; }
 
-.btn-whatsapp {
-    background-color: #25D366;
-    color: white;
-    text-decoration: none;
-    padding: 10px 20px;
-    border-radius: 50px;
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-/* --- 3. HERO VIDEO SECTION (DISRUPTIVO) --- */
 /* --- 3. HERO SECTION: FONDO VIVO (Líquido) --- */
 .hero-video {
     position: relative;
@@ -63,78 +50,31 @@ body {
     clip-path: ellipse(150% 100% at 50% 0%);
     margin-bottom: -50px;
     
-    /* 🔥 AQUÍ ESTÁ LA MAGIA: Gradiente Animado */
+    /* Gradiente Animado */
     background: linear-gradient(-45deg, #000000, #1B2945, #E10A17, #5c0000);
     background-size: 400% 400%;
     animation: gradientFlow 10s ease infinite;
-    box-shadow: inset 0 0 50px rgba(0,0,0,0.5); /* Sombra interna para profundidad */
+    box-shadow: inset 0 0 50px rgba(0,0,0,0.5);
 }
 
-/* Animación del movimiento */
 @keyframes gradientFlow {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
 }
 
-/* Ocultamos el video roto y la capa vieja */
-.video-bg, .video-overlay {
-    display: none !important;
-}
+.video-bg, .video-overlay { display: none !important; }
 
-.hero-content {
-    position: relative;
-    z-index: 2;
-}
-
-.hero-content h1 {
-    font-size: 2.8rem;
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    text-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    margin-bottom: 15px;
-}
-
-.hero-content p {
-    font-size: 1.2rem;
-    font-weight: 500;
-    opacity: 0.9;
-}
-
-/* Eliminamos hero antiguo */
-.hero { display: none; }
-
-.video-bg {
-    position: absolute;
-    top: 50%; left: 50%;
-    min-width: 100%; min-height: 100%;
-    width: auto; height: auto;
-    z-index: -2;
-    transform: translateX(-50%) translateY(-50%);
-}
-
-.video-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    /* 🔥 CAMBIO CRÍTICO AQUÍ 🔥 */
-    /* Bajamos la opacidad a 0.3 (muy transparente) para que el video brille */
-    background: linear-gradient(135deg, rgba(225, 10, 23, 0.3) 0%, rgba(27, 41, 69, 0.3) 100%);
-    z-index: -1;
-}
+.hero-content { position: relative; z-index: 2; }
 
 .hero-content h1 {
     font-size: 2.8rem; font-weight: 900; text-transform: uppercase;
-    letter-spacing: 1px; text-shadow: 0 5px 15px rgba(0,0,0,0.3); margin-bottom: 15px;
+    letter-spacing: 1px; text-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    margin-bottom: 15px;
 }
 .hero-content p { font-size: 1.2rem; font-weight: 500; opacity: 0.9; }
-.hero { display: none; } /* Oculta hero antiguo si existe */
 
-
-/* --- 4. TARJETAS DE PAQUETES (CLON EXACTO) --- */
+/* --- 4. TARJETAS DE PAQUETES --- */
 .packages-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -150,11 +90,10 @@ body {
     transition: all 0.3s ease;
     display: flex; flex-direction: column; border: none;
     position: relative; z-index: 1;
-    opacity: 0; animation: fadeInUp 0.6s ease-out forwards; /* Animación de entrada */
+    opacity: 0; animation: fadeInUp 0.6s ease-out forwards;
 }
 .package-card:hover { transform: translateY(-10px); }
 
-/* Animación de entrada en cascada */
 @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
 .package-card:nth-child(1) { animation-delay: 0.1s; }
 .package-card:nth-child(2) { animation-delay: 0.2s; }
@@ -162,13 +101,12 @@ body {
 .package-card:nth-child(4) { animation-delay: 0.4s; }
 .package-card:nth-child(5) { animation-delay: 0.5s; }
 
-/* Encabezado Rojo Dividido */
 .package-header {
     background-color: var(--virgin-red);
     padding: 20px; color: white;
     display: flex; justify-content: space-between; align-items: flex-start;
     position: relative;
-   border-radius: 25px 25px 0 0;
+    border-radius: 25px 25px 0 0;
 }
 .header-left { display: flex; flex-direction: column; }
 .big-gb { font-size: 3rem; font-weight: 900; line-height: 1; }
@@ -177,25 +115,22 @@ body {
 .header-right { text-align: right; }
 .price { font-size: 2.2rem; font-weight: 800; }
 
-/* Cuerpo y Beneficios */
-.package-body { padding: 20px; flex-grow: 1; text-align: left; }
-border-radius: 0 0 25px 25px;
-    background-color: white;
+.package-body { 
+    padding: 20px; flex-grow: 1; text-align: left;
+    border-radius: 0 0 25px 25px; background-color: white;
+}
 .benefit-block { margin-bottom: 15px; }
 .red-title { color: var(--virgin-red); font-size: 1.3rem; font-weight: 800; margin-bottom: 2px; }
 .red-subtitle { color: var(--virgin-red); font-size: 1rem; font-weight: 500; }
 .divider { border: 0; border-top: 1px solid #ffcccc; margin: 15px 0; }
 
-/* Iconos */
 .app-icons { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
 .app-icons img {
     width: 32px !important; height: 32px !important;
     object-fit: contain; filter: drop-shadow(0 2px 3px rgba(0,0,0,0.2));
     transition: transform 0.3s;
 }
-.icon-small { width: 20px !important; height: 20px !important; }
 
-/* Destacado */
 .featured { border: 3px solid var(--virgin-red); transform: scale(1.02); z-index: 10; }
 .featured:hover { box-shadow: 0 15px 40px rgba(225, 10, 23, 0.25) !important; }
 .badge {
@@ -205,7 +140,6 @@ border-radius: 0 0 25px 25px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2); font-size: 0.8rem;
 }
 
-/* Botón Rojo */
 .btn-buy {
     display: block; width: 90%; margin: 0 auto 25px auto;
     padding: 15px; text-align: center; background-color: var(--virgin-red);
@@ -215,7 +149,6 @@ border-radius: 0 0 25px 25px;
 .btn-buy:hover { background-color: #c4000c; transform: scale(1.05); }
 
 /* --- 5. EFECTOS DISRUPTIVOS EXTRA --- */
-/* Latido en botón destacado */
 @keyframes pulse-red {
     0% { box-shadow: 0 0 0 0 rgba(225, 10, 23, 0.7); }
     70% { box-shadow: 0 0 0 10px rgba(225, 10, 23, 0); }
@@ -224,7 +157,6 @@ border-radius: 0 0 25px 25px;
 .featured .btn-buy { animation: pulse-red 2s infinite; }
 .btn-buy:hover { animation: none; }
 
-/* Brillo "Shine" al pasar mouse */
 .package-card::before {
     content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
     background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
@@ -233,7 +165,6 @@ border-radius: 0 0 25px 25px;
 .package-card:hover::before { animation: shine 0.75s; }
 @keyframes shine { 100% { left: 200%; } }
 
-/* Iconos levitantes */
 .package-card:hover .app-icons img { animation: float 2s ease-in-out infinite; }
 .package-card:hover .app-icons img:nth-child(odd) { animation-duration: 2.2s; }
 .package-card:hover .app-icons img:nth-child(even) { animation-duration: 1.8s; }
@@ -272,7 +203,37 @@ border-radius: 0 0 25px 25px;
     text-shadow: 0 0 20px rgba(225, 10, 23, 0.5);
 }
 
-/* --- 7. FOOTER Y EXTRAS --- */
+/* --- 7. FOOTER Y COBERTURA --- */
+.coverage-section {
+    padding: 60px 0;
+    background-color: white;
+    border-top: 1px solid #eee;
+}
+
+.coverage-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.coverage-card {
+    display: flex; flex-direction: column; align-items: center; text-align: center;
+    padding: 25px; border: 1px solid #eee; border-radius: 15px;
+    text-decoration: none; color: #333; transition: all 0.3s ease;
+    background: #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.coverage-card:hover {
+    transform: translateY(-5px); border-color: var(--virgin-red);
+    box-shadow: 0 10px 25px rgba(225, 10, 23, 0.15);
+}
+
+.cov-icon { font-size: 2.5rem; margin-bottom: 15px; }
+.coverage-card h3 { color: var(--virgin-dark); margin-bottom: 5px; font-weight: 800; }
+.coverage-card p { font-size: 0.9rem; color: #666; }
+
 .info-section { padding: 50px 0; background: white; }
 .bg-gray { background-color: var(--gray-bg); }
 h2 { text-align: center; color: var(--virgin-dark); margin-bottom: 30px; }
