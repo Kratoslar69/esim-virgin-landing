@@ -1,7 +1,14 @@
 {
   "name": "esim-virgin-landing",
-  "version": "1.0.0",
+  "version": "2.0.0",
+  "description": "Landing page eSIM Virgin Mobile con chatbot IA",
+  "type": "module",
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.18.0"
-  }
+    "@anthropic-ai/sdk": "^0.32.1"
+  },
+  "devDependencies": {},
+  "scripts": {},
+  "keywords": ["esim", "virgin-mobile", "chatbot", "ai"],
+  "author": "Virgin Mobile Distribuidor D23",
+  "license": "MIT"
 }
