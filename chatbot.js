@@ -8,6 +8,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const messagesContainer = document.getElementById('chatMessages');
     const quickReplies = document.querySelectorAll('.quick-reply-btn');
 
+    // Historial de conversación para Claude
+    let conversationHistory = [];
+
     // Función para abrir el chat
     function openChat() {
         bubble.classList.add('hidden');
@@ -27,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
     closeBtn.addEventListener('click', closeChat);
 
     // Enviar mensaje
-    form.addEventListener('submit', function(e) {
+    form.addEventListener('submit', async function(e) {
         e.preventDefault();
         const messageText = input.value.trim();
         
@@ -35,33 +38,75 @@ document.addEventListener('DOMContentLoaded', function() {
             addMessage(messageText, 'user');
             input.value = '';
             
-            // Simular respuesta del bot (borrar esto cuando conectes tu API real)
+            // Llamar a la API real de Claude
             showTypingIndicator();
-            setTimeout(() => {
+            
+            try {
+                const response = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        message: messageText,
+                        conversationHistory: conversationHistory
+                    })
+                });
+
+                const data = await response.json();
+                
                 removeTypingIndicator();
-                addMessage("¡Gracias por escribirnos! En este momento estoy en modo demostración. Pronto podré responderte con IA real.", 'bot');
-            }, 1500);
+                
+                if (data.response) {
+                    addMessage(data.response, 'bot');
+                    // Actualizar historial
+                    conversationHistory = data.conversationHistory || [];
+                } else {
+                    addMessage('Ocurrió un error. Por favor intenta de nuevo o contacta soporte: 558 710 3011', 'bot');
+                }
+            } catch (error) {
+                removeTypingIndicator();
+                console.error('Error:', error);
+                addMessage('No puedo conectarme en este momento. Contacta soporte: 558 710 3011 📱', 'bot');
+            }
         }
     });
 
     // Clic en respuestas rápidas
     quickReplies.forEach(btn => {
-        btn.addEventListener('click', function() {
+        btn.addEventListener('click', async function() {
             const text = this.innerText;
             addMessage(text, 'user');
             
-            // Lógica simple para respuestas rápidas
             showTypingIndicator();
-            setTimeout(() => {
+            
+            try {
+                const response = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        message: text,
+                        conversationHistory: conversationHistory
+                    })
+                });
+
+                const data = await response.json();
+                
                 removeTypingIndicator();
-                if(text.includes('eSIM')) {
-                    addMessage("Una eSIM es un chip virtual que ya viene en tu teléfono. ¡Te la enviamos por email y la activas con un código QR! Sin plásticos ni envíos.", 'bot');
-                } else if(text.includes('Cobertura')) {
-                    addMessage("Usamos la red compartida de Movistar y AT&T con tecnología 5G. Puedes verificar los mapas más arriba en esta página.", 'bot');
+                
+                if (data.response) {
+                    addMessage(data.response, 'bot');
+                    conversationHistory = data.conversationHistory || [];
                 } else {
-                    addMessage("Claro, revisa nuestra sección de paquetes para ver las mejores ofertas.", 'bot');
+                    addMessage('Ocurrió un error. Contacta soporte: 558 710 3011', 'bot');
                 }
-            }, 1000);
+            } catch (error) {
+                removeTypingIndicator();
+                console.error('Error:', error);
+                addMessage('No puedo conectarme. Contacta soporte: 558 710 3011 📱', 'bot');
+            }
         });
     });
 
