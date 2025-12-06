@@ -197,9 +197,7 @@
     font-size: 0.95rem;
     line-height: 1.4;
     box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-   /* ESTA ES LA LÍNEA MÁGICA: */
-    white-space: pre-wrap; 
-}
+  }
 
 
 .bot-message .message-content {
