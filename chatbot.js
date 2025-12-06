@@ -13,15 +13,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // 2. MENSAJE DE BIENVENIDA (AQUÍ ESTÁ LA CORRECCIÓN VISUAL)
     // Usamos HTML real (<br>, <ul>, <li>) para que se vea ordenado
     const welcomeMessage = `
-        ¡Hola! 👋 Soy tu experto virtual Jarvis Mobilemx.<br><br>
-        Estoy aquí para ayudarte con:<br>
-        <ul style="margin: 5px 0 5px 20px; padding: 0;">
-            <li>Dudas sobre eSIM 📱</li>
-            <li>Cobertura 🗺️</li>
-            <li>Precios y Paquetes 💲</li>
-        </ul>
-        ¿Qué necesitas saber hoy?
-    `;
+        // 2. MENSAJE DE BIENVENIDA (VERSIÓN COMPACTA CORREGIDA)
+    const welcomeMessage = '¡Hola! 👋 Soy tu experto virtual Jarvis Mobilemx.<br><br>Estoy aquí para ayudarte con:<ul style="margin: 5px 0 5px 20px; padding: 0;"><li>Dudas sobre eSIM 📱</li><li>Cobertura 🗺️</li><li>Paquetes y Precios 💲</li></ul>¿Qué necesitas saber hoy?';
 
     // 3. Función para agregar mensajes (MEJORADA)
     function addMessage(text, sender, isHTML = false) {
