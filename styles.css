@@ -238,10 +238,12 @@ body {
 .bg-gray { background-color: var(--gray-bg); }
 h2 { text-align: center; color: var(--virgin-dark); margin-bottom: 30px; }
 footer { background-color: var(--virgin-dark); color: white; text-align: center; padding: 40px 0; }
+
 /* =========================================
-   TRUST BADGES - BARRA DE CONFIANZA
+   MEJORAS VISUALES - TRUST BADGES + TESTIMONIALES + BADGES
    ========================================= */
 
+/* --- TRUST BADGES --- */
 .trust-badges {
     background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
     padding: 30px 0;
@@ -295,7 +297,214 @@ footer { background-color: var(--virgin-dark); color: white; text-align: center;
     font-size: 0.85rem;
 }
 
-/* Responsive */
+/* --- TESTIMONIALES --- */
+.testimonials-section {
+    padding: 80px 0;
+    background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.section-header h2 {
+    font-size: 2.5rem;
+    color: #1B2945;
+    margin-bottom: 10px;
+    font-weight: 800;
+}
+
+.section-header p {
+    font-size: 1.1rem;
+    color: #6c757d;
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.testimonial-card {
+    background: white;
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(225, 10, 23, 0.15);
+    border-color: #E10A17;
+}
+
+.testimonial-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 15px;
+}
+
+.testimonial-avatar {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #E10A17, #ff6b6b);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.avatar-emoji {
+    font-size: 1.8rem;
+}
+
+.testimonial-info {
+    flex: 1;
+}
+
+.testimonial-info h4 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #1B2945;
+    font-weight: 700;
+}
+
+.testimonial-location {
+    font-size: 0.85rem;
+    color: #6c757d;
+}
+
+.testimonial-stars {
+    font-size: 1rem;
+}
+
+.testimonial-body {
+    margin: 15px 0;
+    line-height: 1.6;
+}
+
+.testimonial-body p {
+    color: #495057;
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+.testimonial-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 15px;
+    border-top: 1px solid #e9ecef;
+}
+
+.testimonial-package {
+    background: linear-gradient(135deg, #E10A17, #c4000c);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.testimonial-time {
+    color: #adb5bd;
+    font-size: 0.8rem;
+}
+
+/* Stats Bar */
+.testimonials-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    padding: 40px;
+    background: linear-gradient(135deg, #E10A17, #c4000c);
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(225, 10, 23, 0.3);
+}
+
+.stat-item {
+    text-align: center;
+    color: white;
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 5px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.stat-label {
+    font-size: 0.95rem;
+    opacity: 0.95;
+    font-weight: 500;
+}
+
+/* --- BADGES MEJORADOS --- */
+.badge-popular {
+    position: absolute;
+    top: -15px;
+    right: 20px;
+    background: linear-gradient(135deg, #ffd700, #ffed4e);
+    color: #1B2945;
+    padding: 10px 20px;
+    font-weight: 800;
+    font-size: 0.9rem;
+    border-radius: 25px;
+    box-shadow: 0 4px 20px rgba(255, 215, 0, 0.6);
+    z-index: 10;
+    animation: pulse-popular 2s infinite;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+@keyframes pulse-popular {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.badge-valor {
+    position: absolute;
+    top: -15px;
+    left: 20px;
+    background: linear-gradient(135deg, #4CAF50, #45a049);
+    color: white;
+    padding: 10px 20px;
+    font-weight: 800;
+    font-size: 0.9rem;
+    border-radius: 25px;
+    box-shadow: 0 4px 20px rgba(76, 175, 80, 0.6);
+    z-index: 10;
+    animation: pulse-valor 2s infinite;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+@keyframes pulse-valor {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.package-card.popular {
+    border: 3px solid #ffd700;
+    transform: scale(1.05);
+    box-shadow: 0 10px 40px rgba(255, 215, 0, 0.3);
+    position: relative;
+    z-index: 5;
+}
+
+.package-card.popular:hover {
+    transform: scale(1.08);
+    box-shadow: 0 15px 50px rgba(255, 215, 0, 0.4);
+}
+
+/* --- RESPONSIVE --- */
 @media (max-width: 768px) {
     .trust-grid {
         grid-template-columns: 1fr;
@@ -308,5 +517,55 @@ footer { background-color: var(--virgin-dark); color: white; text-align: center;
     
     .trust-icon {
         font-size: 2rem;
+    }
+    
+    .trust-text strong {
+        font-size: 0.9rem;
+    }
+    
+    .trust-text span {
+        font-size: 0.8rem;
+    }
+    
+    .testimonials-section {
+        padding: 50px 0;
+    }
+    
+    .section-header h2 {
+        font-size: 1.8rem;
+    }
+    
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .testimonial-card {
+        padding: 20px;
+    }
+    
+    .testimonials-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        padding: 30px 20px;
+    }
+    
+    .stat-number {
+        font-size: 2rem;
+    }
+    
+    .badge-popular,
+    .badge-valor {
+        top: -10px;
+        padding: 8px 16px;
+        font-size: 0.8rem;
+    }
+    
+    .package-card.popular {
+        transform: scale(1);
+    }
+    
+    .package-card.popular:hover {
+        transform: scale(1.02);
     }
 }
