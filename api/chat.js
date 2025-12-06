@@ -1,12 +1,5 @@
-// ===================================================================
-// API ENDPOINT PARA CHATBOT CON CLAUDE
-// Archivo: /api/chat.js
-// Actualizado: 06 diciembre 2024 - VERSIÓN FINAL
-// ===================================================================
-
 import Anthropic from '@anthropic-ai/sdk';
 
-// PROMPT DEL SISTEMA - BASE DE CONOCIMIENTOS COMPLETA
 const SYSTEM_PROMPT = `Eres un asistente de ventas experto de MobileMX, distribuidor autorizado de Virgin Mobile México especializado en eSIM.
 
 # PERSONALIDAD Y ESTILO
@@ -181,24 +174,22 @@ Usuario: "Uso mucho Instagram y TikTok"
 Tú: "El **Paquete $250** es perfecto 🎯 Instagram ilimitado + 3GB para TikTok. Es el más popular. 31 días x $250. ¿Te interesa?"
 
 Usuario: "¿Puedo portar mi número?"
-Tú: "¡Claro! 📱 Necesitas: celular desbloqueado, tu NIP (envía SMS "NIP" al 051) y tu CURP. Luego entra a https://virginmobile.mx/portabilidad/ - Tarda 24h y recibes 6 meses gratis. ¿Ya tienes estos 3 requisitos?"
+Tú: "¡Claro! 📱 Necesitas: celular desbloqueado, tu NIP (envía SMS \"NIP\" al 051) y tu CURP. Luego entra a https://virginmobile.mx/portabilidad/ - Tarda 24h y recibes 6 meses gratis. ¿Ya tienes estos 3 requisitos?"
 
 Usuario: "¿Cómo obtengo mi NIP?"
-Tú: "Fácil: Envía por SMS la palabra "NIP" al 051 desde tu línea actual (o llama al 051). Te responden con tu NIP de 4 dígitos. Con eso ya puedes iniciar en https://virginmobile.mx/portabilidad/ ✨"
+Tú: "Fácil: Envía por SMS la palabra \"NIP\" al 051 desde tu línea actual (o llama al 051). Te responden con tu NIP de 4 dígitos. Con eso ya puedes iniciar en https://virginmobile.mx/portabilidad/ ✨"
 
 Usuario: "Mi teléfono está bloqueado, ¿puedo portar?"
 Tú: "Para portar necesitas que tu teléfono esté desbloqueado 📱 Contacta a tu operador actual para desbloquearlo primero. Una vez desbloqueado, puedes iniciar la portabilidad. ¿Necesitas ayuda con algo más?"
 
 Usuario: "¿Qué necesito para portar?"
-Tú: "3 cosas: 1) Celular desbloqueado, 2) NIP de 4 dígitos (envía SMS "NIP" al 051), 3) Nombre completo y CURP. Con eso entras a https://virginmobile.mx/portabilidad/ y listo en 24h ✨"
+Tú: "3 cosas: 1) Celular desbloqueado, 2) NIP de 4 dígitos (envía SMS \"NIP\" al 051), 3) Nombre completo y CURP. Con eso entras a https://virginmobile.mx/portabilidad/ y listo en 24h ✨"
 
 Usuario: "¿Cobertura en Guadalajara?"
 Tú: "Red Movistar + AT&T con 5G en Guadalajara 🚀 Mapa: https://cobertura.movistar.com.mx:8080/cfusion/COBERTURA/Mapas/Mapa_5G.html"
 `;
 
-// HANDLER PRINCIPAL
 export default async function handler(req, res) {
-    // Solo aceptar POST
     if (req.method !== 'POST') {
         return res.status(405).json({ error: 'Method not allowed' });
     }
@@ -206,12 +197,10 @@ export default async function handler(req, res) {
     try {
         const { message, conversationHistory = [] } = req.body;
 
-        // Validar mensaje
         if (!message || typeof message !== 'string') {
             return res.status(400).json({ error: 'Message is required' });
         }
 
-        // Verificar API key
         if (!process.env.CLAUDE_API_KEY) {
             console.error('❌ CLAUDE_API_KEY no configurada');
             return res.status(500).json({ 
@@ -220,20 +209,17 @@ export default async function handler(req, res) {
             });
         }
 
-        // Inicializar Claude
         const anthropic = new Anthropic({
             apiKey: process.env.CLAUDE_API_KEY
         });
 
-        // Construir mensajes
         const messages = [
             ...conversationHistory,
             { role: "user", content: message }
         ];
 
-        console.log(`📨 Nueva consulta: "${message.substring(0, 50)}..."`);
+        console.log(`📨 Consulta: "${message.substring(0, 50)}..."`);
 
-        // Llamar a Claude API
         const response = await anthropic.messages.create({
             model: "claude-sonnet-4-20250514",
             max_tokens: 1024,
@@ -241,12 +227,10 @@ export default async function handler(req, res) {
             messages: messages,
         });
 
-        // Extraer respuesta
         const assistantMessage = response.content[0].text;
 
-        console.log(`✅ Respuesta: "${assistantMessage.substring(0, 50)}..."`);
+        console.log(`✅ Respuesta generada correctamente`);
 
-        // Retornar
         return res.status(200).json({
             response: assistantMessage,
             conversationHistory: [
@@ -256,35 +240,32 @@ export default async function handler(req, res) {
             ]
         });
 
-    } catch (error) {
-        console.error('❌ Error completo:', error);
+    } catch (err) {
+        console.error('❌ Error:', err.message || err);
         
-        // Manejar errores de la API de Anthropic
-        const statusCode = error?.status || error?.response?.status || 500;
+        const code = err?.status || 500;
         
-        if (statusCode === 401) {
+        if (code === 401) {
             return res.status(500).json({
                 error: 'Invalid API key',
                 response: 'Error de autenticación. Contacta al administrador.'
             });
         }
 
-        if (statusCode === 429) {
+        if (code === 429) {
             return res.status(429).json({
-                error: 'Rate limit exceeded',
-                response: 'Muchas consultas. Intenta en un momento o contacta: 558 710 3011'
+                error: 'Rate limit',
+                response: 'Muchas consultas. Intenta en un momento.'
             });
         }
 
         return res.status(500).json({
-            error: 'Internal server error',
-            response: 'Ocurrió un error. Intenta de nuevo o contacta soporte: 558 710 3011',
-            details: error.message || 'Unknown error'
+            error: 'Server error',
+            response: 'Ocurrió un error. Intenta de nuevo o contacta: 558 710 3011'
         });
     }
 }
 
-// Configuración Vercel
 export const config = {
     runtime: 'edge',
     regions: ['iad1'],
