@@ -257,16 +257,19 @@ export default async function handler(req, res) {
         });
 
     } catch (error) {
-        console.error('❌ Error:', error);
+        console.error('❌ Error completo:', error);
         
-        if (error.status === 401) {
+        // Manejar errores de la API de Anthropic
+        const statusCode = error?.status || error?.response?.status || 500;
+        
+        if (statusCode === 401) {
             return res.status(500).json({
                 error: 'Invalid API key',
                 response: 'Error de autenticación. Contacta al administrador.'
             });
         }
 
-        if (error.status === 429) {
+        if (statusCode === 429) {
             return res.status(429).json({
                 error: 'Rate limit exceeded',
                 response: 'Muchas consultas. Intenta en un momento o contacta: 558 710 3011'
@@ -275,7 +278,8 @@ export default async function handler(req, res) {
 
         return res.status(500).json({
             error: 'Internal server error',
-            response: 'Ocurrió un error. Intenta de nuevo o contacta soporte: 558 710 3011'
+            response: 'Ocurrió un error. Intenta de nuevo o contacta soporte: 558 710 3011',
+            details: error.message || 'Unknown error'
         });
     }
 }
@@ -285,4 +289,3 @@ export const config = {
     runtime: 'edge',
     regions: ['iad1'],
 };
-
