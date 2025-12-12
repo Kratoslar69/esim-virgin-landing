@@ -5,21 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>eSIM Virgin Mobile | Velocidad y Datos</title>
     
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="chatbot.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="images/logo-virgin-mobile.png" type="image/png">
+
     <style>
         /* 1. SOLUCIÓN CANDADO (LOGO QUIETO) */
         html {
-            overflow-y: scroll !important; /* La barra gris siempre está visible */
+            overflow-y: scroll !important;
         }
         
-        /* 2. ASEGURAR QUE EL CHAT SEA VISIBLE */
-        .chatbot-bubble, .chatbot-window {
-            z-index: 2147483647 !important; /* Número máximo para estar encima de todo */
-        }
-
-        /* 3. ESTILO PARA LA PROMOCIÓN DEL 4TO MES */
+        /* 2. ESTILO PARA LA PROMOCIÓN DEL 4TO MES */
         .promo-highlight {
-            background-color: #fffcf0; /* Fondo dorado muy suave */
-            border: 2px dashed #FFD700; /* Borde estilo cupón */
+            background-color: #fffcf0;
+            border: 2px dashed #FFD700;
             border-radius: 12px;
             padding: 10px;
             margin: 20px 0 5px 0;
@@ -49,13 +50,85 @@
             padding-top: 4px;
             margin-top: 4px;
         }
+
+        /* 3. ESTILOS DE EMERGENCIA PARA EL CHATBOT (PARA QUE NO DESAPAREZCA) */
+        /* Burbuja flotante */
+        .chatbot-bubble {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #E1001E; /* Rojo Virgin */
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            z-index: 2147483647 !important; /* Siempre encima */
+            transition: transform 0.3s ease;
+        }
+        .chatbot-bubble:hover {
+            transform: scale(1.1);
+        }
+        .bubble-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #FFD700; /* Amarillo */
+            color: #000;
+            font-size: 10px;
+            font-weight: bold;
+            padding: 2px 6px;
+            border-radius: 10px;
+        }
+        .chatbot-bubble svg {
+            width: 30px;
+            height: 30px;
+        }
+
+        /* Ventana del Chat */
+        .chatbot-window {
+            position: fixed;
+            bottom: 90px; /* Un poco arriba de donde estaba la burbuja */
+            right: 20px;
+            width: 350px;
+            height: 500px;
+            max-height: 80vh; /* Para que no se salga en celulares */
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.2);
+            z-index: 2147483647 !important; /* Siempre encima */
+            display: none; /* Oculto por defecto */
+            flex-direction: column;
+            overflow: hidden;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* ¡ESTA ES LA REGLA MÁGICA QUE FALTABA! */
+        .chatbot-window.active {
+            display: flex !important;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Ajustes Mobile */
+        @media (max-width: 480px) {
+            .chatbot-window {
+                width: 90%;
+                right: 5%;
+                bottom: 20px;
+                height: 70vh;
+            }
+        }
     </style>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="chatbot.css">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800;900&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" href="images/logo-virgin-mobile.png" type="image/png">
-</head>
+    </head>
 <body>
 
     <header class="header">
