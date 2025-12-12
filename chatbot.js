@@ -1,129 +1,123 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // 1. SELECTORES: Identificamos las partes del chat en el HTML
-    const chatBubble = document.getElementById('chatbotBubble');
-    const chatWindow = document.getElementById('chatbotWindow');
+    // 1. Referencias
+    const bubble = document.getElementById('chatbotBubble');
+    const windowChat = document.getElementById('chatbotWindow'); 
     const closeBtn = document.getElementById('closeChat');
-    const chatForm = document.getElementById('chatbotForm');
-    const chatInput = document.getElementById('chatbotInput');
-    const chatMessages = document.getElementById('chatMessages');
+    const form = document.getElementById('chatbotForm');
+    const input = document.getElementById('chatbotInput');
+    const messagesContainer = document.getElementById('chatMessages');
     const quickReplies = document.querySelectorAll('.quick-reply-btn');
 
-    // 2. ABRIR Y CERRAR EL CHAT
-    // Al hacer clic en la burbuja
-    chatBubble.addEventListener('click', () => {
-        chatWindow.classList.add('active');
-        chatBubble.style.display = 'none'; // Oculta la burbuja
-        chatInput.focus(); // Pone el cursor listo para escribir
-    });
+    let conversationHistory = [];
 
-    // Al hacer clic en la X de cerrar
-    closeBtn.addEventListener('click', () => {
-        chatWindow.classList.remove('active');
-        chatBubble.style.display = 'flex'; // Vuelve a mostrar la burbuja
-    });
+    // 2. MENSAJE DE BIENVENIDA (Compacto y bonito)
+    // Nota: Está todo en una línea para que no se "desparrame"
+    const welcomeMessage = '¡Hola! 👋 Soy tu experto virtual Jarvis Mobilemx.<br><br>Estoy aquí para ayudarte con:<ul style="margin: 5px 0 5px 20px; padding: 0;"><li>Dudas sobre eSIM 📱</li><li>Cobertura 🗺️</li><li>Paquetes y Precios 💲</li></ul>¿Qué necesitas saber hoy?';
 
-    // 3. ENVIAR MENSAJES
-    chatForm.addEventListener('submit', (e) => {
-        e.preventDefault(); // Evita que la página se recargue
-        const userText = chatInput.value.trim();
+    // 3. Función para agregar mensajes (CON TRADUCTOR DE SALTOS DE LÍNEA)
+    function addMessage(text, sender, isHTML = false) {
+        const div = document.createElement('div');
+        div.classList.add('message', sender === 'user' ? 'user-message' : 'bot-message');
         
-        if (userText) {
-            addUserMessage(userText); // 1. Muestra lo que escribiste
-            processBotResponse(userText); // 2. El bot piensa y responde
-            chatInput.value = ''; // 3. Limpia la caja de texto
+        let formattedText = text;
+
+        // Si es el BOT y NO es el mensaje de bienvenida (o sea, es la IA)
+        if (!isHTML && sender === 'bot') {
+            formattedText = formattedText
+                .replace(/\n/g, '<br>') // TRUCO: Convierte Enters en <br>
+                .replace(/\*\*(.*?)\*\*/g, '<b>$1</b>'); // Convierte Negritas
+        }
+
+        const avatar = sender === 'bot' ? '<div class="message-avatar">🤖</div>' : '';
+        const content = `<div class="message-content"><p>${formattedText}</p></div>`;
+        
+        div.innerHTML = sender === 'bot' ? avatar + content : content + avatar;
+        messagesContainer.appendChild(div);
+        scrollToBottom();
+    }
+
+    // 4. Iniciar chat
+    if (messagesContainer.children.length === 0) {
+        addMessage(welcomeMessage, 'bot', true); 
+    }
+
+    // 5. Abrir/Cerrar
+    function openChat() {
+        bubble.classList.add('hidden');
+        windowChat.classList.add('open');
+        setTimeout(() => input.focus(), 300);
+    }
+    function closeChat() {
+        windowChat.classList.remove('open');
+        bubble.classList.remove('hidden');
+    }
+    bubble.addEventListener('click', openChat);
+    closeBtn.addEventListener('click', closeChat);
+
+    // 6. Enviar mensaje
+    form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const messageText = input.value.trim();
+        if (messageText) {
+            addMessage(messageText, 'user');
+            input.value = '';
+            showTypingIndicator();
+            try {
+                const response = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: messageText, conversationHistory: conversationHistory })
+                });
+                const data = await response.json();
+                removeTypingIndicator();
+                if (data.response) {
+                    addMessage(data.response, 'bot'); // Aquí entra el traductor automático
+                    conversationHistory = data.conversationHistory || [];
+                }
+            } catch (error) {
+                removeTypingIndicator();
+                addMessage('Error de conexión.', 'bot');
+            }
         }
     });
 
-    // 4. BOTONES DE RESPUESTA RÁPIDA
+    // 7. Respuestas rápidas
     quickReplies.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            const text = e.target.innerText.replace('📲 ', '').replace('🗺️ ', '').replace('💲 ', '');
-            addUserMessage(text);
-            processBotResponse(text);
+        btn.addEventListener('click', async function() {
+            const text = this.innerText;
+            addMessage(text, 'user');
+            showTypingIndicator();
+            try {
+                const response = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: text, conversationHistory: conversationHistory })
+                });
+                const data = await response.json();
+                removeTypingIndicator();
+                if (data.response) {
+                    addMessage(data.response, 'bot');
+                    conversationHistory = data.conversationHistory || [];
+                }
+            } catch (error) {
+                removeTypingIndicator();
+            }
         });
     });
 
-    // ==========================================
-    // FUNCIONES DEL CEREBRO (LÓGICA)
-    // ==========================================
-
-    function addUserMessage(text) {
+    function showTypingIndicator() {
         const div = document.createElement('div');
-        div.className = 'message user-message';
-        div.innerHTML = `<div class="message-content"><p>${text}</p></div>`;
-        chatMessages.appendChild(div);
+        div.classList.add('message', 'bot-message', 'typing-indicator');
+        div.id = 'typingIndicator';
+        div.innerHTML = `<div class="message-avatar">🤖</div><div class="message-content"><div class="typing-dots"><span></span><span></span><span></span></div></div>`;
+        messagesContainer.appendChild(div);
         scrollToBottom();
     }
-
-    function addBotMessage(text) {
-        const div = document.createElement('div');
-        div.className = 'message bot-message';
-        // El avatar del robot
-        div.innerHTML = `
-            <div class="message-avatar">🤖</div>
-            <div class="message-content"><p>${text}</p></div>
-        `;
-        chatMessages.appendChild(div);
-        scrollToBottom();
+    function removeTypingIndicator() {
+        const indicator = document.getElementById('typingIndicator');
+        if (indicator) indicator.remove();
     }
-
     function scrollToBottom() {
-        chatMessages.scrollTop = chatMessages.scrollHeight;
-    }
-
-    // ==========================================
-    // DICCIONARIO DE RESPUESTAS (AQUÍ ESTÁ LA MAGIA)
-    // ==========================================
-    function processBotResponse(input) {
-        // Convertimos todo a minúsculas para que entienda igual "Hola" que "hola"
-        const lowerInput = input.toLowerCase();
-        let response = "";
-
-        // LÓGICA DE RESPUESTAS
-        
-        // 1. Saludos
-        if (lowerInput.includes('hola') || lowerInput.includes('buenos') || lowerInput.includes('buenas')) {
-            response = "¡Hola! 👋 Soy Jarvis. ¿En qué puedo ayudarte hoy? Pregúntame sobre paquetes, eSIM o cobertura.";
-        }
-        
-        // 2. eSIM
-        else if (lowerInput.includes('esim') || lowerInput.includes('virtual') || lowerInput.includes('chip digital')) {
-            response = "La eSIM es un chip virtual. 📲 Ya no necesitas el plástico físico. Te enviamos un código QR a tu correo, lo escaneas y ¡listo! Tienes señal en 5 minutos. ¿Quieres ver los paquetes compatibles?";
-        }
-
-        // 3. Precios y Paquetes
-        else if (lowerInput.includes('precio') || lowerInput.includes('paquete') || lowerInput.includes('costo') || lowerInput.includes('planes')) {
-            response = "Tenemos los mejores paquetes sin contrato: <br><br>💎 <b>$200 (Mejor Valor):</b> 21.5GB Totales + Redes.<br>⭐ <b>$250 (Popular):</b> 17GB + Redes Ilimitadas.<br>🚀 <b>$400 (Power):</b> 34GB + Todo ilimitado.<br><br>¡Y recuerda la promoción del 4to mes GRATIS!";
-        }
-
-        // 4. Promoción (¡NUEVO!)
-        else if (lowerInput.includes('promo') || lowerInput.includes('gratis') || lowerInput.includes('oferta') || lowerInput.includes('cuarto') || lowerInput.includes('4to')) {
-            response = "🎁 <b>¡Promoción Exclusiva!</b><br>Si recargas tu paquete ($150 a $400) durante 3 meses consecutivos, <b>el 4to mes te lo regalamos nosotros</b>. <br><small>Vigencia: Sep 2025 a Ene 2026.</small>";
-        }
-
-        // 5. Cobertura
-        else if (lowerInput.includes('cobertura') || lowerInput.includes('señal') || lowerInput.includes('mapa') || lowerInput.includes('donde')) {
-            response = "Usamos la red extendida de Movistar y AT&T con tecnología 5G. 📶 Tenemos cobertura garantizada en las principales ciudades y carreteras de México. Puedes verificar los mapas en la sección de abajo.";
-        }
-
-        // 6. HBO / Netflix / Video
-        else if (lowerInput.includes('hbo') || lowerInput.includes('netflix') || lowerInput.includes('youtube') || lowerInput.includes('video')) {
-            response = "¡Para los amantes del video! 🎬<br>Los paquetes desde <b>$300</b> incluyen más gigas dedicados para YouTube, Netflix y Prime Video. El de <b>$400</b> incluye también HBO Max.";
-        }
-
-        // 7. Portabilidad (Cambiar de compañía)
-        else if (lowerInput.includes('portabilidad') || lowerInput.includes('cambiar') || lowerInput.includes('numero') || lowerInput.includes('número')) {
-            response = "¡Vente con nosotros! Conservar tu número es gratis y rápido (24 hrs). Solo necesitas tu NIP de portabilidad y nosotros hacemos el trámite.";
-        }
-
-        // 8. Default (No entendió)
-        else {
-            response = "Mmm, no estoy seguro de haber entendido eso. 🤔 Intenta preguntarme sobre: <br>- 'Precios'<br>- 'Qué es eSIM'<br>- 'Cobertura'<br>- 'Promociones'";
-        }
-
-        // SIMULAR QUE ESTÁ ESCRIBIENDO (Retraso de 600ms)
-        setTimeout(() => {
-            addBotMessage(response);
-        }, 600);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
     }
 });
