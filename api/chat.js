@@ -1,107 +1,82 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const chatBubble = document.getElementById('chatbotBubble');
-    const chatWindow = document.getElementById('chatbotWindow');
-    const closeBtn = document.getElementById('closeChat');
-    const chatForm = document.getElementById('chatbotForm');
-    const chatInput = document.getElementById('chatbotInput');
-    const chatMessages = document.getElementById('chatMessages');
-    const quickReplies = document.querySelectorAll('.quick-reply-btn');
+import Anthropic from '@anthropic-ai/sdk';
 
-    // ABRIR/CERRAR
-    chatBubble.addEventListener('click', () => {
-        chatWindow.classList.add('active');
-        chatBubble.style.display = 'none';
-        chatInput.focus();
-    });
+// EL CEREBRO DE TU VENDEDOR (Prompt del Sistema)
+const SYSTEM_PROMPT = `Eres un asistente de ventas experto de MobileMX, distribuidor autorizado de Virgin Mobile México especializado en eSIM.
 
-    closeBtn.addEventListener('click', () => {
-        chatWindow.classList.remove('active');
-        chatBubble.style.display = 'flex';
-    });
+# PERSONALIDAD Y ESTILO
+- **Tono:** Amigable, cercano pero profesional. Usa "tú" (tutea).
+- **Emojis:** Usa ocasionalmente para dar calidez (📱 ✨ 🎯 ⚡)
+- **Respuestas:** Usa listas con guiones (-) o emojis para separar ideas. NUNCA escribas bloques de texto gigantes. Usa párrafos cortos y espacios dobles entre temas.
 
-    // ENVIAR MENSAJE
-    chatForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const userText = chatInput.value.trim();
-        if (userText) {
-            addUserMessage(userText);
-            chatInput.value = '';
-            processClaudeResponse(userText); // Llamada a la IA
-        }
-    });
+# INFORMACIÓN CLAVE
+**Empresa:** MobileMX (Distribuidor Autorizado Virgin Mobile)
+**Red:** Movistar + AT&T (4.5G y 5G en ciudades principales).
 
-    // BOTONES RÁPIDOS
-    quickReplies.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            const text = e.target.innerText.replace('📲 ', '').replace('🗺️ ', '').replace('💲 ', '');
-            addUserMessage(text);
-            processClaudeResponse(text);
-        });
-    });
+# PAQUETES (Véndelos con entusiasmo)
+1. **$150 (15GB):** Básico ideal. 26 días.
+2. **$200 (21.5GB):** 💎 Mejor Valor. 30 días.
+3. **$250 (17GB + Redes):** ⭐ MÁS POPULAR. 31 días. Incluye Redes Ilimitadas REALES.
+4. **$300 (22GB):** Para fans de video.
+5. **$400 (34GB):** Power user.
 
-    function addUserMessage(text) {
-        const div = document.createElement('div');
-        div.className = 'message user-message';
-        div.innerHTML = `<div class="message-content"><p>${text}</p></div>`;
-        chatMessages.appendChild(div);
-        scrollToBottom();
+# REGLAS DE ORO
+- Si preguntan por **iPhone**, confirma compatibilidad (XR en adelante).
+- Si preguntan por **Portabilidad**, di que SÍ es posible y que se hace después de activar la eSIM.
+- Si no sabes algo, di: "No tengo ese dato a la mano, pero soporte te ayuda en WhatsApp: 558 710 3011".
+- **Siempre intenta cerrar:** "¿Te gustaría probar el paquete de $250?"
+`;
+
+export default async function handler(req, res) {
+    // Solo aceptamos POST
+    if (req.method !== 'POST') {
+        return res.status(405).json({ error: 'Method not allowed' });
     }
 
-    function addBotMessage(text) {
-        const div = document.createElement('div');
-        div.className = 'message bot-message';
-        // Convertimos saltos de línea en <br> para que se vea bien
-        const formattedText = text.replace(/\n/g, '<br>');
-        div.innerHTML = `
-            <div class="message-avatar">🤖</div>
-            <div class="message-content"><p>${formattedText}</p></div>
-        `;
-        chatMessages.appendChild(div);
-        scrollToBottom();
-    }
+    try {
+        const { message, conversationHistory = [] } = req.body;
 
-    function addTypingIndicator() {
-        const div = document.createElement('div');
-        div.className = 'message bot-message typing';
-        div.id = 'typingIndicator';
-        div.innerHTML = `
-            <div class="message-avatar">🤖</div>
-            <div class="message-content"><p>Escribiendo...</p></div>
-        `;
-        chatMessages.appendChild(div);
-        scrollToBottom();
-        return div;
-    }
-
-    function scrollToBottom() {
-        chatMessages.scrollTop = chatMessages.scrollHeight;
-    }
-
-    // === CONEXIÓN CON CLAUDE VÍA VERCEL ===
-    async function processClaudeResponse(message) {
-        const typing = addTypingIndicator(); // Muestra "Escribiendo..."
-
-        try {
-            const response = await fetch('/api/chat', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ message: message })
+        if (!process.env.CLAUDE_API_KEY) {
+            return res.status(500).json({ 
+                error: 'Configuración faltante',
+                response: 'Error de sistema: Falta configurar la API Key.' 
             });
-
-            const data = await response.json();
-            
-            // Borramos el indicador de escribiendo
-            typing.remove();
-
-            if (data.reply) {
-                addBotMessage(data.reply);
-            } else {
-                addBotMessage("Lo siento, estoy teniendo problemas de conexión. Intenta más tarde.");
-            }
-
-        } catch (error) {
-            typing.remove();
-            addBotMessage("Error de red. Verifica tu conexión.");
         }
+
+        const anthropic = new Anthropic({
+            apiKey: process.env.CLAUDE_API_KEY
+        });
+
+        // Preparamos la memoria de la conversación
+        const messages = [
+            ...conversationHistory,
+            { role: "user", content: message }
+        ];
+
+        // 🚀 AQUÍ ESTABA EL ERROR: Usamos un modelo que SÍ existe y es rápido
+        const response = await anthropic.messages.create({
+            model: "claude-3-haiku-20240307", 
+            max_tokens: 1024,
+            system: SYSTEM_PROMPT,
+            messages: messages,
+        });
+
+        const assistantMessage = response.content[0].text;
+
+        // Devolvemos la respuesta
+        return res.status(200).json({
+            response: assistantMessage,
+            conversationHistory: [
+                ...conversationHistory,
+                { role: "user", content: message },
+                { role: "assistant", content: assistantMessage }
+            ]
+        });
+
+    } catch (err) {
+        console.error('❌ Error API Claude:', err);
+        return res.status(500).json({
+            error: 'Error interno',
+            response: 'Lo siento, tuve un pequeño error de conexión. ¿Me repites la pregunta?'
+        });
     }
-});
+}
