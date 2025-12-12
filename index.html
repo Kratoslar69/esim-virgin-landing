@@ -6,17 +6,17 @@
     <title>eSIM Virgin Mobile | Velocidad y Datos</title>
     
     <style>
-        /* 1. SOLUCIÓN "CANDADO": Obliga a la barra a quedarse quieta */
+        /* 1. SOLUCIÓN CANDADO (LOGO QUIETO) */
         html {
-            overflow-y: scroll !important;
-            width: 100vw;
+            overflow-y: scroll !important; /* La barra gris siempre está visible */
         }
-        body {
-            overflow-x: hidden;
-            width: 100%;
+        
+        /* 2. ASEGURAR QUE EL CHAT SEA VISIBLE */
+        .chatbot-bubble, .chatbot-window {
+            z-index: 2147483647 !important; /* Número máximo para estar encima de todo */
         }
 
-        /* 2. ESTILO PARA LA PROMOCIÓN DEL 4TO MES */
+        /* 3. ESTILO PARA LA PROMOCIÓN DEL 4TO MES */
         .promo-highlight {
             background-color: #fffcf0; /* Fondo dorado muy suave */
             border: 2px dashed #FFD700; /* Borde estilo cupón */
@@ -42,7 +42,6 @@
             font-size: 0.85rem;
             margin-bottom: 4px;
         }
-        /* 3. LETRA CHIQUITA LEGAL (NUEVO) */
         .promo-legal {
             font-size: 0.65rem;
             color: #777;
@@ -162,7 +161,8 @@
                             <div class="red-subtitle">Al recargar 3 meses consecutivos</div>
                             <div class="promo-legal">Vigencia: 01 Sep 2025 - 31 Ene 2026. Aplican T&C.</div>
                         </div>
-                        </div>
+
+                    </div>
                     <a href="/paquete-150" class="btn-buy">Comprar nuevo chip o eSIM</a>
                 </div>
 
@@ -215,7 +215,8 @@
                             <div class="red-subtitle">Al recargar 3 meses consecutivos</div>
                             <div class="promo-legal">Vigencia: 01 Sep 2025 - 31 Ene 2026. Aplican T&C.</div>
                         </div>
-                        </div>
+
+                    </div>
                     <a href="/paquete-200" class="btn-buy">Comprar nuevo chip o eSIM</a>
                 </div>
 
@@ -261,7 +262,8 @@
                             <div class="red-subtitle">Al recargar 3 meses consecutivos</div>
                             <div class="promo-legal">Vigencia: 01 Sep 2025 - 31 Ene 2026. Aplican T&C.</div>
                         </div>
-                        </div>
+
+                    </div>
                     <a href="/paquete-250" class="btn-buy">Comprar nuevo chip o eSIM</a>
                 </div>
 
@@ -306,7 +308,8 @@
                             <div class="red-subtitle">Al recargar 3 meses consecutivos</div>
                             <div class="promo-legal">Vigencia: 01 Sep 2025 - 31 Ene 2026. Aplican T&C.</div>
                         </div>
-                        </div>
+
+                    </div>
                     <a href="/paquete-300" class="btn-buy">Comprar nuevo chip o eSIM</a>
                 </div>
 
@@ -351,7 +354,8 @@
                             <div class="red-subtitle">Al recargar 3 meses consecutivos</div>
                             <div class="promo-legal">Vigencia: 01 Sep 2025 - 31 Ene 2026. Aplican T&C.</div>
                         </div>
-                        </div>
+
+                    </div>
                     <a href="/paquete-400" class="btn-buy">Comprar nuevo chip o eSIM</a>
                 </div>
                 
