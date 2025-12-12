@@ -5,130 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>eSIM Virgin Mobile | Velocidad y Datos</title>
     
+    <style>
+        html {
+            overflow-y: scroll !important; /* Fuerza la barra vertical siempre */
+            width: 100vw;                 /* Congela el ancho de la ventana */
+        }
+        body {
+            overflow-x: hidden;           /* Evita scroll horizontal accidental */
+            width: 100%;
+        }
+    </style>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="chatbot.css">
     
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800;900&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="images/logo-virgin-mobile.png" type="image/png">
-
-    <style>
-        /* 1. SOLUCIÓN CANDADO (LOGO QUIETO) */
-        html {
-            overflow-y: scroll !important;
-        }
-        
-        /* 2. ESTILO PARA LA PROMOCIÓN DEL 4TO MES */
-        .promo-highlight {
-            background-color: #fffcf0;
-            border: 2px dashed #FFD700;
-            border-radius: 12px;
-            padding: 10px;
-            margin: 20px 0 5px 0;
-            text-align: center;
-            box-shadow: 0 4px 10px rgba(255, 215, 0, 0.15);
-        }
-        .promo-highlight .red-title {
-            color: #d32f2f;
-            font-weight: 900;
-            font-size: 1.2rem;
-            margin-bottom: 2px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 5px;
-        }
-        .promo-highlight .red-subtitle {
-            color: #333;
-            font-weight: 600;
-            font-size: 0.85rem;
-            margin-bottom: 4px;
-        }
-        .promo-legal {
-            font-size: 0.65rem;
-            color: #777;
-            border-top: 1px solid rgba(0,0,0,0.1);
-            padding-top: 4px;
-            margin-top: 4px;
-        }
-
-        /* 3. ESTILOS DE EMERGENCIA PARA EL CHATBOT (PARA QUE NO DESAPAREZCA) */
-        /* Burbuja flotante */
-        .chatbot-bubble {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #E1001E; /* Rojo Virgin */
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            z-index: 2147483647 !important; /* Siempre encima */
-            transition: transform 0.3s ease;
-        }
-        .chatbot-bubble:hover {
-            transform: scale(1.1);
-        }
-        .bubble-badge {
-            position: absolute;
-            top: -5px;
-            right: -5px;
-            background: #FFD700; /* Amarillo */
-            color: #000;
-            font-size: 10px;
-            font-weight: bold;
-            padding: 2px 6px;
-            border-radius: 10px;
-        }
-        .chatbot-bubble svg {
-            width: 30px;
-            height: 30px;
-        }
-
-        /* Ventana del Chat */
-        .chatbot-window {
-            position: fixed;
-            bottom: 90px; /* Un poco arriba de donde estaba la burbuja */
-            right: 20px;
-            width: 350px;
-            height: 500px;
-            max-height: 80vh; /* Para que no se salga en celulares */
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 5px 30px rgba(0,0,0,0.2);
-            z-index: 2147483647 !important; /* Siempre encima */
-            display: none; /* Oculto por defecto */
-            flex-direction: column;
-            overflow: hidden;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        /* ¡ESTA ES LA REGLA MÁGICA QUE FALTABA! */
-        .chatbot-window.active {
-            display: flex !important;
-            animation: slideUp 0.3s ease;
-        }
-
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Ajustes Mobile */
-        @media (max-width: 480px) {
-            .chatbot-window {
-                width: 90%;
-                right: 5%;
-                bottom: 20px;
-                height: 70vh;
-            }
-        }
-    </style>
-    </head>
+</head>
 <body>
 
     <header class="header">
@@ -228,13 +120,6 @@
                             <div class="red-title" style="font-size: 1.1rem;">Minutos y SMS Ilimitados</div>
                             <div class="red-subtitle">En territorio nacional</div>
                         </div>
-
-                        <div class="promo-highlight">
-                            <div class="red-title">🎁 ¡4to Mes GRATIS!</div>
-                            <div class="red-subtitle">Al recargar 3 meses consecutivos</div>
-                            <div class="promo-legal">Vigencia: 01 Sep 2025 - 31 Ene 2026. Aplican T&C.</div>
-                        </div>
-
                     </div>
                     <a href="/paquete-150" class="btn-buy">Comprar nuevo chip o eSIM</a>
                 </div>
@@ -282,13 +167,6 @@
                             <div class="red-title" style="font-size: 1.1rem;">Minutos y SMS Ilimitados</div>
                             <div class="red-subtitle">En territorio nacional</div>
                         </div>
-
-                        <div class="promo-highlight">
-                            <div class="red-title">🎁 ¡4to Mes GRATIS!</div>
-                            <div class="red-subtitle">Al recargar 3 meses consecutivos</div>
-                            <div class="promo-legal">Vigencia: 01 Sep 2025 - 31 Ene 2026. Aplican T&C.</div>
-                        </div>
-
                     </div>
                     <a href="/paquete-200" class="btn-buy">Comprar nuevo chip o eSIM</a>
                 </div>
@@ -329,13 +207,6 @@
                             <div class="red-title" style="font-size: 1.1rem;">Minutos y SMS Ilimitados</div>
                             <div class="red-subtitle">En territorio nacional</div>
                         </div>
-
-                        <div class="promo-highlight">
-                            <div class="red-title">🎁 ¡4to Mes GRATIS!</div>
-                            <div class="red-subtitle">Al recargar 3 meses consecutivos</div>
-                            <div class="promo-legal">Vigencia: 01 Sep 2025 - 31 Ene 2026. Aplican T&C.</div>
-                        </div>
-
                     </div>
                     <a href="/paquete-250" class="btn-buy">Comprar nuevo chip o eSIM</a>
                 </div>
@@ -375,13 +246,6 @@
                             <div class="red-title" style="font-size: 1.1rem;">Minutos y SMS Ilimitados</div>
                             <div class="red-subtitle">En territorio nacional</div>
                         </div>
-
-                        <div class="promo-highlight">
-                            <div class="red-title">🎁 ¡4to Mes GRATIS!</div>
-                            <div class="red-subtitle">Al recargar 3 meses consecutivos</div>
-                            <div class="promo-legal">Vigencia: 01 Sep 2025 - 31 Ene 2026. Aplican T&C.</div>
-                        </div>
-
                     </div>
                     <a href="/paquete-300" class="btn-buy">Comprar nuevo chip o eSIM</a>
                 </div>
@@ -413,7 +277,7 @@
                         <div class="benefit-block">
                             <div class="red-title">6 GB para video</div>
                             <div class="app-icons">
-                                <img src="images/tiktok.svg"><img src="images/youtube.svg"><img src="images/netflix-icon.svg"><img src="images/prime-video.svg"><img src="images/hbo-max.png">
+                                <img src="images/tiktok.svg"><img src="images/youtube.svg"><img src="images/netflix-icon.svg"><img src="images/prime-video.svg"><img src="images/hbo-max.svg">
                             </div>
                         </div>
                         <hr class="divider">
@@ -421,13 +285,6 @@
                             <div class="red-title" style="font-size: 1.1rem;">Minutos y SMS Ilimitados</div>
                             <div class="red-subtitle">En territorio nacional</div>
                         </div>
-
-                        <div class="promo-highlight">
-                            <div class="red-title">🎁 ¡4to Mes GRATIS!</div>
-                            <div class="red-subtitle">Al recargar 3 meses consecutivos</div>
-                            <div class="promo-legal">Vigencia: 01 Sep 2025 - 31 Ene 2026. Aplican T&C.</div>
-                        </div>
-
                     </div>
                     <a href="/paquete-400" class="btn-buy">Comprar nuevo chip o eSIM</a>
                 </div>
