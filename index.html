@@ -6,7 +6,27 @@
     <title>eSIM Virgin Mobile | Velocidad y Datos</title>
     
     <style>
-        /* 1. SOLUCIÓN "CANDADO": Obliga a la barra a quedarse quieta */
+        /* --- 1. ANIMACIÓN "LATIDO DORADO" (NUEVO) --- */
+        @keyframes goldPulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 4px 10px rgba(255, 215, 0, 0.2);
+                border-color: #FFD700;
+            }
+            50% {
+                transform: scale(1.03); /* Crece un poquito */
+                box-shadow: 0 10px 25px rgba(255, 215, 0, 0.6); /* Brilla intenso */
+                border-color: #ffcc00;
+                background-color: #fffdf5;
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 4px 10px rgba(255, 215, 0, 0.2);
+                border-color: #FFD700;
+            }
+        }
+
+        /* --- 2. SOLUCIÓN CANDADO (Mantiene la pantalla quieta) --- */
         html {
             overflow-y: scroll !important;
             width: 100vw;
@@ -16,41 +36,53 @@
             width: 100%;
         }
 
-        /* 2. ESTILO PARA LA PROMOCIÓN DEL 4TO MES */
+        /* --- 3. ESTILO DE LA PROMOCIÓN CON ANIMACIÓN --- */
         .promo-highlight {
-            background-color: #fffcf0; /* Fondo dorado muy suave */
-            border: 2px dashed #FFD700; /* Borde estilo cupón */
+            background-color: #fffcf0;
+            border: 2px dashed #FFD700;
             border-radius: 12px;
             padding: 10px;
             margin: 20px 0 5px 0;
             text-align: center;
-            box-shadow: 0 4px 10px rgba(255, 215, 0, 0.15);
+            /* Aquí aplicamos la magia del movimiento: */
+            animation: goldPulse 2.5s infinite ease-in-out;
+            transition: all 0.3s ease;
         }
+
+        /* Al pasar el mouse/dedo, se detiene y resalta */
+        .promo-highlight:hover {
+            animation: none;
+            transform: scale(1.05);
+            box-shadow: 0 12px 28px rgba(255, 215, 0, 0.7);
+            border: 2px solid #FFD700;
+        }
+
         .promo-highlight .red-title {
             color: #d32f2f;
             font-weight: 900;
-            font-size: 1.2rem;
+            font-size: 1.25rem; /* Ligeramente más grande */
             margin-bottom: 2px;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 5px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
         }
         .promo-highlight .red-subtitle {
             color: #333;
-            font-weight: 600;
-            font-size: 0.85rem;
+            font-weight: 700;
+            font-size: 0.9rem;
             margin-bottom: 4px;
         }
-        /* 3. LETRA CHIQUITA LEGAL (NUEVO) */
         .promo-legal {
             font-size: 0.65rem;
             color: #777;
-            border-top: 1px solid rgba(0,0,0,0.1);
+            border-top: 1px solid rgba(255, 215, 0, 0.3);
             padding-top: 4px;
             margin-top: 4px;
         }
     </style>
+
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="chatbot.css">
     
@@ -162,7 +194,7 @@
                             <div class="red-subtitle">Al recargar 3 meses consecutivos</div>
                             <div class="promo-legal">Vigencia: 01 Sep 2025 - 31 Ene 2026. Aplican T&C.</div>
                         </div>
-                        </div>
+                    </div>
                     <a href="/paquete-150" class="btn-buy">Comprar nuevo chip o eSIM</a>
                 </div>
 
@@ -215,7 +247,7 @@
                             <div class="red-subtitle">Al recargar 3 meses consecutivos</div>
                             <div class="promo-legal">Vigencia: 01 Sep 2025 - 31 Ene 2026. Aplican T&C.</div>
                         </div>
-                        </div>
+                    </div>
                     <a href="/paquete-200" class="btn-buy">Comprar nuevo chip o eSIM</a>
                 </div>
 
@@ -261,7 +293,7 @@
                             <div class="red-subtitle">Al recargar 3 meses consecutivos</div>
                             <div class="promo-legal">Vigencia: 01 Sep 2025 - 31 Ene 2026. Aplican T&C.</div>
                         </div>
-                        </div>
+                    </div>
                     <a href="/paquete-250" class="btn-buy">Comprar nuevo chip o eSIM</a>
                 </div>
 
@@ -306,7 +338,7 @@
                             <div class="red-subtitle">Al recargar 3 meses consecutivos</div>
                             <div class="promo-legal">Vigencia: 01 Sep 2025 - 31 Ene 2026. Aplican T&C.</div>
                         </div>
-                        </div>
+                    </div>
                     <a href="/paquete-300" class="btn-buy">Comprar nuevo chip o eSIM</a>
                 </div>
 
@@ -351,33 +383,10 @@
                             <div class="red-subtitle">Al recargar 3 meses consecutivos</div>
                             <div class="promo-legal">Vigencia: 01 Sep 2025 - 31 Ene 2026. Aplican T&C.</div>
                         </div>
-                        </div>
+                    </div>
                     <a href="/paquete-400" class="btn-buy">Comprar nuevo chip o eSIM</a>
                 </div>
                 
-            </div>
-        </div>
-    </section>
-
-    <section class="holo-steps-section">
-        <div class="container">
-            <h2 style="color: white;">El futuro se instala en 3 toques</h2>
-            <div class="holo-grid">
-                <div class="holo-card">
-                    <div class="holo-number">1</div>
-                    <h3>Elige y Paga</h3>
-                    <p>Selecciona tu paquete ideal. Pago 100% seguro en línea.</p>
-                </div>
-                <div class="holo-card">
-                    <div class="holo-number">2</div>
-                    <h3>Recibe QR</h3>
-                    <p>Tu código eSIM llega a tu correo en segundos.</p>
-                </div>
-                <div class="holo-card">
-                    <div class="holo-number">3</div>
-                    <h3>Escanea y Listo</h3>
-                    <p>Apunta con tu cámara y quedas conectado.</p>
-                </div>
             </div>
         </div>
     </section>
