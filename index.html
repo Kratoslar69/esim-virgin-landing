@@ -6,83 +6,94 @@
     <title>eSIM Virgin Mobile | Velocidad y Datos</title>
     
     <style>
-        /* --- 1. ANIMACIÓN "LATIDO DORADO" (NUEVO) --- */
-        @keyframes goldPulse {
-            0% {
-                transform: scale(1);
-                box-shadow: 0 4px 10px rgba(255, 215, 0, 0.2);
-                border-color: #FFD700;
-            }
-            50% {
-                transform: scale(1.03); /* Crece un poquito */
-                box-shadow: 0 10px 25px rgba(255, 215, 0, 0.6); /* Brilla intenso */
-                border-color: #ffcc00;
-                background-color: #fffdf5;
-            }
-            100% {
-                transform: scale(1);
-                box-shadow: 0 4px 10px rgba(255, 215, 0, 0.2);
-                border-color: #FFD700;
-            }
+        /* 1. ANIMACIÓN "NOTIFICACIÓN URGENTE" (EL EFECTO WOW) */
+        @keyframes disruptivo {
+            0% { transform: scale(1) rotate(0deg); box-shadow: 0 4px 10px rgba(255, 215, 0, 0.2); }
+            
+            /* FASE 1: PREPARACIÓN (Silencio) */
+            80% { transform: scale(1) rotate(0deg); }
+            
+            /* FASE 2: LA SACUDIDA (¡Mírame!) */
+            82% { transform: scale(1.05) rotate(2deg); box-shadow: 0 10px 30px rgba(255, 0, 0, 0.3); border-color: #ff0000; } /* Se pone rojo un segundo */
+            84% { transform: scale(1.05) rotate(-2deg); }
+            86% { transform: scale(1.05) rotate(2deg); }
+            88% { transform: scale(1.05) rotate(-2deg); }
+            90% { transform: scale(1.05) rotate(0deg); border-color: #FFD700; } /* Vuelve a dorado */
+            
+            /* FASE 3: RELAX */
+            100% { transform: scale(1) rotate(0deg); }
         }
 
-        /* --- 2. SOLUCIÓN CANDADO (Mantiene la pantalla quieta) --- */
-        html {
-            overflow-y: scroll !important;
-            width: 100vw;
-        }
-        body {
-            overflow-x: hidden;
-            width: 100%;
+        /* Efecto de brillo que pasa por el fondo */
+        @keyframes shineMove {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
         }
 
-        /* --- 3. ESTILO DE LA PROMOCIÓN CON ANIMACIÓN --- */
+        /* 2. SOLUCIÓN CANDADO (Mantiene la pantalla quieta) */
+        html { overflow-y: scroll !important; }
+        body { overflow-x: hidden; width: 100%; }
+
+        /* 3. ESTILO DE LA CAJA (AHORA MÁS AGRESIVO) */
         .promo-highlight {
-            background-color: #fffcf0;
+            /* Fondo con degradado que se mueve */
+            background: linear-gradient(110deg, #fffcf0 30%, #fffbe0 40%, #fffcf0 50%);
+            background-size: 200% 100%;
+            
             border: 2px dashed #FFD700;
             border-radius: 12px;
-            padding: 10px;
+            padding: 12px; /* Un poco más grande */
             margin: 20px 0 5px 0;
             text-align: center;
-            /* Aquí aplicamos la magia del movimiento: */
-            animation: goldPulse 2.5s infinite ease-in-out;
+            position: relative;
+            
+            /* ACTIVAMOS LAS DOS ANIMACIONES */
+            animation: disruptivo 4s infinite ease-in-out, shineMove 3s infinite linear;
             transition: all 0.3s ease;
         }
 
-        /* Al pasar el mouse/dedo, se detiene y resalta */
+        /* Al tocarlo se calma para leer */
         .promo-highlight:hover {
             animation: none;
-            transform: scale(1.05);
-            box-shadow: 0 12px 28px rgba(255, 215, 0, 0.7);
-            border: 2px solid #FFD700;
+            transform: scale(1.02);
+            border: 2px solid #E1001E; /* Se pone borde ROJO VIRGIN al tocar */
+            background: #fff;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
         }
 
         .promo-highlight .red-title {
             color: #d32f2f;
             font-weight: 900;
-            font-size: 1.25rem; /* Ligeramente más grande */
+            font-size: 1.3rem; /* Letra más grande */
+            text-transform: uppercase; /* MAYÚSCULAS para gritar oferta */
             margin-bottom: 2px;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 5px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            text-shadow: 1px 1px 0px rgba(0,0,0,0.1);
         }
+        
         .promo-highlight .red-subtitle {
-            color: #333;
+            color: #000; /* Negro puro para contraste */
             font-weight: 700;
             font-size: 0.9rem;
             margin-bottom: 4px;
         }
+        
         .promo-legal {
             font-size: 0.65rem;
-            color: #777;
-            border-top: 1px solid rgba(255, 215, 0, 0.3);
+            color: #666;
+            border-top: 1px solid rgba(0,0,0,0.1);
             padding-top: 4px;
             margin-top: 4px;
         }
-    </style>
 
+        /* 4. CHATBOT VISIBLE (SEGURIDAD) */
+        .chatbot-bubble, .chatbot-window {
+            z-index: 2147483647 !important;
+        }
+    </style>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="chatbot.css">
     
@@ -369,7 +380,7 @@
                         <div class="benefit-block">
                             <div class="red-title">6 GB para video</div>
                             <div class="app-icons">
-                                <img src="images/tiktok.svg"><img src="images/youtube.svg"><img src="images/netflix-icon.svg"><img src="images/prime-video.svg"><img src="images/hbo-max.svg">
+                                <img src="images/tiktok.svg"><img src="images/youtube.svg"><img src="images/netflix-icon.svg"><img src="images/prime-video.svg"><img src="images/hbo-max.png">
                             </div>
                         </div>
                         <hr class="divider">
@@ -387,6 +398,29 @@
                     <a href="/paquete-400" class="btn-buy">Comprar nuevo chip o eSIM</a>
                 </div>
                 
+            </div>
+        </div>
+    </section>
+
+    <section class="holo-steps-section">
+        <div class="container">
+            <h2 style="color: white;">El futuro se instala en 3 toques</h2>
+            <div class="holo-grid">
+                <div class="holo-card">
+                    <div class="holo-number">1</div>
+                    <h3>Elige y Paga</h3>
+                    <p>Selecciona tu paquete ideal. Pago 100% seguro en línea.</p>
+                </div>
+                <div class="holo-card">
+                    <div class="holo-number">2</div>
+                    <h3>Recibe QR</h3>
+                    <p>Tu código eSIM llega a tu correo en segundos.</p>
+                </div>
+                <div class="holo-card">
+                    <div class="holo-number">3</div>
+                    <h3>Escanea y Listo</h3>
+                    <p>Apunta con tu cámara y quedas conectado.</p>
+                </div>
             </div>
         </div>
     </section>
