@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>eSIM Virgin Mobile | Portabilidad</title>
+    <title>eSIM Virgin Mobile | Portabilidad y Paquetes</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800;900&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="images/logo-virgin-mobile.png" type="image/png">
@@ -48,58 +48,89 @@
         .trust-text strong { display: block; font-size: 0.9rem; }
         .trust-text span { font-size: 0.8rem; color: #666; }
 
-        /* --- PAQUETES GRID (ESTILOS ORIGINALES RESTAURADOS) --- */
+        /* --- PAQUETES GRID (DISEÑO TARJETA ROJA/BLANCA RESTAURADO) --- */
         .packages-section { padding: 50px 20px; background: white; }
         .container { max-width: 1200px; margin: 0 auto; }
-        .packages-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 25px; }
+        .packages-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; }
         
         .package-card {
-            border: 1px solid #eee; border-radius: 15px; padding: 25px; width: 300px; /* Ancho cómodo */
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05); background: white; position: relative;
-            transition: transform 0.3s; display: flex; flex-direction: column;
+            border: none;
+            border-radius: 25px; /* Bordes muy redondos como en la imagen */
+            width: 300px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            background: white;
+            position: relative;
+            transition: transform 0.3s;
+            overflow: hidden; /* Para que la cabecera roja no se salga */
+            display: flex;
+            flex-direction: column;
         }
-        .package-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
+        .package-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
         
-        .package-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; }
-        .header-left { display: flex; flex-direction: column; text-align: left; }
-        .header-right { text-align: right; }
-        
-        .big-gb { font-size: 2.2rem; font-weight: 900; line-height: 1; display: block; color: #000; }
-        .sub-rrss { font-size: 0.8rem; color: #666; margin-bottom: 5px; display: block; }
-        .vigencia { font-size: 0.8rem; font-weight: bold; color: #555; background: #eee; padding: 2px 8px; border-radius: 4px; display: inline-block; }
-        
-        .price { font-size: 1.8rem; font-weight: 800; color: #E60000; display: block; }
-        
-        .btn-buy {
-            display: block; width: 100%; text-align: center; background: #333; color: white;
-            padding: 12px; border-radius: 8px; text-decoration: none; margin-top: auto; /* Empuja el botón al fondo */
-            font-weight: bold; transition: background 0.3s;
+        /* CABECERA ROJA */
+        .package-header {
+            background-color: #E60000; /* Rojo Virgin */
+            padding: 25px 25px 15px 25px;
+            color: white;
+            border-radius: 25px 25px 40px 40px; /* Efecto curvo abajo */
+            margin-bottom: 10px;
+            position: relative;
         }
-        .btn-buy:hover { background: #000; }
         
-        .badge-valor, .badge-popular {
-            position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
-            padding: 6px 15px; border-radius: 20px; color: white; font-size: 0.8rem; font-weight: 800;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        .header-top { display: flex; justify-content: space-between; align-items: flex-start; }
+        .big-gb { font-size: 3rem; font-weight: 900; line-height: 0.9; display: block; letter-spacing: -2px; }
+        .sub-gb { font-size: 0.9rem; opacity: 0.9; display: block; margin-top: 5px; }
+        
+        .price { 
+            font-size: 1.8rem; 
+            font-weight: 800; 
+            color: white; /* PRECIO BLANCO */
+            opacity: 0.5; /* Ligeramente transparente como marca de agua o solido */
+            position: absolute;
+            top: 20px;
+            right: 20px;
         }
-        .badge-valor { background: #00bcd4; }
-        .badge-popular { background: #ffc107; color: black; }
-        .popular { border: 2px solid #ffc107; }
+        
+        /* CUERPO BLANCO */
+        .package-body { padding: 10px 25px 25px 25px; flex-grow: 1; display: flex; flex-direction: column; }
+        
+        .benefit-title { color: #E60000; font-weight: 800; font-size: 1.1rem; margin-top: 15px; margin-bottom: 5px; }
+        .benefit-desc { color: #666; font-size: 0.85rem; margin-bottom: 10px; }
+        
+        .app-icons { display: flex; gap: 8px; margin-bottom: 10px; flex-wrap: wrap; }
+        .app-icons img { width: 28px; height: 28px; }
 
-        .benefit-block { margin: 10px 0; text-align: left; }
-        .divider { border: 0; border-top: 1px solid #f0f0f0; margin: 10px 0; }
-        .red-title { color: #E60000; font-weight: 800; font-size: 0.95rem; margin-bottom: 2px; }
-        .red-subtitle { font-size: 0.8rem; color: #666; font-style: italic; }
-        .app-icons { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 5px; }
-        .app-icons img { height: 22px; width: auto; }
-        
-        .promo-highlight {
-            background: linear-gradient(110deg, #fffcf0 30%, #fffbe0 40%, #fffcf0 50%);
-            background-size: 200% 100%;
-            border: 2px dashed #FFD700; border-radius: 12px; padding: 10px; margin: 15px 0;
-            text-align: center; animation: disruptivo 4s infinite ease-in-out;
+        /* BOX AMARILLO (4TO MES) */
+        .promo-box {
+            background-color: #fff9c4; /* Amarillo claro */
+            border: 2px dashed #fbc02d; /* Borde amarillo fuerte */
+            border-radius: 12px;
+            padding: 10px;
+            text-align: center;
+            margin: 15px 0;
         }
-        .promo-highlight .red-title { color: #d32f2f; font-size: 1rem; text-transform: uppercase; margin-bottom: 0; }
+        .promo-box strong { color: #E60000; display: block; font-weight: 900; font-size: 0.95rem; }
+        .promo-box span { font-size: 0.75rem; color: #555; }
+
+        .btn-buy {
+            display: block; width: 100%; text-align: center; 
+            background: #E60000; color: white;
+            padding: 14px; border-radius: 50px; 
+            text-decoration: none; margin-top: auto; 
+            font-weight: 900; text-transform: uppercase;
+            box-shadow: 0 4px 15px rgba(230,0,0,0.3);
+            transition: all 0.3s;
+        }
+        .btn-buy:hover { background: #b70000; transform: scale(1.02); }
+
+        /* BADGES */
+        .badge-valor, .badge-popular {
+            position: absolute; top: 15px; left: 50%; transform: translateX(-50%);
+            padding: 5px 15px; border-radius: 15px; color: #000; font-size: 0.7rem; font-weight: 900;
+            background: #FFD700; z-index: 10; box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            text-transform: uppercase;
+        }
+        .badge-valor { background: #00bcd4; color: white; }
 
         /* --- SECCIÓN PORTABILIDAD (NÚCLEO) --- */
         .porta-section { padding: 80px 20px; background: #f4f6f8; border-top: 1px solid #e0e0e0; margin-top: 40px; }
@@ -212,7 +243,7 @@
             .header-content { padding: 0 15px; }
             .logo { height: 35px; }
             .btn-header-porta { font-size: 11px; padding: 8px 15px; }
-            .package-card { width: 100%; max-width: 320px; } /* Ajuste móvil paquetes */
+            .package-card { width: 100%; max-width: 320px; margin-bottom: 20px; } 
         }
     </style>
     
@@ -250,181 +281,136 @@
                 
                 <div class="package-card">
                     <div class="package-header">
-                        <div class="header-left">
+                        <div class="header-top">
                             <span class="big-gb">15GB</span>
-                            <span class="sub-rrss">Total</span>
-                            <span class="vigencia">Vigencia 26 días</span>
-                        </div>
-                        <div class="header-right">
                             <span class="price">$150</span>
                         </div>
+                        <span class="sub-gb">Total</span>
+                        <div style="margin-top:5px; font-size:0.8rem; opacity:0.9;">Vigencia 26 días</div>
                     </div>
                     <div class="package-body">
-                        <div class="benefit-block">
-                            <div class="red-title">7 GB Libres</div>
-                            <div class="red-subtitle">(Comparte internet)</div>
+                        <div class="benefit-title">7 GB Libres</div>
+                        <div class="benefit-desc">(Comparte internet)</div>
+                        <div class="benefit-title">Redes Sociales</div>
+                        <div class="app-icons">
+                            <img src="images/whatsapp.svg"><img src="images/facebook.svg"><img src="images/instagram-icon.svg">
                         </div>
-                        <hr class="divider">
-                        <div class="benefit-block">
-                            <div class="red-title">Redes Sociales</div>
-                            <div class="app-icons">
-                                <img src="images/whatsapp.svg"><img src="images/facebook.svg"><img src="images/instagram-icon.svg">
-                            </div>
+                        <div class="benefit-title">Minutos y SMS Ilimitados</div>
+                        
+                        <div class="promo-box">
+                            <strong>🎁 ¡4to Mes GRATIS!</strong>
+                            <span>Al recargar 3 meses seguidos</span>
                         </div>
-                        <hr class="divider">
-                        <div class="benefit-block">
-                            <div class="red-title">Minutos y SMS Ilimitados</div>
-                        </div>
-                        <div class="promo-highlight">
-                            <div class="red-title">🎁 ¡4to Mes GRATIS!</div>
-                            <div class="red-subtitle">Al recargar 3 meses seguidos</div>
-                        </div>
+                        <a href="/paquete-150" class="btn-buy">Comprar Chip/eSIM</a>
                     </div>
-                    <a href="/paquete-150" class="btn-buy">Comprar Chip/eSIM</a>
                 </div>
 
                 <div class="package-card">
                     <div class="badge-valor">💎 Mejor Valor</div>
                     <div class="package-header">
-                        <div class="header-left">
+                        <div class="header-top">
                             <span class="big-gb">21.5GB</span>
-                            <span class="sub-rrss">Total</span>
-                            <span class="vigencia">Vigencia 30 días</span>
-                        </div>
-                        <div class="header-right">
                             <span class="price">$200</span>
                         </div>
+                        <span class="sub-gb">Total</span>
+                        <div style="margin-top:5px; font-size:0.8rem; opacity:0.9;">Vigencia 30 días</div>
                     </div>
                     <div class="package-body">
-                        <div class="benefit-block">
-                            <div class="red-title">10 GB Libres</div>
-                            <div class="red-subtitle">(Comparte internet)</div>
+                        <div class="benefit-title">10 GB Libres</div>
+                        <div class="benefit-desc">(Comparte internet)</div>
+                        <div class="benefit-title">Redes Sociales</div>
+                        <div class="app-icons">
+                            <img src="images/whatsapp.svg"><img src="images/facebook.svg"><img src="images/instagram-icon.svg"><img src="images/tiktok.svg">
                         </div>
-                        <hr class="divider">
-                        <div class="benefit-block">
-                            <div class="red-title">Redes Sociales</div>
-                            <div class="app-icons">
-                                <img src="images/whatsapp.svg"><img src="images/facebook.svg"><img src="images/instagram-icon.svg"><img src="images/tiktok.svg">
-                            </div>
+                        <div class="benefit-title">Minutos y SMS Ilimitados</div>
+                        
+                        <div class="promo-box">
+                            <strong>🎁 ¡4to Mes GRATIS!</strong>
+                            <span>Al recargar 3 meses seguidos</span>
                         </div>
-                        <hr class="divider">
-                        <div class="benefit-block">
-                            <div class="red-title">Minutos y SMS Ilimitados</div>
-                        </div>
-                        <div class="promo-highlight">
-                            <div class="red-title">🎁 ¡4to Mes GRATIS!</div>
-                            <div class="red-subtitle">Al recargar 3 meses seguidos</div>
-                        </div>
+                        <a href="/paquete-200" class="btn-buy">Comprar Chip/eSIM</a>
                     </div>
-                    <a href="/paquete-200" class="btn-buy">Comprar Chip/eSIM</a>
                 </div>
 
-                <div class="package-card popular">
+                <div class="package-card">
                     <div class="badge-popular">⭐ Más Popular</div>
                     <div class="package-header">
-                        <div class="header-left">
+                        <div class="header-top">
                             <span class="big-gb">17GB</span>
-                            <span class="sub-rrss">+RRSS Ilimitadas</span>
-                            <span class="vigencia">Vigencia 31 días</span>
-                        </div>
-                        <div class="header-right">
                             <span class="price">$250</span>
                         </div>
+                        <span class="sub-gb">+RRSS Ilimitadas</span>
+                        <div style="margin-top:5px; font-size:0.8rem; opacity:0.9;">Vigencia 31 días</div>
                     </div>
                     <div class="package-body">
-                        <div class="benefit-block">
-                            <div class="red-title">14 GB Libres</div>
-                            <div class="red-subtitle">(Comparte internet)</div>
+                        <div class="benefit-title">14 GB Libres</div>
+                        <div class="benefit-desc">(Comparte internet)</div>
+                        <div class="benefit-title">Redes Ilimitadas</div>
+                        <div class="app-icons">
+                            <img src="images/whatsapp.svg"><img src="images/facebook.svg"><img src="images/instagram-icon.svg"><img src="images/tiktok.svg"><img src="images/youtube.svg">
                         </div>
-                        <hr class="divider">
-                        <div class="benefit-block">
-                            <div class="red-title">Redes Ilimitadas</div>
-                            <div class="app-icons">
-                                <img src="images/whatsapp.svg"><img src="images/facebook.svg"><img src="images/instagram-icon.svg"><img src="images/tiktok.svg"><img src="images/youtube.svg">
-                            </div>
+                        <div class="benefit-title">Minutos y SMS Ilimitados</div>
+                        
+                        <div class="promo-box">
+                            <strong>🎁 ¡4to Mes GRATIS!</strong>
+                            <span>Al recargar 3 meses seguidos</span>
                         </div>
-                        <hr class="divider">
-                        <div class="benefit-block">
-                            <div class="red-title">Minutos y SMS Ilimitados</div>
-                        </div>
-                        <div class="promo-highlight">
-                            <div class="red-title">🎁 ¡4to Mes GRATIS!</div>
-                            <div class="red-subtitle">Al recargar 3 meses seguidos</div>
-                        </div>
+                        <a href="/paquete-250" class="btn-buy">Comprar Chip/eSIM</a>
                     </div>
-                    <a href="/paquete-250" class="btn-buy">Comprar Chip/eSIM</a>
                 </div>
 
                 <div class="package-card">
                     <div class="package-header">
-                        <div class="header-left">
+                        <div class="header-top">
                             <span class="big-gb">22GB</span>
-                            <span class="sub-rrss">+RRSS Ilimitadas</span>
-                            <span class="vigencia">Vigencia 31 días</span>
-                        </div>
-                        <div class="header-right">
                             <span class="price">$300</span>
                         </div>
+                        <span class="sub-gb">+RRSS Ilimitadas</span>
+                        <div style="margin-top:5px; font-size:0.8rem; opacity:0.9;">Vigencia 31 días</div>
                     </div>
                     <div class="package-body">
-                        <div class="benefit-block">
-                            <div class="red-title">18 GB Libres</div>
-                            <div class="red-subtitle">(Comparte internet)</div>
+                        <div class="benefit-title">18 GB Libres</div>
+                        <div class="benefit-desc">(Comparte internet)</div>
+                        <div class="benefit-title">Redes Ilimitadas</div>
+                        <div class="app-icons">
+                            <img src="images/whatsapp.svg"><img src="images/facebook.svg"><img src="images/instagram-icon.svg"><img src="images/tiktok.svg"><img src="images/youtube.svg">
                         </div>
-                        <hr class="divider">
-                        <div class="benefit-block">
-                            <div class="red-title">Redes Ilimitadas</div>
-                            <div class="app-icons">
-                                <img src="images/whatsapp.svg"><img src="images/facebook.svg"><img src="images/instagram-icon.svg"><img src="images/tiktok.svg"><img src="images/youtube.svg">
-                            </div>
+                        <div class="benefit-title">Minutos y SMS Ilimitados</div>
+                        
+                        <div class="promo-box">
+                            <strong>🎁 ¡4to Mes GRATIS!</strong>
+                            <span>Al recargar 3 meses seguidos</span>
                         </div>
-                        <hr class="divider">
-                        <div class="benefit-block">
-                            <div class="red-title">Minutos y SMS Ilimitados</div>
-                        </div>
-                        <div class="promo-highlight">
-                            <div class="red-title">🎁 ¡4to Mes GRATIS!</div>
-                            <div class="red-subtitle">Al recargar 3 meses seguidos</div>
-                        </div>
+                        <a href="/paquete-300" class="btn-buy">Comprar Chip/eSIM</a>
                     </div>
-                    <a href="/paquete-300" class="btn-buy">Comprar Chip/eSIM</a>
-                </div>
-
-                <div class="package-card">
-                    <div class="package-header">
-                        <div class="header-left">
-                            <span class="big-gb">34GB</span>
-                            <span class="sub-rrss">+RRSS Ilimitadas</span>
-                            <span class="vigencia">Vigencia 31 días</span>
-                        </div>
-                        <div class="header-right">
-                            <span class="price">$400</span>
-                        </div>
-                    </div>
-                    <div class="package-body">
-                        <div class="benefit-block">
-                            <div class="red-title">28 GB Libres</div>
-                            <div class="red-subtitle">(Comparte internet)</div>
-                        </div>
-                        <hr class="divider">
-                        <div class="benefit-block">
-                            <div class="red-title">Redes Ilimitadas</div>
-                            <div class="app-icons">
-                                <img src="images/whatsapp.svg"><img src="images/facebook.svg"><img src="images/instagram-icon.svg"><img src="images/tiktok.svg"><img src="images/youtube.svg"><img src="images/hbo-max.png">
-                            </div>
-                        </div>
-                        <hr class="divider">
-                        <div class="benefit-block">
-                            <div class="red-title">Minutos y SMS Ilimitados</div>
-                        </div>
-                        <div class="promo-highlight">
-                            <div class="red-title">🎁 ¡4to Mes GRATIS!</div>
-                            <div class="red-subtitle">Al recargar 3 meses seguidos</div>
-                        </div>
-                    </div>
-                    <a href="/paquete-400" class="btn-buy">Comprar Chip/eSIM</a>
                 </div>
                 
+                 <div class="package-card">
+                    <div class="package-header">
+                        <div class="header-top">
+                            <span class="big-gb">34GB</span>
+                            <span class="price">$400</span>
+                        </div>
+                        <span class="sub-gb">+RRSS Ilimitadas</span>
+                        <div style="margin-top:5px; font-size:0.8rem; opacity:0.9;">Vigencia 31 días</div>
+                    </div>
+                    <div class="package-body">
+                        <div class="benefit-title">28 GB Libres</div>
+                        <div class="benefit-desc">(Comparte internet)</div>
+                        <div class="benefit-title">Redes Ilimitadas</div>
+                        <div class="app-icons">
+                             <img src="images/whatsapp.svg"><img src="images/facebook.svg"><img src="images/instagram-icon.svg"><img src="images/tiktok.svg"><img src="images/youtube.svg"><img src="images/hbo-max.png">
+                        </div>
+                        <div class="benefit-title">Minutos y SMS Ilimitados</div>
+                        
+                        <div class="promo-box">
+                            <strong>🎁 ¡4to Mes GRATIS!</strong>
+                            <span>Al recargar 3 meses seguidos</span>
+                        </div>
+                        <a href="/paquete-400" class="btn-buy">Comprar Chip/eSIM</a>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
@@ -439,7 +425,6 @@
             </div>
 
             <div class="porta-grid">
-                
                 <div class="power-card">
                     <div class="power-content">
                         <div class="power-header">Beneficios al traer tu número:</div>
@@ -520,54 +505,37 @@
 
             <div class="faq-disruptivo">
                 <h3 class="faq-main-title">Centro de Comando de Dudas</h3>
-
                 <details class="faq-item">
                     <summary class="faq-summary">1. ¿Qué es una portabilidad?</summary>
-                    <div class="faq-body">
-                        Es el proceso que te permite cambiarte de compañía telefónica conservando tu mismo número. ¡Es tu derecho y en Virgin Mobile te damos la bienvenida con brazos abiertos (y más gigas)!
-                    </div>
+                    <div class="faq-body">Es el proceso que te permite cambiarte de compañía telefónica conservando tu mismo número.</div>
                 </details>
-
                 <details class="faq-item">
                     <summary class="faq-summary">2. Requisitos para el trámite</summary>
                     <div class="faq-body">
                         <ul>
-                            <li><strong>NIP de Portabilidad:</strong> Envíalo desde tu número actual (viejo chip) por SMS con la palabra <strong>NIP</strong> al número <strong>051</strong>. Es un código de 4 dígitos.</li>
-                            <li><strong>Datos Personales:</strong> Nombre completo del titular y CURP.</li>
-                            <li><strong>Datos del Chip Virgin:</strong> Necesitarás el número temporal que viene en tu nuevo Chip/eSIM Virgin.</li>
+                            <li><strong>NIP de Portabilidad:</strong> Envía NIP al 051.</li>
+                            <li><strong>Datos Personales:</strong> Nombre y CURP.</li>
+                            <li><strong>Datos del Chip Virgin:</strong> Número temporal de tu nuevo chip.</li>
                         </ul>
                     </div>
                 </details>
-
                 <details class="faq-item">
                     <summary class="faq-summary">3. ¿Cuánto tiempo tarda?</summary>
-                    <div class="faq-body">
-                        El proceso de portabilidad suele tardar entre <strong>24 y 72 horas hábiles</strong> (sin contar domingos ni festivos). El cambio suele ocurrir en la madrugada, así que si despiertas sin señal en tu chip viejo, ¡felicidades, ya eres Virgin!
-                    </div>
+                    <div class="faq-body">Entre 24 y 72 horas hábiles. El cambio ocurre de madrugada.</div>
                 </details>
-
                 <details class="faq-item">
                     <summary class="faq-summary">4. ¿Cómo consultar el avance?</summary>
-                    <div class="faq-body">
-                        Puedes verificar el estatus oficial de tu trámite directamente en la página del IFT: <a href="https://portabilidad.mx/" target="_blank">https://portabilidad.mx/</a> con tu número de folio.
-                    </div>
+                    <div class="faq-body">En <a href="https://portabilidad.mx/" target="_blank">portabilidad.mx</a></div>
                 </details>
-
                 <details class="faq-item">
-                    <summary class="faq-summary">5. ¿Tu número es una línea corporativa?</summary>
-                    <div class="faq-body">
-                        Si tu número pertenece a una empresa, el proceso requiere documentación extra. Envíanos un correo a <strong>soporte@virginmobile.mx</strong> con:
-                        <ul>
-                            <li>Identificación oficial del representante legal.</li>
-                            <li>Acta constitutiva de la empresa (hoja donde aparece el rep. legal).</li>
-                            <li>Formato de solicitud firmado.</li>
-                        </ul>
-                    </div>
+                    <summary class="faq-summary">5. ¿Tu número es línea corporativa?</summary>
+                    <div class="faq-body">Envía identificación del rep. legal, acta constitutiva y solicitud a soporte@virginmobile.mx</div>
                 </details>
             </div>
 
         </div>
     </section>
+
     <section class="holo-steps-section">
         <div class="container">
             <h2 style="color: white;">Instala tu eSIM en 3 toques</h2>
