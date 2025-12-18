@@ -28,6 +28,10 @@
             0%, 100% { transform: translateX(0); }
             50% { transform: translateX(10px); }
         }
+        @keyframes glowRed {
+            0% { border-left-color: #333; }
+            100% { border-left-color: #E60000; }
+        }
 
         /* --- HEADER --- */
         .header { background: white; padding: 15px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; width: 100%; }
@@ -120,16 +124,8 @@
         .btn-cta-porta { display: block; background: #E60000; color: white; font-weight: 900; padding: 10px; border-radius: 50px; text-decoration: none; margin-top: 15px; font-size: 0.9rem; box-shadow: 0 4px 15px rgba(230,0,0,0.3); text-transform: uppercase; letter-spacing: 1px; }
         .btn-cta-porta:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(230,0,0,0.4); background: #b70000; }
 
-        /* --- NUEVOS ESTILOS: REQUISITOS (TARJETAS) --- */
-        .req-container { display: flex; gap: 20px; justify-content: center; margin-bottom: 50px; flex-wrap: wrap; }
-        .req-card { background: white; padding: 25px; border-radius: 15px; width: 300px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border-left: 5px solid #000; transition: transform 0.2s; }
-        .req-card:hover { transform: translateY(-5px); }
-        .req-icon { font-size: 2rem; margin-bottom: 15px; }
-        .req-title { font-weight: 800; font-size: 1.1rem; margin-bottom: 10px; color: #333; }
-        .req-desc { font-size: 0.9rem; color: #666; line-height: 1.5; }
-
-        /* --- NUEVOS ESTILOS: PASOS (TIMELINE) --- */
-        .steps-container { background: #fff; padding: 40px; border-radius: 20px; margin-bottom: 40px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
+        /* --- PASOS (TIMELINE) --- */
+        .steps-container { background: #fff; padding: 40px; border-radius: 20px; margin-bottom: 50px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
         .steps-title { text-align: center; font-size: 1.8rem; font-weight: 900; color: #E60000; margin-bottom: 40px; text-transform: uppercase; }
         .timeline { position: relative; max-width: 800px; margin: 0 auto; }
         .timeline::after { content: ''; position: absolute; width: 4px; background-color: #f0f0f0; top: 0; bottom: 0; left: 50px; margin-left: -2px; }
@@ -137,17 +133,65 @@
         .step-circle { position: absolute; left: 25px; top: 10px; width: 50px; height: 50px; background-color: #E60000; border: 4px solid #fff; border-radius: 50%; z-index: 1; display: flex; justify-content: center; align-items: center; font-weight: 900; color: white; font-size: 1.2rem; box-shadow: 0 0 0 3px #E60000; }
         .step-content h3 { margin: 0 0 5px; font-weight: 800; font-size: 1.1rem; }
         .step-content p { margin: 0; font-size: 0.95rem; color: #555; }
-        .step-link { color: #E60000; text-decoration: underline; font-weight: bold; cursor: pointer; }
+        /* Link dentro de timeline */
+        .step-link { color: #E60000; font-weight: 900; text-decoration: underline; transition: color 0.3s; }
+        .step-link:hover { color: #000; }
 
-        /* --- NUEVOS ESTILOS: ACORDEÓN (CONSIDERACIONES) --- */
-        .accordion-wrapper { max-width: 800px; margin: 0 auto; }
-        details { background: #fff; border-radius: 10px; overflow: hidden; margin-bottom: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); border: 1px solid #ddd; }
-        summary { padding: 15px 20px; font-weight: 800; cursor: pointer; background: #333; color: white; list-style: none; display: flex; justify-content: space-between; align-items: center; }
-        summary::after { content: '+'; font-size: 1.5rem; font-weight: bold; }
-        details[open] summary::after { content: '-'; }
-        .accordion-content { padding: 20px; font-size: 0.9rem; color: #555; line-height: 1.6; }
-        .accordion-content ul { padding-left: 20px; margin: 10px 0; }
-        .accordion-content li { margin-bottom: 8px; }
+        /* --- FAQ DISRUPTIVO (NUEVO) --- */
+        .faq-disruptivo { max-width: 900px; margin: 0 auto; }
+        .faq-main-title { text-align: center; font-size: 2rem; font-weight: 900; color: #111; margin-bottom: 30px; text-transform: uppercase; letter-spacing: -1px; }
+        
+        details.faq-item {
+            background: #111; /* Fondo oscuro */
+            color: white;
+            margin-bottom: 12px;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border-left: 6px solid #444; /* Borde gris inicial */
+        }
+        
+        /* Cuando se abre */
+        details.faq-item[open] {
+            background: #000;
+            border-left-color: #E60000; /* Borde rojo al abrir */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        summary.faq-summary {
+            padding: 18px 25px;
+            cursor: pointer;
+            font-weight: 800;
+            font-size: 1.1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            list-style: none;
+            transition: background 0.3s;
+        }
+        
+        summary.faq-summary:hover { background: #222; }
+        summary.faq-summary::-webkit-details-marker { display: none; }
+        
+        /* Icono personalizado (+ / -) */
+        summary.faq-summary::after {
+            content: '+';
+            font-size: 1.5rem;
+            color: #E60000;
+            font-weight: 900;
+        }
+        details.faq-item[open] summary.faq-summary::after { content: '-'; color: white; }
+
+        .faq-body {
+            padding: 20px 25px;
+            border-top: 1px solid #333;
+            color: #ccc;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+        .faq-body a { color: #E60000; font-weight: bold; }
+        .faq-body ul { padding-left: 20px; margin: 10px 0; }
+        .faq-body li { margin-bottom: 8px; }
 
         /* OTRAS SECCIONES */
         .holo-steps-section { background: #111; padding: 50px 20px; text-align: center; color: white; }
@@ -313,25 +357,6 @@
                 </div>
             </div>
 
-            <h3 style="text-align:center; margin-bottom:30px; font-weight:900; color:#333;">📋 Requisitos para portarte</h3>
-            <div class="req-container">
-                <div class="req-card">
-                    <div class="req-icon">🔓</div>
-                    <div class="req-title">1. Celular Desbloqueado</div>
-                    <div class="req-desc">Asegúrate que tu equipo funcione con cualquier compañía.</div>
-                </div>
-                <div class="req-card">
-                    <div class="req-icon">📩</div>
-                    <div class="req-title">2. NIP de Portabilidad</div>
-                    <div class="req-desc">Envía un SMS con la palabra <strong>NIP</strong> al <strong>051</strong> desde tu chip actual.</div>
-                </div>
-                <div class="req-card">
-                    <div class="req-icon">🆔</div>
-                    <div class="req-title">3. Datos de Usuario</div>
-                    <div class="req-desc">Ten a la mano tu Nombre Completo y CURP.</div>
-                </div>
-            </div>
-
             <div class="steps-container">
                 <div class="steps-title">Pasos para la Portabilidad</div>
                 <div class="timeline">
@@ -339,14 +364,14 @@
                         <div class="step-circle">1</div>
                         <div class="step-content">
                             <h3>Compra tu chip</h3>
-                            <p>Adquiérelo <span class="step-link">online</span> o en puntos de venta físicos.</p>
+                            <p>Adquiérelo <strong>online</strong> y recíbelo en casa.</p>
                         </div>
                     </div>
                     <div class="step-item">
                         <div class="step-circle">2</div>
                         <div class="step-content">
                             <h3>Ingrésalo en tu celular</h3>
-                            <p>Recibirás un mensaje de texto de confirmación.</p>
+                            <p>Recibirás un mensaje de confirmación.</p>
                         </div>
                     </div>
                     <div class="step-item">
@@ -360,7 +385,7 @@
                         <div class="step-circle">4</div>
                         <div class="step-content">
                             <h3>Espera 72 horas</h3>
-                            <p>El proceso toma hasta 72 horas hábiles. Valida el estatus <span class="step-link">aquí</span>.</p>
+                            <p>El proceso toma hasta 72 horas hábiles. Valida el estatus <a href="https://portabilidad.mx/" target="_blank" class="step-link">aquí</a>.</p>
                         </div>
                     </div>
                     <div class="step-item">
@@ -373,16 +398,49 @@
                 </div>
             </div>
 
-            <div class="accordion-wrapper">
-                <details>
-                    <summary>⚠️ Consideraciones Importantes (Leer más)</summary>
-                    <div class="accordion-content">
+            <div class="faq-disruptivo">
+                <h3 class="faq-main-title">Centro de Comando de Dudas</h3>
+
+                <details class="faq-item">
+                    <summary class="faq-summary">1. ¿Qué es una portabilidad?</summary>
+                    <div class="faq-body">
+                        Es el proceso que te permite cambiarte de compañía telefónica conservando tu mismo número. ¡Es tu derecho y en Virgin Mobile te damos la bienvenida con brazos abiertos (y más gigas)!
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-summary">2. Requisitos para el trámite</summary>
+                    <div class="faq-body">
                         <ul>
-                            <li>El proceso puede tomar hasta 48 horas hábiles.</li>
-                            <li>El cambio sucede en la madrugada; es posible que al día siguiente no tengas servicio en tu chip viejo.</li>
-                            <li>Si realizas el trámite después de las 5:00 PM, cuenta como día siguiente.</li>
-                            <li><strong>Pasos manuales:</strong> Envía NIP al 051, ingresa nombre, CURP, número a portar y número temporal Virgin.</li>
-                            <li>Consulta estatus oficial en: <a href="https://portabilidad.mx/" target="_blank">portabilidad.mx</a></li>
+                            <li><strong>NIP de Portabilidad:</strong> Envíalo desde tu número actual (viejo chip) por SMS con la palabra <strong>NIP</strong> al número <strong>051</strong>. Es un código de 4 dígitos.</li>
+                            <li><strong>Datos Personales:</strong> Nombre completo del titular y CURP.</li>
+                            <li><strong>Datos del Chip Virgin:</strong> Necesitarás el número temporal que viene en tu nuevo Chip/eSIM Virgin.</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-summary">3. ¿Cuánto tiempo tarda?</summary>
+                    <div class="faq-body">
+                        El proceso de portabilidad suele tardar entre <strong>24 y 72 horas hábiles</strong> (sin contar domingos ni festivos). El cambio suele ocurrir en la madrugada, así que si despiertas sin señal en tu chip viejo, ¡felicidades, ya eres Virgin!
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-summary">4. ¿Cómo consultar el avance?</summary>
+                    <div class="faq-body">
+                        Puedes verificar el estatus oficial de tu trámite directamente en la página del IFT: <a href="https://portabilidad.mx/" target="_blank">https://portabilidad.mx/</a> con tu número de folio.
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-summary">5. ¿Tu número es una línea corporativa?</summary>
+                    <div class="faq-body">
+                        Si tu número pertenece a una empresa, el proceso requiere documentación extra. Envíanos un correo a <strong>soporte@virginmobile.mx</strong> con:
+                        <ul>
+                            <li>Identificación oficial del representante legal.</li>
+                            <li>Acta constitutiva de la empresa (hoja donde aparece el rep. legal).</li>
+                            <li>Formato de solicitud firmado.</li>
                         </ul>
                     </div>
                 </details>
