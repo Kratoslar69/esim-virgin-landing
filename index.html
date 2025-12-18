@@ -48,47 +48,80 @@
         .trust-text strong { display: block; font-size: 0.9rem; }
         .trust-text span { font-size: 0.8rem; color: #666; }
 
-        /* --- PAQUETES GRID (DISEÑO TARJETA ROJA/BLANCA RESTAURADO) --- */
+        /* --- PAQUETES GRID (CORREGIDO: CERO EMPALMES) --- */
         .packages-section { padding: 50px 20px; background: white; }
         .container { max-width: 1200px; margin: 0 auto; }
         .packages-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; }
         
         .package-card {
             border: none;
-            border-radius: 25px; /* Bordes muy redondos como en la imagen */
+            border-radius: 25px;
             width: 300px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             background: white;
             position: relative;
             transition: transform 0.3s;
-            overflow: hidden; /* Para que la cabecera roja no se salga */
+            overflow: hidden;
             display: flex;
             flex-direction: column;
         }
         .package-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
         
-        /* CABECERA ROJA */
+        /* CABECERA ROJA CORREGIDA */
         .package-header {
-            background-color: #E60000; /* Rojo Virgin */
-            padding: 25px 25px 15px 25px;
+            background-color: #E60000;
+            padding: 25px;
             color: white;
-            border-radius: 25px 25px 40px 40px; /* Efecto curvo abajo */
+            border-radius: 25px 25px 40px 40px;
             margin-bottom: 10px;
-            position: relative;
+            /* Flexbox para separar columnas */
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start; 
         }
         
-        .header-top { display: flex; justify-content: space-between; align-items: flex-start; }
-        .big-gb { font-size: 3rem; font-weight: 900; line-height: 0.9; display: block; letter-spacing: -2px; }
-        .sub-gb { font-size: 0.9rem; opacity: 0.9; display: block; margin-top: 5px; }
+        /* Columna Izquierda: Gigas + Texto "Total" */
+        .header-col-left {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        
+        /* Columna Derecha: Precio + Texto "Vigencia" */
+        .header-col-right {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            text-align: right;
+        }
+        
+        /* Estilos de Texto */
+        .big-gb { 
+            font-size: 3.5rem; 
+            font-weight: 900; 
+            line-height: 0.9; 
+            letter-spacing: -2px; 
+        }
+        
+        .sub-gb { 
+            font-size: 0.9rem; 
+            opacity: 0.9; 
+            margin-top: 5px; 
+            font-weight: 600;
+        }
         
         .price { 
-            font-size: 1.8rem; 
+            font-size: 2.2rem; 
             font-weight: 800; 
-            color: white; /* PRECIO BLANCO */
-            opacity: 0.5; /* Ligeramente transparente como marca de agua o solido */
-            position: absolute;
-            top: 20px;
-            right: 20px;
+            color: white; 
+            line-height: 0.9;
+        }
+        
+        .vigencia-text {
+            font-size: 0.8rem;
+            opacity: 0.9;
+            margin-top: 8px;
+            font-weight: 600;
         }
         
         /* CUERPO BLANCO */
@@ -102,8 +135,8 @@
 
         /* BOX AMARILLO (4TO MES) */
         .promo-box {
-            background-color: #fff9c4; /* Amarillo claro */
-            border: 2px dashed #fbc02d; /* Borde amarillo fuerte */
+            background-color: #fff9c4;
+            border: 2px dashed #fbc02d;
             border-radius: 12px;
             padding: 10px;
             text-align: center;
@@ -281,13 +314,16 @@
                 
                 <div class="package-card">
                     <div class="package-header">
-                        <div class="header-top">
+                        <div class="header-col-left">
                             <span class="big-gb">15GB</span>
-                            <span class="price">$150</span>
+                            <span class="sub-gb">Total</span>
                         </div>
-                        <span class="sub-gb">Total</span>
-                        <div style="margin-top:5px; font-size:0.8rem; opacity:0.9;">Vigencia 26 días</div>
+                        <div class="header-col-right">
+                            <span class="price">$150</span>
+                            <span class="vigencia-text">Vigencia 26 días</span>
+                        </div>
                     </div>
+                    
                     <div class="package-body">
                         <div class="benefit-title">7 GB Libres</div>
                         <div class="benefit-desc">(Comparte internet)</div>
@@ -308,12 +344,14 @@
                 <div class="package-card">
                     <div class="badge-valor">💎 Mejor Valor</div>
                     <div class="package-header">
-                        <div class="header-top">
+                        <div class="header-col-left">
                             <span class="big-gb">21.5GB</span>
-                            <span class="price">$200</span>
+                            <span class="sub-gb">Total</span>
                         </div>
-                        <span class="sub-gb">Total</span>
-                        <div style="margin-top:5px; font-size:0.8rem; opacity:0.9;">Vigencia 30 días</div>
+                        <div class="header-col-right">
+                            <span class="price">$200</span>
+                            <span class="vigencia-text">Vigencia 30 días</span>
+                        </div>
                     </div>
                     <div class="package-body">
                         <div class="benefit-title">10 GB Libres</div>
@@ -335,12 +373,14 @@
                 <div class="package-card">
                     <div class="badge-popular">⭐ Más Popular</div>
                     <div class="package-header">
-                        <div class="header-top">
+                        <div class="header-col-left">
                             <span class="big-gb">17GB</span>
-                            <span class="price">$250</span>
+                            <span class="sub-gb">+RRSS Ilimitadas</span>
                         </div>
-                        <span class="sub-gb">+RRSS Ilimitadas</span>
-                        <div style="margin-top:5px; font-size:0.8rem; opacity:0.9;">Vigencia 31 días</div>
+                        <div class="header-col-right">
+                            <span class="price">$250</span>
+                            <span class="vigencia-text">Vigencia 31 días</span>
+                        </div>
                     </div>
                     <div class="package-body">
                         <div class="benefit-title">14 GB Libres</div>
@@ -361,12 +401,14 @@
 
                 <div class="package-card">
                     <div class="package-header">
-                        <div class="header-top">
+                        <div class="header-col-left">
                             <span class="big-gb">22GB</span>
-                            <span class="price">$300</span>
+                            <span class="sub-gb">+RRSS Ilimitadas</span>
                         </div>
-                        <span class="sub-gb">+RRSS Ilimitadas</span>
-                        <div style="margin-top:5px; font-size:0.8rem; opacity:0.9;">Vigencia 31 días</div>
+                        <div class="header-col-right">
+                            <span class="price">$300</span>
+                            <span class="vigencia-text">Vigencia 31 días</span>
+                        </div>
                     </div>
                     <div class="package-body">
                         <div class="benefit-title">18 GB Libres</div>
@@ -387,12 +429,14 @@
                 
                  <div class="package-card">
                     <div class="package-header">
-                        <div class="header-top">
+                        <div class="header-col-left">
                             <span class="big-gb">34GB</span>
-                            <span class="price">$400</span>
+                            <span class="sub-gb">+RRSS Ilimitadas</span>
                         </div>
-                        <span class="sub-gb">+RRSS Ilimitadas</span>
-                        <div style="margin-top:5px; font-size:0.8rem; opacity:0.9;">Vigencia 31 días</div>
+                        <div class="header-col-right">
+                            <span class="price">$400</span>
+                            <span class="vigencia-text">Vigencia 31 días</span>
+                        </div>
                     </div>
                     <div class="package-body">
                         <div class="benefit-title">28 GB Libres</div>
@@ -513,7 +557,7 @@
                     <summary class="faq-summary">2. Requisitos para el trámite</summary>
                     <div class="faq-body">
                         <ul>
-                            <li><strong>NIP de Portabilidad:</strong> Envía NIP al 051.</li>
+                            <li><strong>NIP de Portabilidad:</strong> Envíalo desde tu número actual (viejo chip) por SMS con la palabra <strong>NIP</strong> al número <strong>051</strong>.</li>
                             <li><strong>Datos Personales:</strong> Nombre y CURP.</li>
                             <li><strong>Datos del Chip Virgin:</strong> Número temporal de tu nuevo chip.</li>
                         </ul>
