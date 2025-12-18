@@ -48,8 +48,8 @@
         .trust-text strong { display: block; font-size: 0.9rem; }
         .trust-text span { font-size: 0.8rem; color: #666; }
 
-        /* --- PAQUETES GRID (DISEÑO TARJETA ROJA/BLANCA) --- */
-        .packages-section { padding: 80px 20px 50px; background: white; } /* Aumenté padding superior para los badges */
+        /* --- PAQUETES GRID (CORREGIDO PARA BADGES) --- */
+        .packages-section { padding: 80px 20px 50px; background: white; }
         .container { max-width: 1200px; margin: 0 auto; }
         .packages-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; }
         
@@ -59,19 +59,19 @@
             width: 300px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             background: white;
-            position: relative; /* Necesario para que el badge se posicione respecto a esto */
+            position: relative; /* Para el badge */
             transition: transform 0.3s;
-            /* overflow: hidden;  <--- ¡IMPORTANTE! SE ELIMINÓ ESTO PARA QUE EL BADGE SALGA */
             display: flex;
             flex-direction: column;
             z-index: 1;
+            /* IMPORTANTE: NO poner overflow hidden para que salga el badge */
         }
         .package-card:hover { transform: translateY(-10px); box-shadow: 0 25px 50px rgba(0,0,0,0.2); }
         
-        /* CABECERA ROJA */
+        /* CABECERA ROJA - Ajustada con padding-top extra para bajar el texto */
         .package-header {
             background-color: #E60000;
-            padding: 35px 25px 15px 25px; /* Más padding arriba para que respire el texto */
+            padding: 40px 25px 15px 25px; /* 40px arriba para librar el badge */
             color: white;
             border-radius: 25px 25px 40px 40px;
             margin-bottom: 10px;
@@ -88,14 +88,12 @@
         .price { font-size: 2.2rem; font-weight: 800; color: white; line-height: 0.9; }
         .vigencia-text { font-size: 0.8rem; opacity: 0.9; margin-top: 8px; font-weight: 600; }
         
-        /* CUERPO BLANCO */
         .package-body { padding: 10px 25px 25px 25px; flex-grow: 1; display: flex; flex-direction: column; }
         .benefit-title { color: #E60000; font-weight: 800; font-size: 1.1rem; margin-top: 15px; margin-bottom: 5px; }
         .benefit-desc { color: #666; font-size: 0.85rem; margin-bottom: 10px; }
         .app-icons { display: flex; gap: 8px; margin-bottom: 10px; flex-wrap: wrap; }
         .app-icons img { width: 28px; height: 28px; }
 
-        /* BOX AMARILLO (4TO MES) */
         .promo-box {
             background-color: #fff9c4;
             border: 2px dashed #fbc02d;
@@ -118,31 +116,25 @@
         }
         .btn-buy:hover { background: #b70000; transform: scale(1.02); }
 
-        /* --- BADGES DISRUPTIVOS (NUEVO DISEÑO) --- */
+        /* BADGES (ETIQUETAS) - Posicionadas más arriba para no tapar */
         .badge-valor, .badge-popular {
             position: absolute;
-            top: -15px; /* Se sale por arriba */
-            left: -15px; /* Se sale por la izquierda */
-            
-            padding: 10px 25px;
-            border-radius: 4px; /* Bordes menos redondeados, más agresivos */
-            
-            font-size: 0.85rem;
+            top: -15px; /* FLOTANDO AFUERA */
+            left: -10px;
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-size: 0.8rem;
             font-weight: 900;
             text-transform: uppercase;
             letter-spacing: 1px;
-            
-            transform: rotate(-8deg); /* INCLINACIÓN ROMPEDORA */
-            
+            transform: rotate(-5deg); /* Ligera rotación */
             z-index: 100;
-            box-shadow: 5px 5px 15px rgba(0,0,0,0.3); /* Sombra fuerte para dar profundidad */
+            box-shadow: 3px 3px 10px rgba(0,0,0,0.3);
         }
-        
-        .badge-valor { background: #00bcd4; color: white; border: 3px solid #fff; }
-        .badge-popular { background: #FFD700; color: black; border: 3px solid #000; }
+        .badge-valor { background: #00bcd4; color: white; border: 2px solid white; }
+        .badge-popular { background: #FFD700; color: black; border: 2px solid black; }
 
-
-        /* --- SECCIÓN PORTABILIDAD (NÚCLEO) --- */
+        /* --- SECCIÓN PORTABILIDAD --- */
         .porta-section { padding: 80px 20px; background: #f4f6f8; border-top: 1px solid #e0e0e0; margin-top: 40px; }
         .porta-container { max-width: 1100px; margin: 0 auto; }
         .porta-title-wrapper { text-align: center; margin-bottom: 50px; position: relative; }
@@ -152,7 +144,6 @@
 
         .porta-grid { display: flex; flex-wrap: wrap; gap: 30px; justify-content: center; align-items: stretch; margin-bottom: 60px; }
 
-        /* POWER CARD (Lado Izquierdo) */
         .power-card {
             flex: 1; min-width: 300px; max-width: 400px;
             background: linear-gradient(135deg, #D50000 0%, #990000 100%);
@@ -171,7 +162,6 @@
         .free-month-promo p { margin: 5px 0 0 0; font-weight: 700; font-size: 0.85rem; opacity: 0.9; }
         .small-legal { font-size: 0.6rem; margin-top: 5px; opacity: 0.7; display: block; }
 
-        /* COMPARISON ZONE (Lado Derecho) */
         .comparison-zone { flex: 2; display: flex; align-items: center; justify-content: center; gap: 15px; position: relative; }
         .mini-card { background: white; border-radius: 15px; width: 220px; padding: 20px; text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,0.05); border: 1px solid #eee; transition: transform 0.3s; }
         .mini-card.old { opacity: 0.7; transform: scale(0.95); background: #f9f9f9; }
@@ -190,7 +180,7 @@
         .btn-cta-porta { display: block; background: #E60000; color: white; font-weight: 900; padding: 10px; border-radius: 50px; text-decoration: none; margin-top: 15px; font-size: 0.9rem; box-shadow: 0 4px 15px rgba(230,0,0,0.3); text-transform: uppercase; letter-spacing: 1px; }
         .btn-cta-porta:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(230,0,0,0.4); background: #b70000; }
 
-        /* --- PASOS (TIMELINE) --- */
+        /* --- PASOS --- */
         .steps-container { background: #fff; padding: 40px; border-radius: 20px; margin-bottom: 50px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
         .steps-title { text-align: center; font-size: 1.8rem; font-weight: 900; color: #E60000; margin-bottom: 40px; text-transform: uppercase; }
         .timeline { position: relative; max-width: 800px; margin: 0 auto; }
@@ -202,46 +192,50 @@
         .step-link { color: #E60000; font-weight: 900; text-decoration: underline; transition: color 0.3s; }
         .step-link:hover { color: #000; }
 
-        /* --- FAQ DISRUPTIVO --- */
+        /* --- FAQ --- */
         .faq-disruptivo { max-width: 900px; margin: 0 auto; }
         .faq-main-title { text-align: center; font-size: 2rem; font-weight: 900; color: #111; margin-bottom: 30px; text-transform: uppercase; letter-spacing: -1px; }
-        
-        details.faq-item {
-            background: #111; color: white; margin-bottom: 12px; border-radius: 8px; overflow: hidden;
-            transition: all 0.3s ease; border-left: 6px solid #444;
-        }
+        details.faq-item { background: #111; color: white; margin-bottom: 12px; border-radius: 8px; overflow: hidden; transition: all 0.3s ease; border-left: 6px solid #444; }
         details.faq-item[open] { background: #000; border-left-color: #E60000; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
-
-        summary.faq-summary {
-            padding: 18px 25px; cursor: pointer; font-weight: 800; font-size: 1.1rem;
-            display: flex; justify-content: space-between; align-items: center; list-style: none; transition: background 0.3s;
-        }
+        summary.faq-summary { padding: 18px 25px; cursor: pointer; font-weight: 800; font-size: 1.1rem; display: flex; justify-content: space-between; align-items: center; list-style: none; transition: background 0.3s; }
         summary.faq-summary:hover { background: #222; }
         summary.faq-summary::-webkit-details-marker { display: none; }
         summary.faq-summary::after { content: '+'; font-size: 1.5rem; color: #E60000; font-weight: 900; }
         details.faq-item[open] summary.faq-summary::after { content: '-'; color: white; }
-
         .faq-body { padding: 20px 25px; border-top: 1px solid #333; color: #ccc; line-height: 1.6; font-size: 0.95rem; }
         .faq-body a { color: #E60000; font-weight: bold; }
         .faq-body ul { padding-left: 20px; margin: 10px 0; }
         .faq-body li { margin-bottom: 8px; }
 
-        /* OTRAS SECCIONES */
+        /* --- OTRAS SECCIONES (CORREGIDAS) --- */
         .holo-steps-section { background: #111; padding: 50px 20px; text-align: center; color: white; }
         .holo-grid { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-top: 30px; }
         .holo-card { max-width: 250px; }
         .holo-number { font-size: 2rem; font-weight: 900; color: #E60000; margin-bottom: 10px; }
+        
         .testimonials-section { padding: 50px 20px; background: white; text-align: center; }
         .testimonials-grid { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 30px; }
         .testimonial-card { background: #f9f9f9; padding: 20px; border-radius: 10px; max-width: 300px; text-align: left; }
+        
+        /* Cobertura Corregida */
         .coverage-section { padding: 50px 20px; background: #f0f0f0; text-align: center; }
         .coverage-grid { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 30px; }
-        .coverage-card { background: white; padding: 20px; border-radius: 10px; width: 200px; text-decoration: none; color: inherit; transition: transform 0.2s; }
-        .coverage-card:hover { transform: scale(1.05); }
-        .cov-icon { font-size: 2rem; margin-bottom: 10px; }
+        .coverage-card { 
+            background: white; padding: 30px 20px; border-radius: 10px; width: 250px; 
+            text-decoration: none; color: inherit; transition: transform 0.2s;
+            display: flex; flex-direction: column; align-items: center; justify-content: center; /* Alineación centrada */
+        }
+        .coverage-card:hover { transform: scale(1.05); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .cov-icon { font-size: 2.5rem; margin-bottom: 15px; }
+        .coverage-card h3 { margin: 0 0 10px 0; color: #000; font-weight: 800; }
+        .coverage-card p { font-size: 0.9rem; color: #666; margin: 0; line-height: 1.4; }
+
         footer { background: #333; color: white; text-align: center; padding: 30px 20px; margin-top: 0; }
+        
+        /* Chatbot */
         .chatbot-bubble { position: fixed; bottom: 20px; right: 20px; background: #E60000; color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 2000; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
         .chatbot-window { position: fixed; bottom: 80px; right: 20px; width: 300px; height: 400px; background: white; border-radius: 15px; box-shadow: 0 5px 30px rgba(0,0,0,0.2); z-index: 2000; display: none; flex-direction: column; overflow: hidden; }
+        .chatbot-hidden { display: none !important; } /* Clase para ocultar */
 
         @media (max-width: 900px) {
             .porta-grid { flex-direction: column; align-items: center; }
@@ -254,13 +248,11 @@
             .logo { height: 35px; }
             .btn-header-porta { font-size: 11px; padding: 8px 15px; }
             .package-card { width: 100%; max-width: 320px; margin-bottom: 30px; } 
-             /* Ajuste para que los badges no se corten en móvil */
             .packages-section { overflow-x: hidden; }
         }
     </style>
     
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="chatbot.css">
 </head>
 <body>
 
@@ -302,20 +294,13 @@
                             <span class="vigencia-text">Vigencia 26 días</span>
                         </div>
                     </div>
-                    
                     <div class="package-body">
                         <div class="benefit-title">7 GB Libres</div>
                         <div class="benefit-desc">(Comparte internet)</div>
                         <div class="benefit-title">Redes Sociales</div>
-                        <div class="app-icons">
-                            <img src="images/whatsapp.svg"><img src="images/facebook.svg"><img src="images/instagram-icon.svg">
-                        </div>
+                        <div class="app-icons"><img src="images/whatsapp.svg"><img src="images/facebook.svg"><img src="images/instagram-icon.svg"></div>
                         <div class="benefit-title">Minutos y SMS Ilimitados</div>
-                        
-                        <div class="promo-box">
-                            <strong>🎁 ¡4to Mes GRATIS!</strong>
-                            <span>Al recargar 3 meses seguidos</span>
-                        </div>
+                        <div class="promo-box"><strong>🎁 ¡4to Mes GRATIS!</strong><span>Al recargar 3 meses seguidos</span></div>
                         <a href="/paquete-150" class="btn-buy">Comprar Chip/eSIM</a>
                     </div>
                 </div>
@@ -336,15 +321,9 @@
                         <div class="benefit-title">10 GB Libres</div>
                         <div class="benefit-desc">(Comparte internet)</div>
                         <div class="benefit-title">Redes Sociales</div>
-                        <div class="app-icons">
-                            <img src="images/whatsapp.svg"><img src="images/facebook.svg"><img src="images/instagram-icon.svg"><img src="images/tiktok.svg">
-                        </div>
+                        <div class="app-icons"><img src="images/whatsapp.svg"><img src="images/facebook.svg"><img src="images/instagram-icon.svg"><img src="images/tiktok.svg"></div>
                         <div class="benefit-title">Minutos y SMS Ilimitados</div>
-                        
-                        <div class="promo-box">
-                            <strong>🎁 ¡4to Mes GRATIS!</strong>
-                            <span>Al recargar 3 meses seguidos</span>
-                        </div>
+                        <div class="promo-box"><strong>🎁 ¡4to Mes GRATIS!</strong><span>Al recargar 3 meses seguidos</span></div>
                         <a href="/paquete-200" class="btn-buy">Comprar Chip/eSIM</a>
                     </div>
                 </div>
@@ -365,15 +344,9 @@
                         <div class="benefit-title">14 GB Libres</div>
                         <div class="benefit-desc">(Comparte internet)</div>
                         <div class="benefit-title">Redes Ilimitadas</div>
-                        <div class="app-icons">
-                            <img src="images/whatsapp.svg"><img src="images/facebook.svg"><img src="images/instagram-icon.svg"><img src="images/tiktok.svg"><img src="images/youtube.svg">
-                        </div>
+                        <div class="app-icons"><img src="images/whatsapp.svg"><img src="images/facebook.svg"><img src="images/instagram-icon.svg"><img src="images/tiktok.svg"><img src="images/youtube.svg"></div>
                         <div class="benefit-title">Minutos y SMS Ilimitados</div>
-                        
-                        <div class="promo-box">
-                            <strong>🎁 ¡4to Mes GRATIS!</strong>
-                            <span>Al recargar 3 meses seguidos</span>
-                        </div>
+                        <div class="promo-box"><strong>🎁 ¡4to Mes GRATIS!</strong><span>Al recargar 3 meses seguidos</span></div>
                         <a href="/paquete-250" class="btn-buy">Comprar Chip/eSIM</a>
                     </div>
                 </div>
@@ -393,15 +366,9 @@
                         <div class="benefit-title">18 GB Libres</div>
                         <div class="benefit-desc">(Comparte internet)</div>
                         <div class="benefit-title">Redes Ilimitadas</div>
-                        <div class="app-icons">
-                            <img src="images/whatsapp.svg"><img src="images/facebook.svg"><img src="images/instagram-icon.svg"><img src="images/tiktok.svg"><img src="images/youtube.svg">
-                        </div>
+                        <div class="app-icons"><img src="images/whatsapp.svg"><img src="images/facebook.svg"><img src="images/instagram-icon.svg"><img src="images/tiktok.svg"><img src="images/youtube.svg"></div>
                         <div class="benefit-title">Minutos y SMS Ilimitados</div>
-                        
-                        <div class="promo-box">
-                            <strong>🎁 ¡4to Mes GRATIS!</strong>
-                            <span>Al recargar 3 meses seguidos</span>
-                        </div>
+                        <div class="promo-box"><strong>🎁 ¡4to Mes GRATIS!</strong><span>Al recargar 3 meses seguidos</span></div>
                         <a href="/paquete-300" class="btn-buy">Comprar Chip/eSIM</a>
                     </div>
                 </div>
@@ -421,15 +388,9 @@
                         <div class="benefit-title">28 GB Libres</div>
                         <div class="benefit-desc">(Comparte internet)</div>
                         <div class="benefit-title">Redes Ilimitadas</div>
-                        <div class="app-icons">
-                             <img src="images/whatsapp.svg"><img src="images/facebook.svg"><img src="images/instagram-icon.svg"><img src="images/tiktok.svg"><img src="images/youtube.svg"><img src="images/hbo-max.png">
-                        </div>
+                        <div class="app-icons"><img src="images/whatsapp.svg"><img src="images/facebook.svg"><img src="images/instagram-icon.svg"><img src="images/tiktok.svg"><img src="images/youtube.svg"><img src="images/hbo-max.png"></div>
                         <div class="benefit-title">Minutos y SMS Ilimitados</div>
-                        
-                        <div class="promo-box">
-                            <strong>🎁 ¡4to Mes GRATIS!</strong>
-                            <span>Al recargar 3 meses seguidos</span>
-                        </div>
+                        <div class="promo-box"><strong>🎁 ¡4to Mes GRATIS!</strong><span>Al recargar 3 meses seguidos</span></div>
                         <a href="/paquete-400" class="btn-buy">Comprar Chip/eSIM</a>
                     </div>
                 </div>
@@ -440,13 +401,11 @@
 
     <section id="portabilidad" class="porta-section">
         <div class="porta-container">
-            
             <div class="porta-title-wrapper">
                 <span class="porta-badge">🚀 Sube de Nivel</span>
                 <h2 class="porta-title">Oferta Exclusiva Portabilidad</h2>
                 <p class="porta-subtitle">Cámbiate con tu mismo número y obtén más por lo mismo.</p>
             </div>
-
             <div class="porta-grid">
                 <div class="power-card">
                     <div class="power-content">
@@ -464,7 +423,6 @@
                         <span class="small-legal">*Aplica en recargas del mismo monto ($150)</span>
                     </div>
                 </div>
-
                 <div class="comparison-zone">
                     <div class="mini-card old">
                         <div class="mini-header">Número Nuevo</div>
@@ -484,7 +442,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="steps-container">
                 <div class="steps-title">Pasos para la Portabilidad</div>
                 <div class="timeline">
@@ -525,7 +482,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="faq-disruptivo">
                 <h3 class="faq-main-title">Centro de Comando de Dudas</h3>
                 <details class="faq-item">
@@ -535,16 +491,12 @@
                 <details class="faq-item">
                     <summary class="faq-summary">2. Requisitos para el trámite</summary>
                     <div class="faq-body">
-                        <ul>
-                            <li><strong>NIP de Portabilidad:</strong> Envía NIP al 051.</li>
-                            <li><strong>Datos Personales:</strong> Nombre y CURP.</li>
-                            <li><strong>Datos del Chip Virgin:</strong> Número temporal de tu nuevo chip.</li>
-                        </ul>
+                        <ul><li><strong>NIP de Portabilidad:</strong> Envíalo desde tu número actual por SMS con la palabra <strong>NIP</strong> al <strong>051</strong>.</li><li><strong>Datos Personales:</strong> Nombre y CURP.</li></ul>
                     </div>
                 </details>
                 <details class="faq-item">
                     <summary class="faq-summary">3. ¿Cuánto tiempo tarda?</summary>
-                    <div class="faq-body">Entre 24 y 72 horas hábiles. El cambio ocurre de madrugada.</div>
+                    <div class="faq-body">Entre 24 y 72 horas hábiles.</div>
                 </details>
                 <details class="faq-item">
                     <summary class="faq-summary">4. ¿Cómo consultar el avance?</summary>
@@ -552,10 +504,9 @@
                 </details>
                 <details class="faq-item">
                     <summary class="faq-summary">5. ¿Tu número es línea corporativa?</summary>
-                    <div class="faq-body">Envía identificación del rep. legal, acta constitutiva y solicitud a soporte@virginmobile.mx</div>
+                    <div class="faq-body">Envía documentos a soporte@virginmobile.mx</div>
                 </details>
             </div>
-
         </div>
     </section>
 
@@ -574,8 +525,18 @@
         <div class="container">
             <h2>⭐ Lo que dicen nuestros clientes</h2>
             <div class="testimonials-grid">
-                <div class="testimonial-card"><p>"Activé mi eSIM en menos de 3 minutos. ¡Increíble servicio!"</p><strong>- María G. (CDMX)</strong></div>
-                <div class="testimonial-card"><p>"La portabilidad fue súper fácil y me dieron el mes gratis."</p><strong>- Carlos R. (Monterrey)</strong></div>
+                <div class="testimonial-card">
+                    <p>"Activé mi eSIM en menos de 3 minutos. ¡Increíble servicio!"</p>
+                    <strong>- María G. (CDMX)</strong>
+                </div>
+                <div class="testimonial-card">
+                    <p>"La portabilidad fue súper fácil y me dieron el mes gratis."</p>
+                    <strong>- Carlos R. (Monterrey)</strong>
+                </div>
+                <div class="testimonial-card">
+                    <p>"Excelente cobertura en todos lados. Me ahorré filas."</p>
+                    <strong>- Laura H. (Guadalajara)</strong>
+                </div>
             </div>
         </div>
     </section>
@@ -584,8 +545,21 @@
         <div class="container">
             <h2>Verifica tu Cobertura</h2>
             <div class="coverage-grid">
-                <a href="https://cobertura.movistar.com.mx:8080/cfusion/COBERTURA/Mapas/Mapa_5G.html" target="_blank" class="coverage-card"><div class="cov-icon">🚀</div><h3>Cobertura 5G</h3></a>
-                <a href="https://att.com.mx/legal/mapas-de-cobertura.html" target="_blank" class="coverage-card"><div class="cov-icon">🗺️</div><h3>Cobertura AT&T</h3></a>
+                <a href="https://cobertura.movistar.com.mx:8080/cfusion/COBERTURA/Mapas/Mapa_5G.html" target="_blank" class="coverage-card">
+                    <div class="cov-icon">🚀</div>
+                    <h3>Cobertura 5G</h3>
+                    <p>Máxima velocidad en principales ciudades.</p>
+                </a>
+                <a href="https://cobertura.movistar.com.mx:8080/cfusion/COBERTURA/Mapas/Mapa_4G.html" target="_blank" class="coverage-card">
+                    <div class="cov-icon">📶</div>
+                    <h3>Cobertura 4G LTE</h3>
+                    <p>Conexión estable en todo el país.</p>
+                </a>
+                <a href="https://att.com.mx/legal/mapas-de-cobertura.html" target="_blank" class="coverage-card">
+                    <div class="cov-icon">🗺️</div>
+                    <h3>Cobertura AT&T</h3>
+                    <p>Red compartida para máximo alcance.</p>
+                </a>
             </div>
         </div>
     </section>
@@ -600,11 +574,37 @@
     <div class="chatbot-bubble" id="chatbotBubble">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
     </div>
-    <div class="chatbot-window" id="chatbotWindow">
-        <div style="background: #E60000; color: white; padding: 15px; display: flex; justify-content: space-between;"><span>Asistente Virgin</span><span id="closeChat" style="cursor: pointer;">&times;</span></div>
-        <div style="padding: 20px; flex: 1; overflow-y: auto;"><p>Hola 👋 ¿En qué puedo ayudarte hoy?</p></div>
+    <div class="chatbot-window chatbot-hidden" id="chatbotWindow">
+        <div style="background: #E60000; color: white; padding: 15px; display: flex; justify-content: space-between;">
+            <span>Asistente Virgin</span>
+            <span id="closeChat" style="cursor: pointer;">&times;</span>
+        </div>
+        <div style="padding: 20px; flex: 1; overflow-y: auto;">
+            <p>Hola 👋 ¿En qué puedo ayudarte hoy?</p>
+            <ul>
+                <li style="margin-bottom:10px;"><a href="#paquetes" style="color:#E60000;">Ver Paquetes</a></li>
+                <li style="margin-bottom:10px;"><a href="#portabilidad" style="color:#E60000;">Portabilidad</a></li>
+            </ul>
+        </div>
     </div>
-    <script src="chatbot.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const bubble = document.getElementById('chatbotBubble');
+            const window = document.getElementById('chatbotWindow');
+            const closeBtn = document.getElementById('closeChat');
+
+            bubble.addEventListener('click', function() {
+                window.classList.remove('chatbot-hidden');
+                window.style.display = 'flex';
+            });
+
+            closeBtn.addEventListener('click', function() {
+                window.classList.add('chatbot-hidden');
+                window.style.display = 'none';
+            });
+        });
+    </script>
 
 </body>
 </html>
