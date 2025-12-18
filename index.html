@@ -10,6 +10,7 @@
     
     <style>
         /* --- RESET Y BASES --- */
+        * { box-sizing: border-box; }
         body { font-family: 'Montserrat', sans-serif; overflow-x: hidden; margin: 0; padding: 0; background-color: #fff; width: 100%; }
         html { scroll-behavior: smooth; overflow-y: scroll !important; }
         
@@ -41,20 +42,38 @@
             50% { transform: translateX(10px); }
         }
 
-        /* --- HEADER --- */
-        .header { background: white; padding: 10px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
-        .header-content { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        .logo { height: 40px; }
+        /* --- HEADER CORREGIDO --- */
+        .header { 
+            background: white; 
+            padding: 15px 0; 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1); 
+            position: sticky; 
+            top: 0; 
+            z-index: 1000; 
+            width: 100%;
+        }
+        
+        .header-content { 
+            display: flex; 
+            justify-content: space-between; /* ESTO SEPARA LOGO Y BOTÓN A LOS EXTREMOS */
+            align-items: center; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 0 20px; 
+            width: 100%;
+        }
+        
+        .logo { height: 45px; }
         
         .btn-header-porta {
             background: #E60000;
             color: white;
             font-weight: 800;
-            padding: 10px 20px;
-            border-radius: 4px;
+            padding: 10px 25px;
+            border-radius: 5px;
             text-decoration: none;
             text-transform: uppercase;
-            font-size: 13px;
+            font-size: 14px;
             border: 2px solid #E60000;
             transition: all 0.3s;
             animation: pulse-gold 3s infinite;
@@ -62,7 +81,6 @@
         .btn-header-porta:hover { background: white; color: #E60000; }
 
         /* --- HERO VIDEO SECTION --- */
-        /* (Asumo que tienes estilos previos en styles.css, pero los incluyo aquí para asegurar funcionamiento) */
         .hero-video { background: #111; color: white; padding: 100px 20px; text-align: center; position: relative; overflow: hidden; }
         .hero-content h1 { font-size: 3rem; margin-bottom: 20px; font-weight: 900; }
         .hero-content p { font-size: 1.2rem; margin-bottom: 40px; opacity: 0.9; }
@@ -91,7 +109,6 @@
         .btn-buy { display: block; width: 100%; text-align: center; background: #333; color: white; padding: 10px; border-radius: 5px; text-decoration: none; margin-top: 15px; font-weight: bold; }
         .btn-buy:hover { background: #000; }
         
-        /* Badges especiales para paquetes */
         .badge-valor, .badge-popular {
             position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
             padding: 5px 15px; border-radius: 20px; color: white; font-size: 0.8rem; font-weight: bold;
@@ -100,13 +117,11 @@
         .badge-popular { background: #ffc107; color: black; }
         .popular { border: 2px solid #ffc107; }
 
-        /* Estilos internos de paquetes */
         .divider { border: 0; border-top: 1px solid #eee; margin: 10px 0; }
         .red-title { color: #E60000; font-weight: 700; font-size: 0.9rem; }
         .red-subtitle { font-size: 0.8rem; color: #555; }
         .app-icons img { height: 20px; margin-right: 5px; margin-top: 5px; }
 
-        /* PROMO HIGHLIGHT (Cuadrito disruptivo dentro de paquetes) */
         .promo-highlight {
             background: linear-gradient(110deg, #fffcf0 30%, #fffbe0 40%, #fffcf0 50%);
             background-size: 200% 100%;
@@ -115,10 +130,10 @@
         }
         .promo-highlight .red-title { color: #d32f2f; font-size: 1rem; text-transform: uppercase; }
 
-        /* --- NUEVA SECCIÓN PORTABILIDAD (DISEÑO ROMPEDOR) --- */
+        /* --- SECCIÓN PORTABILIDAD CORREGIDA --- */
         .porta-section {
             padding: 80px 20px;
-            background: #f4f6f8; /* Gris muy suave para contraste */
+            background: #f4f6f8;
             border-top: 1px solid #e0e0e0;
             margin-top: 40px;
         }
@@ -130,10 +145,8 @@
         .porta-title { font-size: 2.5rem; font-weight: 900; color: #E60000; text-transform: uppercase; line-height: 1.1; margin: 0; }
         .porta-subtitle { font-size: 1.1rem; color: #333; font-weight: 600; margin-top: 10px; }
 
-        /* GRID PORTABILIDAD */
         .porta-grid { display: flex; flex-wrap: wrap; gap: 30px; justify-content: center; align-items: stretch; }
 
-        /* 1. POWER CARD (IZQUIERDA) */
         .power-card {
             flex: 1; min-width: 300px; max-width: 400px;
             background: linear-gradient(135deg, #D50000 0%, #990000 100%);
@@ -141,7 +154,6 @@
             position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between;
             box-shadow: 0 15px 30px rgba(213, 0, 0, 0.25);
         }
-        /* Patrón de fondo */
         .power-card::before {
             content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
             background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.2) 1px, transparent 0);
@@ -152,7 +164,6 @@
         .power-list { list-style: none; padding: 0; margin: 0 0 30px 0; }
         .power-list li { margin-bottom: 12px; font-size: 1rem; display: flex; align-items: center; gap: 10px; }
 
-        /* PROMOCIÓN 4TO MES GRATIS */
         .free-month-promo {
             background: linear-gradient(45deg, #FFD700, #FFC107);
             color: #000; padding: 15px; border-radius: 12px; text-align: center;
@@ -163,10 +174,8 @@
         .free-month-promo p { margin: 5px 0 0 0; font-weight: 700; font-size: 0.85rem; opacity: 0.9; }
         .small-legal { font-size: 0.6rem; margin-top: 5px; opacity: 0.7; display: block; }
 
-        /* 2. ZONA COMPARACIÓN (DERECHA) */
         .comparison-zone { flex: 2; display: flex; align-items: center; justify-content: center; gap: 15px; position: relative; }
 
-        /* TARJETAS MINI COMPARATIVAS */
         .mini-card {
             background: white; border-radius: 15px; width: 220px; padding: 20px; text-align: center;
             box-shadow: 0 5px 20px rgba(0,0,0,0.05); border: 1px solid #eee; transition: transform 0.3s;
@@ -180,18 +189,28 @@
             content: '¡TU MEJOR OPCIÓN!'; position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
             background: #000; color: #fff; padding: 4px 12px; font-size: 0.7rem; font-weight: 900; border-radius: 20px; white-space: nowrap;
         }
+        
+        /* ESTILO NUEVO PARA PRECIO DE PORTABILIDAD */
+        .porta-price {
+            background: #000;
+            color: #fff;
+            font-size: 1.5rem;
+            font-weight: 900;
+            padding: 5px 15px;
+            border-radius: 50px;
+            margin: 10px 0;
+            display: inline-block;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
 
         .mini-header { border-bottom: 1px solid #eee; padding-bottom: 10px; margin-bottom: 10px; font-size: 0.9rem; color: #777; font-weight: bold; }
         .gig-number { font-size: 2.5rem; font-weight: 900; color: #000; line-height: 1; }
         .gig-unit { font-size: 1rem; font-weight: 700; }
         .mini-vigencia { font-size: 0.8rem; color: #555; margin-bottom: 10px; font-weight: 600; }
-        
         .highlight-red { color: #E60000; }
-        
         .mini-details { font-size: 0.8rem; color: #666; text-align: left; margin-top: 15px; }
         .mini-details div { margin-bottom: 6px; display: flex; align-items: center; gap: 5px; border-bottom: 1px solid #f0f0f0; padding-bottom: 4px; }
-        .mini-details div:last-child { border: none; }
-
+        
         .evolution-arrow { font-size: 2rem; color: #E60000; animation: floatArrow 1s infinite ease-in-out; z-index: 5; }
 
         .btn-cta-porta {
@@ -201,7 +220,6 @@
         }
         .btn-cta-porta:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(230,0,0,0.4); background: #b70000; }
 
-        /* --- OTRAS SECCIONES --- */
         .holo-steps-section { background: #111; padding: 50px 20px; text-align: center; color: white; }
         .holo-grid { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-top: 30px; }
         .holo-card { max-width: 250px; }
@@ -224,7 +242,7 @@
         .chatbot-bubble svg { width: 24px; height: 24px; }
         .chatbot-window { position: fixed; bottom: 80px; right: 20px; width: 300px; height: 400px; background: white; border-radius: 15px; box-shadow: 0 5px 30px rgba(0,0,0,0.2); z-index: 2000; display: none; flex-direction: column; overflow: hidden; }
         
-        /* RESPONSIVE MÓVIL */
+        /* RESPONSIVE */
         @media (max-width: 900px) {
             .porta-grid { flex-direction: column; align-items: center; }
             .power-card { width: 100%; max-width: 100%; box-sizing: border-box; }
@@ -232,7 +250,10 @@
             .evolution-arrow { transform: rotate(90deg); margin: 10px 0; animation: none; }
             .mini-card { width: 80%; }
             .porta-title { font-size: 1.8rem; }
-            .header-content { flex-direction: row; }
+            /* Asegurar cabecera en móvil */
+            .header-content { padding: 0 15px; }
+            .logo { height: 35px; }
+            .btn-header-porta { font-size: 11px; padding: 8px 15px; }
         }
     </style>
     
@@ -244,6 +265,7 @@
     <header class="header">
         <div class="header-content"> 
             <img src="images/logo-virgin-mobile.png" alt="Virgin Mobile" class="logo">
+            
             <a href="#portabilidad" class="btn-header-porta">¡Portabilidad!</a>
         </div>
     </header>
@@ -381,6 +403,8 @@
                         <div class="gig-number">15 <span class="gig-unit">GB</span></div>
                         <div class="mini-vigencia">Vigencia 26 días</div>
                         
+                        <div style="font-weight:bold; color:#777;">$150</div>
+                        
                         <div class="mini-details">
                             <div>❌ 7 GB Libres</div>
                             <div>✅ Redes Sociales</div>
@@ -394,6 +418,9 @@
 
                     <div class="mini-card new">
                         <div class="mini-header" style="color:#E60000; font-weight:bold;">¡PORTABILIDAD!</div>
+                        
+                        <div class="porta-price">$150</div>
+                        
                         <div class="gig-number highlight-red">16 <span class="gig-unit">GB</span></div>
                         <div class="mini-vigencia highlight-red">Vigencia 30 días (+4 días)</div>
                         
