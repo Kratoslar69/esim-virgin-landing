@@ -5,17 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>eSIM Virgin Mobile | Velocidad y Datos</title>
     
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="images/logo-virgin-mobile.png" type="image/png">
+    
     <style>
-        /* --- ESTILOS GENERALES Y ANIMACIONES --- */
+        /* --- RESET Y BASES --- */
+        body { font-family: 'Montserrat', sans-serif; overflow-x: hidden; margin: 0; padding: 0; background-color: #fff; width: 100%; }
+        html { scroll-behavior: smooth; overflow-y: scroll !important; }
         
-        /* Animación del botón Header para llamar la atención */
-        @keyframes pulse-red {
-            0% { box-shadow: 0 0 0 0 rgba(230, 0, 0, 0.7); }
-            70% { box-shadow: 0 0 0 10px rgba(230, 0, 0, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(230, 0, 0, 0); }
-        }
-
-        /* 1. ANIMACIÓN "NOTIFICACIÓN URGENTE" */
+        /* --- ANIMACIONES GENERALES --- */
         @keyframes disruptivo {
             0% { transform: scale(1) rotate(0deg); box-shadow: 0 4px 10px rgba(255, 215, 0, 0.2); }
             80% { transform: scale(1) rotate(0deg); }
@@ -31,662 +29,388 @@
             0% { background-position: -200% 0; }
             100% { background-position: 200% 0; }
         }
-
-        html { scroll-behavior: smooth; overflow-y: scroll !important; }
-        body { overflow-x: hidden; width: 100%; font-family: 'Montserrat', sans-serif; }
-
-        /* HEADER REIMAGINADO */
-        .header-content {
-            display: flex;
-            justify-content: space-between !important; /* Logo a la izq, Botón a la der */
-            align-items: center;
-            width: 100%;
+        
+        @keyframes pulse-gold {
+            0% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.7); transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { box-shadow: 0 0 0 15px rgba(255, 215, 0, 0); transform: scale(1); }
         }
 
+        @keyframes floatArrow {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(10px); }
+        }
+
+        /* --- HEADER --- */
+        .header { background: white; padding: 10px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
+        .header-content { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .logo { height: 40px; }
+        
         .btn-header-porta {
-            background-color: #E60000;
+            background: #E60000;
             color: white;
             font-weight: 800;
-            text-transform: uppercase;
+            padding: 10px 20px;
+            border-radius: 4px;
             text-decoration: none;
-            padding: 12px 25px;
-            border-radius: 6px;
-            font-size: 14px;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-            animation: pulse-red 2s infinite; /* Efecto latido */
-            border: 2px solid transparent;
-        }
-
-        .btn-header-porta:hover {
-            background-color: white;
-            color: #E60000;
+            text-transform: uppercase;
+            font-size: 13px;
             border: 2px solid #E60000;
-            transform: translateY(-2px);
+            transition: all 0.3s;
+            animation: pulse-gold 3s infinite;
         }
+        .btn-header-porta:hover { background: white; color: #E60000; }
 
-        /* ESTILO DE LA CAJA PROMO (Paquetes) */
+        /* --- HERO VIDEO SECTION --- */
+        /* (Asumo que tienes estilos previos en styles.css, pero los incluyo aquí para asegurar funcionamiento) */
+        .hero-video { background: #111; color: white; padding: 100px 20px; text-align: center; position: relative; overflow: hidden; }
+        .hero-content h1 { font-size: 3rem; margin-bottom: 20px; font-weight: 900; }
+        .hero-content p { font-size: 1.2rem; margin-bottom: 40px; opacity: 0.9; }
+
+        /* --- TRUST BADGES --- */
+        .trust-badges { background: #f9f9f9; padding: 20px 0; border-bottom: 1px solid #eee; }
+        .trust-grid { display: flex; justify-content: space-around; max-width: 1200px; margin: 0 auto; flex-wrap: wrap; gap: 20px; }
+        .trust-item { display: flex; align-items: center; gap: 10px; }
+        .trust-text strong { display: block; font-size: 0.9rem; }
+        .trust-text span { font-size: 0.8rem; color: #666; }
+
+        /* --- PAQUETES GRID (Original) --- */
+        .packages-section { padding: 50px 20px; background: white; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .packages-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
+        
+        .package-card {
+            border: 1px solid #eee; border-radius: 15px; padding: 20px; width: 280px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05); background: white; position: relative;
+            transition: transform 0.3s;
+        }
+        .package-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .package-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; }
+        .big-gb { font-size: 2rem; font-weight: 900; line-height: 1; display: block; }
+        .price { font-size: 1.5rem; font-weight: 700; color: #E60000; }
+        .btn-buy { display: block; width: 100%; text-align: center; background: #333; color: white; padding: 10px; border-radius: 5px; text-decoration: none; margin-top: 15px; font-weight: bold; }
+        .btn-buy:hover { background: #000; }
+        
+        /* Badges especiales para paquetes */
+        .badge-valor, .badge-popular {
+            position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
+            padding: 5px 15px; border-radius: 20px; color: white; font-size: 0.8rem; font-weight: bold;
+        }
+        .badge-valor { background: #00bcd4; }
+        .badge-popular { background: #ffc107; color: black; }
+        .popular { border: 2px solid #ffc107; }
+
+        /* Estilos internos de paquetes */
+        .divider { border: 0; border-top: 1px solid #eee; margin: 10px 0; }
+        .red-title { color: #E60000; font-weight: 700; font-size: 0.9rem; }
+        .red-subtitle { font-size: 0.8rem; color: #555; }
+        .app-icons img { height: 20px; margin-right: 5px; margin-top: 5px; }
+
+        /* PROMO HIGHLIGHT (Cuadrito disruptivo dentro de paquetes) */
         .promo-highlight {
             background: linear-gradient(110deg, #fffcf0 30%, #fffbe0 40%, #fffcf0 50%);
             background-size: 200% 100%;
-            border: 2px dashed #FFD700;
-            border-radius: 12px;
-            padding: 12px;
-            margin: 20px 0 5px 0;
-            text-align: center;
-            position: relative;
-            animation: disruptivo 4s infinite ease-in-out, shineMove 3s infinite linear;
-            transition: all 0.3s ease;
+            border: 2px dashed #FFD700; border-radius: 12px; padding: 10px; margin-top: 10px;
+            text-align: center; animation: disruptivo 4s infinite ease-in-out;
         }
+        .promo-highlight .red-title { color: #d32f2f; font-size: 1rem; text-transform: uppercase; }
 
-        .promo-highlight:hover {
-            animation: none;
-            transform: scale(1.02);
-            border: 2px solid #E1001E;
-            background: #fff;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-        }
-
-        .promo-highlight .red-title {
-            color: #d32f2f;
-            font-weight: 900;
-            font-size: 1.3rem;
-            text-transform: uppercase;
-            margin-bottom: 2px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 5px;
-            text-shadow: 1px 1px 0px rgba(0,0,0,0.1);
-        }
-        
-        .promo-highlight .red-subtitle {
-            color: #000;
-            font-weight: 700;
-            font-size: 0.9rem;
-            margin-bottom: 4px;
-        }
-        
-        .promo-legal {
-            font-size: 0.65rem;
-            color: #666;
-            border-top: 1px solid rgba(0,0,0,0.1);
-            padding-top: 4px;
-            margin-top: 4px;
-        }
-
-        .chatbot-bubble, .chatbot-window {
-            z-index: 2147483647 !important;
-        }
-        
-        /* --- ESTILOS PORTABILIDAD (Actualizados) --- */
-        .portabilidad-section {
-            background-color: #f4f4f4;
+        /* --- NUEVA SECCIÓN PORTABILIDAD (DISEÑO ROMPEDOR) --- */
+        .porta-section {
             padding: 80px 20px;
-            display: flex;
-            justify-content: center;
-            border-top: 1px solid #ddd;
-            border-bottom: 1px solid #ddd;
-        }
-
-        .portabilidad-container {
-            max-width: 1000px;
-            width: 100%;
-        }
-
-        .portabilidad-header {
-            background-color: #E60000;
-            color: white;
-            text-align: center;
-            padding: 20px;
-            font-size: 28px; /* Más grande */
-            font-weight: 900;
-            border-radius: 12px;
-            margin-bottom: 40px;
-            text-transform: uppercase;
-            box-shadow: 0 10px 25px rgba(230, 0, 0, 0.3);
-            letter-spacing: 1px;
-        }
-
-        .portabilidad-content {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 30px;
-            justify-content: center;
-            align-items: stretch;
-        }
-
-        .info-box {
-            background-color: #E60000;
-            color: white;
-            flex: 1;
-            min-width: 300px;
-            padding: 40px;
-            border-radius: 30px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(213, 0, 0, 0.3);
-            position: relative;
-            overflow: hidden;
+            background: #f4f6f8; /* Gris muy suave para contraste */
+            border-top: 1px solid #e0e0e0;
+            margin-top: 40px;
         }
         
-        .info-box::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
-            transform: rotate(30deg);
+        .porta-container { max-width: 1100px; margin: 0 auto; }
+
+        .porta-title-wrapper { text-align: center; margin-bottom: 50px; position: relative; }
+        .porta-badge { background: #000; color: #FFD700; display: inline-block; padding: 5px 15px; font-weight: 900; text-transform: uppercase; font-size: 14px; transform: rotate(-2deg); margin-bottom: 10px; }
+        .porta-title { font-size: 2.5rem; font-weight: 900; color: #E60000; text-transform: uppercase; line-height: 1.1; margin: 0; }
+        .porta-subtitle { font-size: 1.1rem; color: #333; font-weight: 600; margin-top: 10px; }
+
+        /* GRID PORTABILIDAD */
+        .porta-grid { display: flex; flex-wrap: wrap; gap: 30px; justify-content: center; align-items: stretch; }
+
+        /* 1. POWER CARD (IZQUIERDA) */
+        .power-card {
+            flex: 1; min-width: 300px; max-width: 400px;
+            background: linear-gradient(135deg, #D50000 0%, #990000 100%);
+            color: white; border-radius: 20px; padding: 30px;
+            position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between;
+            box-shadow: 0 15px 30px rgba(213, 0, 0, 0.25);
+        }
+        /* Patrón de fondo */
+        .power-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.2) 1px, transparent 0);
+            background-size: 20px 20px; opacity: 0.5;
+        }
+        .power-content { position: relative; z-index: 2; }
+        .power-header { font-size: 1.4rem; font-weight: 800; line-height: 1.2; margin-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 15px; }
+        .power-list { list-style: none; padding: 0; margin: 0 0 30px 0; }
+        .power-list li { margin-bottom: 12px; font-size: 1rem; display: flex; align-items: center; gap: 10px; }
+
+        /* PROMOCIÓN 4TO MES GRATIS */
+        .free-month-promo {
+            background: linear-gradient(45deg, #FFD700, #FFC107);
+            color: #000; padding: 15px; border-radius: 12px; text-align: center;
+            margin-top: auto; position: relative; z-index: 2;
+            animation: pulse-gold 2s infinite; border: 2px solid #fff;
+        }
+        .free-month-promo h4 { margin: 0; font-weight: 900; font-size: 1.5rem; text-transform: uppercase; line-height: 1; }
+        .free-month-promo p { margin: 5px 0 0 0; font-weight: 700; font-size: 0.85rem; opacity: 0.9; }
+        .small-legal { font-size: 0.6rem; margin-top: 5px; opacity: 0.7; display: block; }
+
+        /* 2. ZONA COMPARACIÓN (DERECHA) */
+        .comparison-zone { flex: 2; display: flex; align-items: center; justify-content: center; gap: 15px; position: relative; }
+
+        /* TARJETAS MINI COMPARATIVAS */
+        .mini-card {
+            background: white; border-radius: 15px; width: 220px; padding: 20px; text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05); border: 1px solid #eee; transition: transform 0.3s;
+        }
+        .mini-card.old { opacity: 0.7; transform: scale(0.95); background: #f9f9f9; }
+        .mini-card.new {
+            border: 3px solid #E60000; transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15); z-index: 10; position: relative;
+        }
+        .mini-card.new::before {
+            content: '¡TU MEJOR OPCIÓN!'; position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+            background: #000; color: #fff; padding: 4px 12px; font-size: 0.7rem; font-weight: 900; border-radius: 20px; white-space: nowrap;
         }
 
-        .info-box h3 { font-size: 24px; margin-bottom: 20px; line-height: 1.3; font-weight: 800; position: relative; }
-        .info-box p { font-size: 16px; line-height: 1.6; margin-bottom: 30px; position: relative; }
-        .total-gb { font-size: 36px; font-weight: 900; margin-top: auto; position: relative; background: rgba(0,0,0,0.2); padding: 10px; border-radius: 10px; }
-
-        .comparison-wrapper {
-            flex: 2;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .porta-card {
-            background: white;
-            border: 1px solid #ddd;
-            border-radius: 20px;
-            padding: 25px 20px;
-            width: 260px;
-            text-align: center;
-            position: relative;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease;
-        }
+        .mini-header { border-bottom: 1px solid #eee; padding-bottom: 10px; margin-bottom: 10px; font-size: 0.9rem; color: #777; font-weight: bold; }
+        .gig-number { font-size: 2.5rem; font-weight: 900; color: #000; line-height: 1; }
+        .gig-unit { font-size: 1rem; font-weight: 700; }
+        .mini-vigencia { font-size: 0.8rem; color: #555; margin-bottom: 10px; font-weight: 600; }
         
-        .porta-card.promo {
-            border: 4px solid #E60000; /* Borde más agresivo */
-            transform: scale(1.05);
-            z-index: 2;
-            box-shadow: 0 15px 35px rgba(230,0,0,0.2);
-        }
+        .highlight-red { color: #E60000; }
         
-        .porta-card.promo:hover { transform: scale(1.08); }
+        .mini-details { font-size: 0.8rem; color: #666; text-align: left; margin-top: 15px; }
+        .mini-details div { margin-bottom: 6px; display: flex; align-items: center; gap: 5px; border-bottom: 1px solid #f0f0f0; padding-bottom: 4px; }
+        .mini-details div:last-child { border: none; }
 
-        .card-badge {
-            background: #111;
-            color: white;
-            display: inline-block;
-            padding: 5px 15px;
-            border-radius: 50px;
-            font-size: 12px;
-            font-weight: bold;
-            position: absolute;
-            top: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 10;
+        .evolution-arrow { font-size: 2rem; color: #E60000; animation: floatArrow 1s infinite ease-in-out; z-index: 5; }
+
+        .btn-cta-porta {
+            display: block; background: #E60000; color: white; font-weight: 900; padding: 10px; border-radius: 50px;
+            text-decoration: none; margin-top: 15px; font-size: 0.9rem; box-shadow: 0 4px 15px rgba(230,0,0,0.3);
+            text-transform: uppercase; letter-spacing: 1px;
         }
+        .btn-cta-porta:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(230,0,0,0.4); background: #b70000; }
 
-        .data-highlight {
-            background: #E60000;
-            color: white;
-            padding: 15px 5px;
-            margin: 15px -20px 10px;
-            display: flex;
-            flex-direction: column;
-        }
+        /* --- OTRAS SECCIONES --- */
+        .holo-steps-section { background: #111; padding: 50px 20px; text-align: center; color: white; }
+        .holo-grid { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-top: 30px; }
+        .holo-card { max-width: 250px; }
+        .holo-number { font-size: 2rem; font-weight: 900; color: #E60000; margin-bottom: 10px; }
 
-        .gb-amount { font-size: 36px; font-weight: 900; line-height: 1; }
-        .validity { font-size: 13px; margin-top: 5px; opacity: 0.9; }
-
-        .price-tag-porta {
-            position: absolute;
-            top: 45px;
-            right: 15px;
-            font-weight: 900;
-            color: white;
-            font-size: 16px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
-        }
-
-        .free-gb {
-            font-weight: 800;
-            color: #333;
-            margin: 10px 0;
-            font-size: 18px;
-            border-bottom: 3px solid #E60000;
-            display: inline-block;
-            padding-bottom: 2px;
-        }
-
-        .features-list { list-style: none; padding: 0; text-align: left; font-size: 14px; color: #555; margin-top: 15px; }
-        .features-list li { margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #f0f0f0; display: flex; align-items: center; gap: 10px; }
-        .features-list li:last-child { border-bottom: none; }
+        .testimonials-section { padding: 50px 20px; background: white; text-align: center; }
+        .testimonials-grid { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 30px; }
+        .testimonial-card { background: #f9f9f9; padding: 20px; border-radius: 10px; max-width: 300px; text-align: left; }
         
-        .arrow-separator {
-            font-size: 40px;
-            color: #cc00cc;
-            font-weight: bold;
-            animation: pulseArrow 1.5s infinite;
-        }
+        .coverage-section { padding: 50px 20px; background: #f0f0f0; text-align: center; }
+        .coverage-grid { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 30px; }
+        .coverage-card { background: white; padding: 20px; border-radius: 10px; width: 200px; text-decoration: none; color: inherit; transition: transform 0.2s; }
+        .coverage-card:hover { transform: scale(1.05); }
+        .cov-icon { font-size: 2rem; margin-bottom: 10px; }
+
+        footer { background: #333; color: white; text-align: center; padding: 30px 20px; margin-top: 0; }
+
+        /* Chatbot */
+        .chatbot-bubble { position: fixed; bottom: 20px; right: 20px; background: #E60000; color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 2000; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        .chatbot-bubble svg { width: 24px; height: 24px; }
+        .chatbot-window { position: fixed; bottom: 80px; right: 20px; width: 300px; height: 400px; background: white; border-radius: 15px; box-shadow: 0 5px 30px rgba(0,0,0,0.2); z-index: 2000; display: none; flex-direction: column; overflow: hidden; }
         
-        @keyframes pulseArrow {
-            0%, 100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.3); opacity: 0.7; }
-        }
-
-        .btn-portabilidad {
-            display: block;
-            background-color: #E60000;
-            color: white;
-            text-decoration: none;
-            padding: 12px;
-            border-radius: 50px;
-            font-weight: 800;
-            margin-top: 20px;
-            transition: all 0.3s;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 14px;
-        }
-
-        .btn-portabilidad:hover { background-color: #000; color: #fff; } /* Hover negro para contraste */
-
-        .terms-porta { font-size: 10px; color: #999; margin-top: 8px; }
-        .vigencia-footer { text-align: center; margin-top: 50px; font-weight: 800; color: #00235C; font-size: 20px; text-transform: uppercase; letter-spacing: 1px; }
-
+        /* RESPONSIVE MÓVIL */
         @media (max-width: 900px) {
-            .portabilidad-content { flex-direction: column; align-items: center; }
-            .info-box { width: 100%; box-sizing: border-box; }
-            .arrow-separator { transform: rotate(90deg); margin: 20px 0; }
-            .porta-card.promo { transform: scale(1); }
-            /* Ajuste móvil header */
-            .logo { height: 35px; }
-            .btn-header-porta { padding: 8px 15px; font-size: 12px; }
+            .porta-grid { flex-direction: column; align-items: center; }
+            .power-card { width: 100%; max-width: 100%; box-sizing: border-box; }
+            .comparison-zone { flex-direction: column; width: 100%; gap: 30px; }
+            .evolution-arrow { transform: rotate(90deg); margin: 10px 0; animation: none; }
+            .mini-card { width: 80%; }
+            .porta-title { font-size: 1.8rem; }
+            .header-content { flex-direction: row; }
         }
     </style>
+    
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="chatbot.css">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800;900&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" href="images/logo-virgin-mobile.png" type="image/png">
 </head>
 <body>
 
     <header class="header">
-        <div class="container header-content"> 
+        <div class="header-content"> 
             <img src="images/logo-virgin-mobile.png" alt="Virgin Mobile" class="logo">
-            <a href="#portabilidad" class="btn-header-porta">PORTABILIDAD</a>
+            <a href="#portabilidad" class="btn-header-porta">¡Portabilidad!</a>
         </div>
     </header>
 
     <section class="hero-video">
-        <div class="video-overlay"></div> 
         <div class="container hero-content">
             <h1>La velocidad no espera.<br>Tu eSIM tampoco.</h1>
             <p>Conéctate a la red Virgin Mobile en 3 minutos. Sin plásticos, pura velocidad.</p>
-            <h2 style="margin-top: 80px; margin-bottom: 0; color: white; text-shadow: 0 0 15px rgba(255, 255, 255, 1), 0 0 30px rgba(255, 255, 255, 0.7);">Elige tu Paquete</h2>
+            <h2 style="margin-top: 60px; margin-bottom: 0; color: white; font-size: 1.5rem; text-shadow: 0 0 10px rgba(0,0,0,0.5);">Elige tu Paquete</h2>
         </div>
     </section>
 
     <section class="trust-badges">
-        <div class="container">
-            <div class="trust-grid">
-                <div class="trust-item">
-                    <div class="trust-icon">🔒</div>
-                    <div class="trust-text">
-                        <strong>Compra Segura</strong>
-                        <span>Certificado SSL 256-bit</span>
-                    </div>
-                </div>
-                <div class="trust-item">
-                    <div class="trust-icon">✅</div>
-                    <div class="trust-text">
-                        <strong>Sin Contrato</strong>
-                        <span>Cancela cuando quieras</span>
-                    </div>
-                </div>
-                <div class="trust-item">
-                    <div class="trust-icon">⚡</div>
-                    <div class="trust-text">
-                        <strong>Activación Inmediata</strong>
-                        <span>Lista en 5 minutos</span>
-                    </div>
-                </div>
-                <div class="trust-item">
-                    <div class="trust-icon">💬</div>
-                    <div class="trust-text">
-                        <strong>Soporte 24/7</strong>
-                        <span>Siempre disponibles</span>
-                    </div>
-                </div>
-            </div>
+        <div class="trust-grid">
+            <div class="trust-item"><div class="trust-text">🔒 <strong>Compra Segura</strong></div></div>
+            <div class="trust-item"><div class="trust-text">✅ <strong>Sin Contrato</strong></div></div>
+            <div class="trust-item"><div class="trust-text">⚡ <strong>Activación Rápida</strong></div></div>
         </div>
     </section>
 
-    <section id="paquetes" class="packages-section" style="position: relative; z-index: 10; margin-top: -50px;">
+    <section id="paquetes" class="packages-section">
         <div class="container">
-                        
             <div class="packages-grid">
                 
                 <div class="package-card">
                     <div class="package-header">
-                        <div class="header-left">
-                            <span class="big-gb">15GB</span>
-                            <span class="sub-rrss">Total</span>
-                            <span class="vigencia">Vigencia 26 días</span>
-                        </div>
-                        <div class="header-right">
-                            <span class="price">$150</span>
-                        </div>
+                        <div><span class="big-gb">15GB</span><span>Total</span></div>
+                        <span class="price">$150</span>
                     </div>
-                    <div class="package-body">
-                        <div class="benefit-block">
-                            <div class="red-title">7 GB Libres</div>
-                            <div class="red-subtitle">(Comparte internet)</div>
-                        </div>
-                        <hr class="divider">
-                        <div class="benefit-block">
-                            <div class="red-title">Redes Ilimitadas</div>
-                            <div class="app-icons">
-                                <img src="images/whatsapp.svg"><img src="images/spotify.svg"><img src="images/amazon-music.svg"><img src="images/apple-music.svg">
-                            </div>
-                        </div>
-                        <hr class="divider">
-                        <div class="benefit-block">
-                            <div class="red-title">7 GB para redes</div>
-                            <div class="app-icons">
-                                <img src="images/facebook.svg"><img src="images/messenger.svg"><img src="images/twitter.png"><img src="images/instagram-icon.svg"><img src="images/google-maps.svg"><img src="images/waze.png"><img src="images/shein.png">
-                            </div>
-                        </div>
-                        <hr class="divider">
-                        <div class="benefit-block">
-                            <div class="red-title">1 GB para video</div>
-                            <div class="app-icons">
-                                <img src="images/tiktok.svg"><img src="images/youtube.svg">
-                            </div>
-                        </div>
-                        <hr class="divider">
-                        <div class="benefit-block">
-                            <div class="red-title" style="font-size: 1.1rem;">Minutos y SMS Ilimitados</div>
-                            <div class="red-subtitle">En territorio nacional</div>
-                        </div>
-
-                        <div class="promo-highlight">
-                            <div class="red-title">🎁 ¡4to Mes GRATIS!</div>
-                            <div class="red-subtitle">Al recargar 3 meses consecutivos</div>
-                            <div class="promo-legal">Vigencia: 01 Sep 2025 - 31 Ene 2026. Aplican T&C.</div>
-                        </div>
+                    <div class="divider"></div>
+                    <div class="red-title">7 GB Libres</div>
+                    <div class="red-subtitle">(Comparte internet)</div>
+                    <div class="divider"></div>
+                    <div class="red-title">Redes Sociales</div>
+                    <div class="app-icons">
+                        <img src="images/whatsapp.svg" alt="WA"><img src="images/facebook.svg" alt="FB"><img src="images/instagram-icon.svg" alt="IG">
                     </div>
-                    <a href="/paquete-150" class="btn-buy">Comprar nuevo chip o eSIM</a>
+                    <div class="divider"></div>
+                    <div class="red-title">Minutos y SMS Ilimitados</div>
+                    
+                    <div class="promo-highlight">
+                        <div class="red-title">🎁 ¡4to Mes GRATIS!</div>
+                        <div class="red-subtitle">Al recargar 3 meses seguidos</div>
+                    </div>
+                    <a href="/paquete-150" class="btn-buy">Comprar Chip/eSIM</a>
                 </div>
 
                 <div class="package-card">
                     <div class="badge-valor">💎 Mejor Valor</div>
                     <div class="package-header">
-                        <div class="header-left">
-                            <span class="big-gb">21.5GB</span>
-                            <span class="sub-rrss">Total</span>
-                            <span class="vigencia">Vigencia 30 días</span>
-                        </div>
-                        <div class="header-right">
-                            <span class="price">$200</span>
-                        </div>
+                        <div><span class="big-gb">21.5GB</span><span>Total</span></div>
+                        <span class="price">$200</span>
                     </div>
-                    <div class="package-body">
-                        <div class="benefit-block">
-                            <div class="red-title">10 GB Libres</div>
-                            <div class="red-subtitle">(Comparte internet)</div>
-                        </div>
-                        <hr class="divider">
-                        <div class="benefit-block">
-                            <div class="red-title">Redes Ilimitadas</div>
-                            <div class="app-icons">
-                                <img src="images/whatsapp.svg"><img src="images/spotify.svg"><img src="images/amazon-music.svg"><img src="images/apple-music.svg">
-                            </div>
-                        </div>
-                        <hr class="divider">
-                        <div class="benefit-block">
-                            <div class="red-title">10 GB para redes</div>
-                            <div class="app-icons">
-                                <img src="images/facebook.svg"><img src="images/messenger.svg"><img src="images/twitter.png"><img src="images/instagram-icon.svg"><img src="images/snapchat.svg"><img src="images/waze.png"><img src="images/google-maps.svg">
-                            </div>
-                        </div>
-                        <hr class="divider">
-                        <div class="benefit-block">
-                            <div class="red-title">1.5 GB para video</div>
-                            <div class="app-icons">
-                                <img src="images/tiktok.svg"><img src="images/youtube.svg"><img src="images/netflix-icon.svg">
-                            </div>
-                        </div>
-                        <hr class="divider">
-                        <div class="benefit-block">
-                            <div class="red-title" style="font-size: 1.1rem;">Minutos y SMS Ilimitados</div>
-                            <div class="red-subtitle">En territorio nacional</div>
-                        </div>
-
-                        <div class="promo-highlight">
-                            <div class="red-title">🎁 ¡4to Mes GRATIS!</div>
-                            <div class="red-subtitle">Al recargar 3 meses consecutivos</div>
-                            <div class="promo-legal">Vigencia: 01 Sep 2025 - 31 Ene 2026. Aplican T&C.</div>
-                        </div>
+                    <div class="divider"></div>
+                    <div class="red-title">10 GB Libres</div>
+                    <div class="red-subtitle">(Comparte internet)</div>
+                    <div class="divider"></div>
+                    <div class="red-title">Redes Sociales</div>
+                    <div class="app-icons">
+                        <img src="images/whatsapp.svg" alt="WA"><img src="images/facebook.svg" alt="FB"><img src="images/instagram-icon.svg" alt="IG"><img src="images/tiktok.svg" alt="TK">
                     </div>
-                    <a href="/paquete-200" class="btn-buy">Comprar nuevo chip o eSIM</a>
+                    <div class="divider"></div>
+                    <div class="red-title">Minutos y SMS Ilimitados</div>
+                    
+                    <div class="promo-highlight">
+                        <div class="red-title">🎁 ¡4to Mes GRATIS!</div>
+                        <div class="red-subtitle">Al recargar 3 meses seguidos</div>
+                    </div>
+                    <a href="/paquete-200" class="btn-buy">Comprar Chip/eSIM</a>
                 </div>
 
-                <div class="package-card featured popular">
+                <div class="package-card popular">
                     <div class="badge-popular">⭐ Más Popular</div>
                     <div class="package-header">
-                        <div class="header-left">
-                            <span class="big-gb">17GB</span>
-                            <span class="sub-rrss">+RRSS ilimitadas</span>
-                            <span class="vigencia">Vigencia 31 días</span>
-                        </div>
-                        <div class="header-right">
-                            <span class="price">$250</span>
-                        </div>
+                        <div><span class="big-gb">17GB</span><span>+RRSS Ilimitadas</span></div>
+                        <span class="price">$250</span>
                     </div>
-                    <div class="package-body">
-                        <div class="benefit-block">
-                            <div class="red-title">14 GB Libres</div>
-                            <div class="red-subtitle">(Comparte internet)</div>
-                        </div>
-                        <hr class="divider">
-                        <div class="benefit-block">
-                            <div class="red-title">Redes Ilimitadas</div>
-                            <div class="app-icons">
-                                <img src="images/whatsapp.svg"><img src="images/spotify.svg"><img src="images/amazon-music.svg"><img src="images/apple-music.svg"><img src="images/facebook.svg"><img src="images/messenger.svg"><img src="images/snapchat.svg"><img src="images/instagram-icon.svg"><img src="images/twitter.png"><img src="images/waze.png"><img src="images/google-maps.svg"><img src="images/telegram.svg">
-                            </div>
-                        </div>
-                        <hr class="divider">
-                        <div class="benefit-block">
-                            <div class="red-title">3 GB para video</div>
-                            <div class="app-icons">
-                                <img src="images/tiktok.svg"><img src="images/youtube.svg"><img src="images/netflix-icon.svg"><img src="images/prime-video.svg">
-                            </div>
-                        </div>
-                        <hr class="divider">
-                        <div class="benefit-block">
-                            <div class="red-title" style="font-size: 1.1rem;">Minutos y SMS Ilimitados</div>
-                            <div class="red-subtitle">En territorio nacional</div>
-                        </div>
-
-                        <div class="promo-highlight">
-                            <div class="red-title">🎁 ¡4to Mes GRATIS!</div>
-                            <div class="red-subtitle">Al recargar 3 meses consecutivos</div>
-                            <div class="promo-legal">Vigencia: 01 Sep 2025 - 31 Ene 2026. Aplican T&C.</div>
-                        </div>
+                    <div class="divider"></div>
+                    <div class="red-title">14 GB Libres</div>
+                    <div class="red-subtitle">(Comparte internet)</div>
+                    <div class="divider"></div>
+                    <div class="red-title">Redes Ilimitadas</div>
+                    <div class="app-icons">
+                        <img src="images/whatsapp.svg"><img src="images/facebook.svg"><img src="images/instagram-icon.svg"><img src="images/tiktok.svg"><img src="images/youtube.svg">
                     </div>
-                    <a href="/paquete-250" class="btn-buy">Comprar nuevo chip o eSIM</a>
+                    <div class="divider"></div>
+                    <div class="red-title">Minutos y SMS Ilimitados</div>
+                    
+                    <div class="promo-highlight">
+                        <div class="red-title">🎁 ¡4to Mes GRATIS!</div>
+                        <div class="red-subtitle">Al recargar 3 meses seguidos</div>
+                    </div>
+                    <a href="/paquete-250" class="btn-buy">Comprar Chip/eSIM</a>
                 </div>
 
-                <div class="package-card">
-                    <div class="package-header">
-                        <div class="header-left">
-                            <span class="big-gb">22GB</span>
-                            <span class="sub-rrss">+RRSS ilimitadas</span>
-                            <span class="vigencia">Vigencia 31 días</span>
-                        </div>
-                        <div class="header-right">
-                            <span class="price">$300</span>
-                        </div>
-                    </div>
-                    <div class="package-body">
-                        <div class="benefit-block">
-                            <div class="red-title">18 GB Libres</div>
-                            <div class="red-subtitle">(Comparte internet)</div>
-                        </div>
-                        <hr class="divider">
-                        <div class="benefit-block">
-                            <div class="red-title">Redes Ilimitadas</div>
-                            <div class="app-icons">
-                                <img src="images/whatsapp.svg"><img src="images/spotify.svg"><img src="images/amazon-music.svg"><img src="images/apple-music.svg"><img src="images/facebook.svg"><img src="images/messenger.svg"><img src="images/snapchat.svg"><img src="images/instagram-icon.svg"><img src="images/twitter.png"><img src="images/waze.png"><img src="images/google-maps.svg"><img src="images/telegram.svg">
-                            </div>
-                        </div>
-                        <hr class="divider">
-                        <div class="benefit-block">
-                            <div class="red-title">4 GB para video</div>
-                            <div class="app-icons">
-                                <img src="images/tiktok.svg"><img src="images/youtube.svg"><img src="images/netflix-icon.svg"><img src="images/prime-video.svg">
-                            </div>
-                        </div>
-                        <hr class="divider">
-                        <div class="benefit-block">
-                            <div class="red-title" style="font-size: 1.1rem;">Minutos y SMS Ilimitados</div>
-                            <div class="red-subtitle">En territorio nacional</div>
-                        </div>
-
-                        <div class="promo-highlight">
-                            <div class="red-title">🎁 ¡4to Mes GRATIS!</div>
-                            <div class="red-subtitle">Al recargar 3 meses consecutivos</div>
-                            <div class="promo-legal">Vigencia: 01 Sep 2025 - 31 Ene 2026. Aplican T&C.</div>
-                        </div>
-                    </div>
-                    <a href="/paquete-300" class="btn-buy">Comprar nuevo chip o eSIM</a>
-                </div>
-
-                <div class="package-card">
-                    <div class="package-header">
-                        <div class="header-left">
-                            <span class="big-gb">34GB</span>
-                            <span class="sub-rrss">+RRSS ilimitadas</span>
-                            <span class="vigencia">Vigencia 31 días</span>
-                        </div>
-                        <div class="header-right">
-                            <span class="price">$400</span>
-                        </div>
-                    </div>
-                    <div class="package-body">
-                        <div class="benefit-block">
-                            <div class="red-title">28 GB Libres</div>
-                            <div class="red-subtitle">(Comparte internet)</div>
-                        </div>
-                        <hr class="divider">
-                        <div class="benefit-block">
-                            <div class="red-title">Redes Ilimitadas</div>
-                            <div class="app-icons">
-                                <img src="images/whatsapp.svg"><img src="images/spotify.svg"><img src="images/amazon-music.svg"><img src="images/apple-music.svg"><img src="images/facebook.svg"><img src="images/messenger.svg"><img src="images/snapchat.svg"><img src="images/instagram-icon.svg"><img src="images/twitter.png"><img src="images/google-maps.svg"><img src="images/shein.png"><img src="images/telegram.svg">
-                            </div>
-                        </div>
-                        <hr class="divider">
-                        <div class="benefit-block">
-                            <div class="red-title">6 GB para video</div>
-                            <div class="app-icons">
-                                <img src="images/tiktok.svg"><img src="images/youtube.svg"><img src="images/netflix-icon.svg"><img src="images/prime-video.svg"><img src="images/hbo-max.png">
-                            </div>
-                        </div>
-                        <hr class="divider">
-                        <div class="benefit-block">
-                            <div class="red-title" style="font-size: 1.1rem;">Minutos y SMS Ilimitados</div>
-                            <div class="red-subtitle">En territorio nacional</div>
-                        </div>
-
-                        <div class="promo-highlight">
-                            <div class="red-title">🎁 ¡4to Mes GRATIS!</div>
-                            <div class="red-subtitle">Al recargar 3 meses consecutivos</div>
-                            <div class="promo-legal">Vigencia: 01 Sep 2025 - 31 Ene 2026. Aplican T&C.</div>
-                        </div>
-                    </div>
-                    <a href="/paquete-400" class="btn-buy">Comprar nuevo chip o eSIM</a>
-                </div>
-                
             </div>
         </div>
     </section>
 
-    <section id="portabilidad" class="portabilidad-section">
-      <div class="portabilidad-container">
-        
-        <div class="portabilidad-header">
-          Paquete 150: Más Gigas - Mayor Vigencia
-        </div>
-
-        <div class="portabilidad-content">
-          
-          <div class="info-box">
-            <h3>Válido en portabilidades con paquetes activos de $150.</h3>
-            <p>Los clientes que porten su número a VMM disfrutarán, durante 6 meses, del paquete Virgin 150 con vigencia extendida de 26 a 30 días y un GB libre extra.</p>
-            <div class="total-gb">Total 16 GB</div>
-          </div>
-
-          <div class="comparison-wrapper">
+    <section id="portabilidad" class="porta-section">
+        <div class="porta-container">
             
-            <div class="porta-card standard">
-              <div class="card-badge">Virgin 150</div>
-              <div class="data-highlight">
-                <span class="gb-amount">15 GB</span>
-                <span class="validity">Vigencia 26 días</span>
-              </div>
-              <div class="price-tag-porta">$150</div>
-              <div class="free-gb">7 GB Libres</div>
-              <ul class="features-list">
-                <li><span>📱🎵</span> Redes ilimitadas</li>
-                <li><span>👥</span> 7 GB Redes Sociales</li>
-                <li><span>▶️</span> 1 GB de video</li>
-                <li><span>📞</span> Minutos y SMS Ilimitados</li>
-              </ul>
+            <div class="porta-title-wrapper">
+                <span class="porta-badge">🚀 Sube de Nivel</span>
+                <h2 class="porta-title">Oferta Exclusiva Portabilidad</h2>
+                <p class="porta-subtitle">Cámbiate con tu mismo número y obtén más por lo mismo.</p>
             </div>
 
-            <div class="arrow-separator">
-                ➜
-            </div>
+            <div class="porta-grid">
+                
+                <div class="power-card">
+                    <div class="power-content">
+                        <div class="power-header">
+                            Beneficios exclusivos al traer tu número:
+                        </div>
+                        <ul class="power-list">
+                            <li>✅ Conservas tu número actual</li>
+                            <li>✅ Se activa en 24 horas hábiles</li>
+                            <li>✅ Chip o eSIM ¡GRATIS!</li>
+                            <li>✅ Más datos por 6 meses</li>
+                        </ul>
+                    </div>
 
-            <div class="porta-card promo">
-              <div class="card-badge" style="background: #E60000;">¡MEJORADO!</div>
-              <div class="data-highlight">
-                <span class="gb-amount">16 GB</span>
-                <span class="validity">Vigencia 30 días</span>
-              </div>
-              <div class="price-tag-porta">$150</div>
-              <div class="free-gb">8 GB Libres</div>
-              <ul class="features-list">
-                <li><span>📱🎵</span> Redes ilimitadas</li>
-                <li><span>👥</span> 7 GB Redes Sociales</li>
-                <li><span>▶️</span> 1 GB de video</li>
-                <li><span>📞</span> Minutos y SMS Ilimitados</li>
-              </ul>
-              
-              <a href="https://virginmobile.mx/portabilidad/" class="btn-portabilidad">
-                ¡TRAER MI NÚMERO!
-              </a>
-              <p class="terms-porta">*Aplican términos y condiciones</p>
-            </div>
+                    <div class="free-month-promo">
+                        <h4>🎁 4to Mes GRATIS</h4>
+                        <p>Al recargar el mes 2 y 3 consecutivamente</p>
+                        <span class="small-legal">*Aplica en recargas del mismo monto ($150)</span>
+                    </div>
+                </div>
 
-          </div>
+                <div class="comparison-zone">
+                    
+                    <div class="mini-card old">
+                        <div class="mini-header">Chip Nuevo / Número Nuevo</div>
+                        <div class="gig-number">15 <span class="gig-unit">GB</span></div>
+                        <div class="mini-vigencia">Vigencia 26 días</div>
+                        
+                        <div class="mini-details">
+                            <div>❌ 7 GB Libres</div>
+                            <div>✅ Redes Sociales</div>
+                            <div>✅ Minutos Ilimitados</div>
+                        </div>
+                    </div>
+
+                    <div class="evolution-arrow">
+                        ➔
+                    </div>
+
+                    <div class="mini-card new">
+                        <div class="mini-header" style="color:#E60000; font-weight:bold;">¡PORTABILIDAD!</div>
+                        <div class="gig-number highlight-red">16 <span class="gig-unit">GB</span></div>
+                        <div class="mini-vigencia highlight-red">Vigencia 30 días (+4 días)</div>
+                        
+                        <div class="mini-details">
+                            <div style="font-weight:bold; color:#000;">⚡ 8 GB Libres (+1GB)</div>
+                            <div>✅ Redes Ilimitadas</div>
+                            <div>✅ Minutos Ilimitados</div>
+                        </div>
+
+                        <a href="https://virginmobile.mx/portabilidad/" class="btn-cta-porta">¡TRAER MI NÚMERO!</a>
+                    </div>
+
+                </div>
+
+            </div>
         </div>
-        
-        <div class="vigencia-footer">
-          En vigor: Hasta nuevo aviso
-        </div>
-
-      </div>
     </section>
-
     <section class="holo-steps-section">
         <div class="container">
             <h2 style="color: white;">El futuro se instala en 3 toques</h2>
@@ -694,17 +418,17 @@
                 <div class="holo-card">
                     <div class="holo-number">1</div>
                     <h3>Elige y Paga</h3>
-                    <p>Selecciona tu paquete ideal. Pago 100% seguro en línea.</p>
+                    <p>Selecciona tu paquete ideal.</p>
                 </div>
                 <div class="holo-card">
                     <div class="holo-number">2</div>
                     <h3>Recibe QR</h3>
-                    <p>Tu código eSIM llega a tu correo en segundos.</p>
+                    <p>Llega a tu correo en segundos.</p>
                 </div>
                 <div class="holo-card">
                     <div class="holo-number">3</div>
                     <h3>Escanea y Listo</h3>
-                    <p>Apunta con tu cámara y quedas conectado.</p>
+                    <p>Apunta con tu cámara y conecta.</p>
                 </div>
             </div>
         </div>
@@ -712,89 +436,15 @@
 
     <section class="testimonials-section">
         <div class="container">
-            <div class="section-header">
-                <h2>⭐ Lo que dicen nuestros clientes</h2>
-                <p>Miles de usuarios ya disfrutan Virgin Mobile eSIM</p>
-            </div>
-            
+            <h2>⭐ Lo que dicen nuestros clientes</h2>
             <div class="testimonials-grid">
                 <div class="testimonial-card">
-                    <div class="testimonial-header">
-                        <div class="testimonial-avatar">
-                            <span class="avatar-emoji">👩‍💼</span>
-                        </div>
-                        <div class="testimonial-info">
-                            <h4>María González</h4>
-                            <span class="testimonial-location">📍 CDMX</span>
-                        </div>
-                        <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
-                    </div>
-                    <div class="testimonial-body">
-                        <p>"Activé mi eSIM en menos de 3 minutos. No puedo creer lo fácil que fue. Ya no más ir a tiendas a comprar chips. ¡Increíble servicio!"</p>
-                    </div>
-                    <div class="testimonial-footer">
-                        <span class="testimonial-package">Paquete $250</span>
-                        <span class="testimonial-time">Hace 2 semanas</span>
-                    </div>
+                    <p>"Activé mi eSIM en menos de 3 minutos. ¡Increíble servicio!"</p>
+                    <strong>- María G. (CDMX)</strong>
                 </div>
-                
                 <div class="testimonial-card">
-                    <div class="testimonial-header">
-                        <div class="testimonial-avatar">
-                            <span class="avatar-emoji">👨‍💻</span>
-                        </div>
-                        <div class="testimonial-info">
-                            <h4>Carlos Ramírez</h4>
-                            <span class="testimonial-location">📍 Monterrey</span>
-                        </div>
-                        <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
-                    </div>
-                    <div class="testimonial-body">
-                        <p>"El paquete de $300 es perfecto para mí. Netflix y YouTube ilimitados son lo mejor. La señal es excelente y el soporte por WhatsApp súper rápido."</p>
-                    </div>
-                    <div class="testimonial-footer">
-                        <span class="testimonial-package">Paquete $300</span>
-                        <span class="testimonial-time">Hace 1 semana</span>
-                    </div>
-                </div>
-                
-                <div class="testimonial-card">
-                    <div class="testimonial-header">
-                        <div class="testimonial-avatar">
-                            <span class="avatar-emoji">👩‍🎓</span>
-                        </div>
-                        <div class="testimonial-info">
-                            <h4>Laura Hernández</h4>
-                            <span class="testimonial-location">📍 Guadalajara</span>
-                        </div>
-                        <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
-                    </div>
-                    <div class="testimonial-body">
-                        <p>"Porté mi número en 24 horas tal como prometieron. El proceso fue súper sencillo y ahora tengo mejor servicio por menos dinero. 100% recomendado."</p>
-                    </div>
-                    <div class="testimonial-footer">
-                        <span class="testimonial-package">Paquete $250</span>
-                        <span class="testimonial-time">Hace 3 días</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="testimonials-stats">
-                <div class="stat-item">
-                    <div class="stat-number">2,500+</div>
-                    <div class="stat-label">Clientes Activos</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">4.9★</div>
-                    <div class="stat-label">Calificación</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">98%</div>
-                    <div class="stat-label">Satisfacción</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">24/7</div>
-                    <div class="stat-label">Soporte</div>
+                    <p>"La portabilidad fue súper fácil y me dieron el mes gratis."</p>
+                    <strong>- Carlos R. (Monterrey)</strong>
                 </div>
             </div>
         </div>
@@ -803,28 +453,14 @@
     <section class="coverage-section">
         <div class="container">
             <h2>Verifica tu Cobertura</h2>
-            <p style="text-align: center; margin-bottom: 30px; color: #666; font-size: 1.1rem;">
-                Navegamos con la red extendida de <strong>Movistar y AT&T</strong> con tecnología <strong>5G</strong>.
-                <br>Selecciona el mapa que deseas consultar:
-            </p>
-            
             <div class="coverage-grid">
                 <a href="https://cobertura.movistar.com.mx:8080/cfusion/COBERTURA/Mapas/Mapa_5G.html" target="_blank" class="coverage-card">
                     <div class="cov-icon">🚀</div>
                     <h3>Cobertura 5G</h3>
-                    <p>Máxima velocidad en principales ciudades.</p>
                 </a>
-
-                <a href="https://cobertura.movistar.com.mx:8080/cfusion/COBERTURA/Mapas/Mapa_4G.html" target="_blank" class="coverage-card">
-                    <div class="cov-icon">📶</div>
-                    <h3>Cobertura 4G LTE</h3>
-                    <p>Conexión estable en todo el país.</p>
-                </a>
-
                 <a href="https://att.com.mx/legal/mapas-de-cobertura.html" target="_blank" class="coverage-card">
                     <div class="cov-icon">🗺️</div>
                     <h3>Cobertura AT&T</h3>
-                    <p>Red compartida para máximo alcance.</p>
                 </a>
             </div>
         </div>
@@ -833,64 +469,25 @@
     <footer>
         <div class="container">
             <p>&copy; 2024 Virgin Mobile México. Todos los derechos reservados.</p>
-            <p style="margin-top: 10px; font-size: 0.9rem; opacity: 0.8;">
-                Distribuidor Autorizado | eSIM | Prepago | Sin Contrato
-            </p>
+            <p style="margin-top: 10px; font-size: 0.8rem; opacity: 0.7;">Distribuidor Autorizado</p>
         </div>
     </footer>
 
     <div class="chatbot-bubble" id="chatbotBubble">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
-        <span class="bubble-badge">¿Dudas?</span>
     </div>
 
     <div class="chatbot-window" id="chatbotWindow">
-        <div class="chatbot-header">
-            <div class="header-info">
-                <div class="header-avatar">🤖</div>
-                <div class="header-text">
-                    <div class="header-title">Asistente Jarvis Mobilemx</div>
-                    <div class="header-status">
-                        <span class="status-dot"></span>
-                        En línea
-                    </div>
-                </div>
-            </div>
-            <button class="close-btn" id="closeChat">&times;</button>
+        <div style="background: #E60000; color: white; padding: 15px; display: flex; justify-content: space-between;">
+            <span>Asistente Virgin</span>
+            <span id="closeChat" style="cursor: pointer;">&times;</span>
         </div>
-
-        <div class="chatbot-messages" id="chatMessages">
-            <div class="message bot-message">
-                <div class="message-avatar">🤖</div>
-                <div class="message-content">
-                    <p>¡Hola! 👋 Soy tu experto virtual Jarvis Mobilemx.</p>
-                    <p>Estoy aquí para ayudarte con:</p>
-                    <ul>
-                        <li>Dudas sobre eSIM 📱</li>
-                        <li>Cobertura 🗺️</li>
-                        <li>Paquetes y Precios 💲</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="chatbot-quick-replies">
-            <button class="quick-reply-btn">📲 ¿Qué es una eSIM?</button>
-            <button class="quick-reply-btn">🗺️ Ver Cobertura</button>
-            <button class="quick-reply-btn">💲 Ver Paquetes</button>
-        </div>
-
-        <div class="chatbot-input-area">
-            <form id="chatbotForm">
-                <input type="text" id="chatbotInput" placeholder="Escribe tu duda aquí..." autocomplete="off">
-                <button type="submit" class="send-btn">
-                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
-                </button>
-            </form>
+        <div style="padding: 20px; flex: 1; overflow-y: auto;">
+            <p>Hola 👋 ¿En qué puedo ayudarte hoy?</p>
         </div>
     </div>
 
-   <script src="chatbot.js"></script>
+    <script src="chatbot.js"></script>
 
 </body>
 </html>
