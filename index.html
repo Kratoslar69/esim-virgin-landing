@@ -93,6 +93,281 @@
         .chatbot-bubble, .chatbot-window {
             z-index: 2147483647 !important;
         }
+        
+        /* --- ESTILOS NUEVOS PARA PORTABILIDAD --- */
+        .portabilidad-section {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f9f9f9; /* Ligero gris para separar secciones */
+            padding: 60px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .portabilidad-container {
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        /* Cabecera Roja */
+        .portabilidad-header {
+            background-color: #E60000; /* Rojo Virgin */
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 24px;
+            font-weight: 900;
+            border-radius: 12px;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            box-shadow: 0 4px 15px rgba(230, 0, 0, 0.2);
+        }
+
+        .portabilidad-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            align-items: stretch;
+        }
+
+        /* Caja Roja de Info (Izquierda) */
+        .info-box {
+            background-color: #E60000;
+            color: white;
+            flex: 1;
+            min-width: 300px;
+            padding: 40px;
+            border-radius: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(213, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Detalle decorativo en caja roja */
+        .info-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            transform: rotate(30deg);
+        }
+
+        .info-box h3 {
+            font-size: 22px;
+            margin-bottom: 20px;
+            line-height: 1.3;
+            font-weight: 800;
+            position: relative;
+        }
+
+        .info-box p {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .total-gb {
+            font-size: 32px;
+            font-weight: 900;
+            margin-top: auto;
+            position: relative;
+            background: rgba(0,0,0,0.2);
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        /* Wrapper de las Tarjetas (Derecha) */
+        .comparison-wrapper {
+            flex: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        /* Estilos Tarjetas */
+        .porta-card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            padding: 25px 20px;
+            width: 260px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .porta-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .porta-card.promo {
+            border: 3px solid #E60000;
+            transform: scale(1.05); /* Ligeramente más grande */
+            z-index: 2;
+            box-shadow: 0 10px 25px rgba(230,0,0,0.15);
+        }
+        
+        .porta-card.promo:hover {
+            transform: scale(1.05) translateY(-5px);
+        }
+
+        .card-badge {
+            background: #111;
+            color: white;
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: bold;
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+        }
+
+        .data-highlight {
+            background: #E60000;
+            color: white;
+            padding: 15px 5px;
+            margin: 15px -20px 10px; /* Extender a los bordes */
+            display: flex;
+            flex-direction: column;
+        }
+
+        .gb-amount {
+            font-size: 36px;
+            font-weight: 900;
+            line-height: 1;
+        }
+
+        .validity {
+            font-size: 13px;
+            margin-top: 5px;
+            opacity: 0.9;
+        }
+
+        .price-tag-porta {
+            position: absolute;
+            top: 45px;
+            right: 15px;
+            font-weight: 900;
+            color: white;
+            font-size: 16px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .free-gb {
+            font-weight: 800;
+            color: #333;
+            margin: 10px 0;
+            font-size: 18px;
+            border-bottom: 3px solid #E60000;
+            display: inline-block;
+            padding-bottom: 2px;
+        }
+
+        .features-list {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+            font-size: 14px;
+            color: #555;
+            margin-top: 15px;
+        }
+
+        .features-list li {
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .features-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .arrow-separator {
+            font-size: 40px;
+            color: #cc00cc; /* Color morado/rosa de la flecha */
+            font-weight: bold;
+            animation: pulseArrow 2s infinite;
+        }
+        
+        @keyframes pulseArrow {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.2); opacity: 0.8; }
+        }
+
+        /* Botón */
+        .btn-portabilidad {
+            display: block;
+            background-color: #E60000;
+            color: white;
+            text-decoration: none;
+            padding: 12px;
+            border-radius: 50px;
+            font-weight: 800;
+            margin-top: 20px;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 14px;
+        }
+
+        .btn-portabilidad:hover {
+            background-color: #b30000;
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(179, 0, 0, 0.3);
+        }
+
+        .terms-porta {
+            font-size: 10px;
+            color: #999;
+            margin-top: 8px;
+        }
+
+        .vigencia-footer {
+            text-align: center;
+            margin-top: 50px;
+            font-weight: 800;
+            color: #00235C; /* Azul oscuro corporativo */
+            font-size: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .portabilidad-content {
+                flex-direction: column;
+                align-items: center;
+            }
+            .info-box {
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .arrow-separator {
+                transform: rotate(90deg); /* Flecha hacia abajo en móvil */
+                margin: 20px 0;
+            }
+            .porta-card.promo {
+                transform: scale(1);
+            }
+        }
     </style>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="chatbot.css">
@@ -543,6 +818,74 @@
                 </a>
             </div>
         </div>
+    </section>
+    
+    <section class="portabilidad-section">
+      <div class="portabilidad-container">
+        
+        <div class="portabilidad-header">
+          Paquete 150: Más Gigas - Mayor Vigencia
+        </div>
+
+        <div class="portabilidad-content">
+          
+          <div class="info-box">
+            <h3>Válido en portabilidades con paquetes activos de $150.</h3>
+            <p>Los clientes que porten su número a VMM disfrutarán, durante 6 meses, del paquete Virgin 150 con vigencia extendida de 26 a 30 días y un GB libre extra.</p>
+            <div class="total-gb">Total 16 GB</div>
+          </div>
+
+          <div class="comparison-wrapper">
+            
+            <div class="porta-card standard">
+              <div class="card-badge">Virgin 150</div>
+              <div class="data-highlight">
+                <span class="gb-amount">15 GB</span>
+                <span class="validity">Vigencia 26 días</span>
+              </div>
+              <div class="price-tag-porta">$150</div>
+              <div class="free-gb">7 GB Libres</div>
+              <ul class="features-list">
+                <li><span>📱🎵</span> Redes ilimitadas</li>
+                <li><span>👥</span> 7 GB Redes Sociales</li>
+                <li><span>▶️</span> 1 GB de video</li>
+                <li><span>📞</span> Minutos y SMS Ilimitados</li>
+              </ul>
+            </div>
+
+            <div class="arrow-separator">
+                ➜
+            </div>
+
+            <div class="porta-card promo">
+              <div class="card-badge" style="background: #E60000;">¡MEJORADO!</div>
+              <div class="data-highlight">
+                <span class="gb-amount">16 GB</span>
+                <span class="validity">Vigencia 30 días</span>
+              </div>
+              <div class="price-tag-porta">$150</div>
+              <div class="free-gb">8 GB Libres</div>
+              <ul class="features-list">
+                <li><span>📱🎵</span> Redes ilimitadas</li>
+                <li><span>👥</span> 7 GB Redes Sociales</li>
+                <li><span>▶️</span> 1 GB de video</li>
+                <li><span>📞</span> Minutos y SMS Ilimitados</li>
+              </ul>
+              
+              <a href="https://virginmobile.mx/portabilidad/" class="btn-portabilidad">
+                ¡LO QUIERO!
+              </a>
+              <p class="terms-porta">*Aplican términos y condiciones</p>
+            </div>
+
+          </div>
+        </div>
+        
+        <div class="vigencia-footer">
+          En vigor: Hasta nuevo aviso
+        </div>
+
+      </div>
     </section>
 
     <footer>
