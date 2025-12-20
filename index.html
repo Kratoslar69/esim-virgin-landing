@@ -14,27 +14,19 @@
         body { font-family: 'Montserrat', sans-serif; overflow-x: hidden; margin: 0; padding: 0; background-color: #fff; width: 100%; }
         html { scroll-behavior: smooth; }
         
-        /* --- ANIMACIONES (RECUPERADAS) --- */
+        /* --- ANIMACIONES --- */
         @keyframes disruptivo {
-            0% { transform: scale(1) rotate(0deg); box-shadow: 0 4px 10px rgba(255, 215, 0, 0.2); }
-            80% { transform: scale(1) rotate(0deg); }
-            82% { transform: scale(1.05) rotate(2deg); box-shadow: 0 10px 30px rgba(255, 0, 0, 0.3); border-color: #ff0000; }
-            84% { transform: scale(1.05) rotate(-2deg); }
-            86% { transform: scale(1.05) rotate(2deg); }
-            88% { transform: scale(1.05) rotate(-2deg); }
-            90% { transform: scale(1.05) rotate(0deg); border-color: #FFD700; }
-            100% { transform: scale(1) rotate(0deg); }
+            0% { transform: scale(1); box-shadow: 0 4px 10px rgba(255, 215, 0, 0.2); }
+            50% { transform: scale(1.02); box-shadow: 0 10px 30px rgba(255, 0, 0, 0.3); }
+            100% { transform: scale(1); }
         }
-        
         @keyframes pulse-gold {
             0% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.7); transform: scale(1); }
-            50% { transform: scale(1.02); }
             100% { box-shadow: 0 0 0 15px rgba(255, 215, 0, 0); transform: scale(1); }
         }
-        
-        @keyframes shineMove {
-            0% { background-position: -200% 0; }
-            100% { background-position: 200% 0; }
+        @keyframes floatArrow {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(10px); }
         }
 
         /* --- HEADER --- */
@@ -44,9 +36,9 @@
         .btn-header-porta { background: #E60000; color: white; font-weight: 800; padding: 10px 25px; border-radius: 5px; text-decoration: none; text-transform: uppercase; font-size: 14px; border: 2px solid #E60000; transition: all 0.3s; animation: pulse-gold 3s infinite; }
         .btn-header-porta:hover { background: white; color: #E60000; }
 
-        /* --- HERO VIDEO SECTION (AJUSTADO PARA QUE NO SE CORTE) --- */
+        /* --- HERO VIDEO SECTION --- */
         .hero-video { background: #111; color: white; padding: 100px 20px; text-align: center; position: relative; overflow: hidden; }
-        .hero-content h1 { font-size: 3rem; margin-bottom: 20px; font-weight: 900; line-height: 1.1; margin-top: 40px; }
+        .hero-content h1 { font-size: 3rem; margin-bottom: 20px; font-weight: 900; line-height: 1.1; }
         .hero-content p { font-size: 1.2rem; margin-bottom: 40px; opacity: 0.9; }
 
         /* --- TRUST BADGES --- */
@@ -56,39 +48,25 @@
         .trust-text strong { display: block; font-size: 0.9rem; }
         .trust-text span { font-size: 0.8rem; color: #666; }
 
-        /* --- PAQUETES GRID (DISEÑO ROJO/BLANCO CON MOVIMIENTOS) --- */
+        /* --- PAQUETES GRID --- */
         .packages-section { padding: 80px 20px 50px; background: white; }
         .container { max-width: 1200px; margin: 0 auto; }
         .packages-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; }
         
-        /* TARJETA CON MOVIMIENTO Y SOMBRA */
         .package-card {
-            border: none;
-            border-radius: 25px;
-            width: 300px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            background: white;
-            position: relative;
-            transition: transform 0.3s ease, box-shadow 0.3s ease; /* MOVIMIENTO SUAVE */
-            display: flex;
-            flex-direction: column;
-            z-index: 1;
+            border: none; border-radius: 25px; width: 300px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1); background: white;
+            position: relative; transition: transform 0.3s;
+            display: flex; flex-direction: column; z-index: 1;
         }
-        /* EFECTO HOVER (EL "MOVIMIENTO" QUE PEDISTE) */
-        .package-card:hover { transform: translateY(-10px) scale(1.02); box-shadow: 0 25px 50px rgba(0,0,0,0.2); }
+        .package-card:hover { transform: translateY(-10px); box-shadow: 0 25px 50px rgba(0,0,0,0.2); }
         
         /* CABECERA ROJA */
         .package-header {
-            background-color: #E60000;
-            padding: 40px 25px 15px 25px;
-            color: white;
-            border-radius: 25px 25px 40px 40px;
-            margin-bottom: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start; 
+            background-color: #E60000; padding: 40px 25px 15px 25px;
+            color: white; border-radius: 25px 25px 40px 40px; margin-bottom: 10px;
+            display: flex; justify-content: space-between; align-items: flex-start; 
         }
-        
         .header-col-left { display: flex; flex-direction: column; align-items: flex-start; }
         .header-col-right { display: flex; flex-direction: column; align-items: flex-end; text-align: right; }
         
@@ -97,39 +75,20 @@
         .price { font-size: 2.2rem; font-weight: 800; color: white; line-height: 0.9; }
         .vigencia-text { font-size: 0.8rem; opacity: 0.9; margin-top: 8px; font-weight: 600; }
         
-        /* CUERPO BLANCO */
         .package-body { padding: 10px 25px 25px 25px; flex-grow: 1; display: flex; flex-direction: column; }
         .benefit-title { color: #E60000; font-weight: 800; font-size: 1.1rem; margin-top: 15px; margin-bottom: 5px; }
         .benefit-desc { color: #666; font-size: 0.85rem; margin-bottom: 10px; }
         .app-icons { display: flex; gap: 8px; margin-bottom: 10px; flex-wrap: wrap; }
         .app-icons img { width: 28px; height: 28px; }
 
-        /* PROMO HIGHLIGHT CON ANIMACIÓN */
-        .promo-box {
-            background: linear-gradient(110deg, #fffcf0 30%, #fffbe0 40%, #fffcf0 50%);
-            background-size: 200% 100%;
-            border: 2px dashed #fbc02d;
-            border-radius: 12px;
-            padding: 10px;
-            text-align: center;
-            margin: 15px 0;
-            animation: disruptivo 4s infinite ease-in-out, shineMove 3s infinite linear; /* ANIMACIÓN ACTIVADA */
-        }
-        .promo-box strong { color: #d32f2f; display: block; font-weight: 900; font-size: 0.95rem; text-transform: uppercase; }
+        .promo-box { background-color: #fff9c4; border: 2px dashed #fbc02d; border-radius: 12px; padding: 10px; text-align: center; margin: 15px 0; }
+        .promo-box strong { color: #E60000; display: block; font-weight: 900; font-size: 0.95rem; }
         .promo-box span { font-size: 0.75rem; color: #555; }
 
-        .btn-buy {
-            display: block; width: 100%; text-align: center; 
-            background: #E60000; color: white;
-            padding: 14px; border-radius: 50px; 
-            text-decoration: none; margin-top: auto; 
-            font-weight: 900; text-transform: uppercase;
-            box-shadow: 0 4px 15px rgba(230,0,0,0.3);
-            transition: all 0.3s;
-        }
-        .btn-buy:hover { background: #b70000; transform: scale(1.05); }
+        .btn-buy { display: block; width: 100%; text-align: center; background: #E60000; color: white; padding: 14px; border-radius: 50px; text-decoration: none; margin-top: auto; font-weight: 900; text-transform: uppercase; box-shadow: 0 4px 15px rgba(230,0,0,0.3); transition: all 0.3s; }
+        .btn-buy:hover { background: #b70000; transform: scale(1.02); }
 
-        /* BADGES (Versión Escritorio - Inclinados) */
+        /* BADGES */
         .badge-valor, .badge-popular {
             position: absolute; top: -15px; left: -10px;
             padding: 8px 20px; border-radius: 8px;
@@ -163,7 +122,9 @@
         .small-legal { font-size: 0.6rem; margin-top: 5px; opacity: 0.7; display: block; }
 
         .comparison-zone { flex: 2; display: flex; align-items: center; justify-content: center; gap: 15px; position: relative; }
-        .mini-card { background: white; border-radius: 15px; width: 220px; padding: 20px; text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,0.05); border: 1px solid #eee; transition: transform 0.3s; }
+        /* AJUSTE ANCHO MINI CARD PARA QUE QUEPAN ICONOS */
+        .mini-card { background: white; border-radius: 15px; width: 280px; padding: 20px; text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,0.05); border: 1px solid #eee; transition: transform 0.3s; }
+        
         .mini-card.old { opacity: 0.7; transform: scale(0.95); background: #f9f9f9; }
         .mini-card.new { border: 3px solid #E60000; transform: scale(1.05); box-shadow: 0 15px 40px rgba(0,0,0,0.15); z-index: 10; position: relative; }
         .mini-card.new::before { content: '¡TU MEJOR OPCIÓN!'; position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: #000; color: #fff; padding: 4px 12px; font-size: 0.7rem; font-weight: 900; border-radius: 20px; white-space: nowrap; }
@@ -174,8 +135,18 @@
         .gig-unit { font-size: 1rem; font-weight: 700; }
         .mini-vigencia { font-size: 0.8rem; color: #555; margin-bottom: 10px; font-weight: 600; }
         .highlight-red { color: #E60000; }
-        .mini-details { font-size: 0.8rem; color: #666; text-align: left; margin-top: 15px; }
-        .mini-details div { margin-bottom: 6px; display: flex; align-items: center; gap: 5px; border-bottom: 1px solid #f0f0f0; padding-bottom: 4px; }
+        
+        /* NUEVOS ESTILOS PARA DETALLES DE PORTABILIDAD (Con Alma) */
+        .mini-details { text-align: left; margin-top: 15px; }
+        .benefit-row { display: flex; align-items: flex-start; margin-bottom: 10px; border-bottom: 1px solid #f9f9f9; padding-bottom: 8px; }
+        .benefit-row:last-child { border-bottom: none; }
+        .benefit-icon { font-size: 1.2rem; margin-right: 10px; min-width: 25px; text-align: center; }
+        .benefit-text-group { display: flex; flex-direction: column; }
+        .benefit-text-group strong { font-size: 0.9rem; color: #000; }
+        .benefit-text-group p { font-size: 0.75rem; color: #666; margin: 2px 0 0 0; line-height: 1.2; }
+        .app-icons-mini { display: flex; gap: 4px; margin-top: 4px; flex-wrap: wrap; }
+        .app-icons-mini img { width: 18px; height: 18px; }
+
         .evolution-arrow { font-size: 2rem; color: #E60000; animation: floatArrow 1s infinite ease-in-out; z-index: 5; }
         .btn-cta-porta { display: block; background: #E60000; color: white; font-weight: 900; padding: 10px; border-radius: 50px; text-decoration: none; margin-top: 15px; font-size: 0.9rem; box-shadow: 0 4px 15px rgba(230,0,0,0.3); text-transform: uppercase; letter-spacing: 1px; }
         .btn-cta-porta:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(230,0,0,0.4); background: #b70000; }
@@ -225,43 +196,23 @@
         .chatbot-window { position: fixed; bottom: 80px; right: 20px; width: 300px; height: 400px; background: white; border-radius: 15px; box-shadow: 0 5px 30px rgba(0,0,0,0.2); z-index: 2000; display: none; flex-direction: column; overflow: hidden; }
 
         @media (max-width: 900px) {
-            
-            /* --- CORRECCIÓN HEADER MÓVIL (LO ÚNICO QUE PEDISTE) --- */
-            /* Se hace el texto más pequeño y se baja para no chocar con el logo */
-            .hero-content {
-                padding-top: 40px; /* Bajar contenido */
-            }
-            .hero-content h1 { 
-                font-size: 2rem; /* Tamaño seguro */
-                line-height: 1.2;
-                margin-top: 20px;
-            }
-
+            .hero-content h1 { font-size: 2rem; margin-top: 20px; line-height: 1.2; }
             .porta-grid { flex-direction: column; align-items: center; }
             .power-card { width: 100%; }
             .comparison-zone { flex-direction: column; width: 100%; gap: 30px; }
             .evolution-arrow { transform: rotate(90deg); margin: 10px 0; }
-            .mini-card { width: 80%; }
+            .mini-card { width: 90%; max-width: 320px; } /* Ajuste móvil */
             .porta-title { font-size: 1.8rem; }
             .header-content { padding: 0 15px; }
             .logo { height: 35px; }
             .btn-header-porta { font-size: 11px; padding: 8px 15px; }
             .package-card { width: 100%; max-width: 320px; margin-bottom: 30px; } 
             .packages-section { overflow-x: hidden; }
-            
-            /* Ajuste para badges en móvil */
-            .badge-valor, .badge-popular {
-                left: 0 !important; 
-                top: -12px !important;
-                transform: rotate(0deg) !important;
-                font-size: 0.75rem;
-                padding: 5px 15px;
-            }
+            .badge-valor, .badge-popular { left: 0 !important; top: -12px !important; transform: rotate(0deg) !important; font-size: 0.75rem; padding: 5px 15px; }
         }
     </style>
     
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="chatbot.css">
 </head>
 <body>
 
@@ -401,12 +352,62 @@
                         <div class="mini-details"><div>❌ 7 GB Libres</div><div>✅ Redes Sociales</div></div>
                     </div>
                     <div class="evolution-arrow">➜</div>
+                    
                     <div class="mini-card new">
                         <div class="mini-header" style="color:#E60000; font-weight:bold;">¡PORTABILIDAD!</div>
                         <div class="porta-price">$150</div>
                         <div class="gig-number highlight-red">16 <span class="gig-unit">GB</span></div>
                         <div class="mini-vigencia highlight-red">Vigencia 30 días (+4 días)</div>
-                        <div class="mini-details"><div style="font-weight:bold; color:#000;">⚡ 8 GB Libres (+1GB)</div><div>✅ Redes Ilimitadas</div></div>
+                        
+                        <div class="mini-details">
+                            
+                            <div class="benefit-row">
+                                <span class="benefit-icon">🌐</span>
+                                <div class="benefit-text-group">
+                                    <strong>8 GB Libres</strong>
+                                    <p>Navegación libre (+1GB Extra)</p>
+                                </div>
+                            </div>
+
+                            <div class="benefit-row">
+                                <span class="benefit-icon">📱</span>
+                                <div class="benefit-text-group">
+                                    <strong>7 GB Redes</strong>
+                                    <div class="app-icons-mini">
+                                        <img src="images/facebook.svg"><img src="images/instagram-icon.svg"><img src="images/twitter.png"><img src="images/waze.png">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="benefit-row">
+                                <span class="benefit-icon">🎧</span>
+                                <div class="benefit-text-group">
+                                    <strong>Redes Ilimitadas</strong>
+                                    <div class="app-icons-mini">
+                                        <img src="images/whatsapp.svg"><img src="images/spotify.svg"><img src="images/apple-music.svg">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="benefit-row">
+                                <span class="benefit-icon">🎬</span>
+                                <div class="benefit-text-group">
+                                    <strong>1 GB Video</strong>
+                                    <div class="app-icons-mini">
+                                        <img src="images/tiktok.svg"><img src="images/youtube.svg">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="benefit-row">
+                                <span class="benefit-icon">📞</span>
+                                <div class="benefit-text-group">
+                                    <strong>Todo Ilimitado</strong>
+                                    <p>Minutos y SMS nacionales</p>
+                                </div>
+                            </div>
+
+                        </div>
                         <a href="https://virginmobile.mx/portabilidad/" class="btn-cta-porta">¡TRAER MI NÚMERO!</a>
                     </div>
                 </div>
